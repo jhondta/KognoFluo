@@ -59,8 +59,6 @@ gem 'paper_trail'
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
-  # Use byebug as the debugger
-  gem 'byebug'
   # Use CSV for seed data
   gem 'csv'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
