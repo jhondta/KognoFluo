@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   get 'public/help'
   get 'public/about'
   get 'public/contact'
+
+  devise_for :users
 end
