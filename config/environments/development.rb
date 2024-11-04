@@ -35,22 +35,22 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
-
   # Set localhost to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # Uses Letter Opener to open emails in browser.
+  config.action_mailer.delivery_method = :letter_opener
+  # Performs deliveries synchronously.
+  config.action_mailer.perform_deliveries = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
-
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
-
   # Append comments with runtime information tags to SQL queries in logs.
   config.active_record.query_log_tags_enabled = true
 
