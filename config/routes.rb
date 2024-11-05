@@ -53,13 +53,6 @@ Rails.application.routes.draw do
 
   # Defines the resources
 
-  namespace :inventory do
-    resources :stocks
-    resources :item_categories
-    resources :items
-    resources :warehouses
-    resources :categories
-  end
 
   namespace :maintenance do
     resources :assets do
@@ -72,9 +65,5 @@ Rails.application.routes.draw do
     resources :technicians
     resources :manufacturers
     resources :asset_types
-    resources :services
-    resources :frequencies
-    resources :responsibles
-    resources :equipment
   end
 end
