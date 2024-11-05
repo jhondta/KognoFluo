@@ -38,6 +38,7 @@ Rails.application.routes.draw do
                            sign_up: 'signup' }
 
   namespace :common do
+    resources :currencies
     resources :countries
   end
 

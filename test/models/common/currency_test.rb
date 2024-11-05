@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class CurrencyTest < ActiveSupport::TestCase
+class Common::CurrencyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
