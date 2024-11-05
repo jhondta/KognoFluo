@@ -9,17 +9,17 @@ class PublicControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get help' do
-    get public_help_url
+    get help_url
     assert_response :success
   end
 
   test 'should get about' do
-    get public_about_url
+    get about_url
     assert_response :success
   end
 
   test 'should get contact' do
-    get public_contact_url
+    get contact_url
     assert_response :success
   end
 end

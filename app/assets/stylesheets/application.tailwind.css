@@ -1,3 +1,5 @@
+@import "flowbite.min.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,3 +13,39 @@
 }
 
 */
+
+.pagy.info {
+    @apply text-sm font-normal text-gray-500 dark:text-gray-400;
+
+    span {
+        @apply font-semibold text-gray-900 dark:text-white;
+    }
+}
+
+.pagy.nav {
+    @apply inline-flex items-stretch -space-x-px;
+
+    a {
+        @apply flex items-center justify-center px-3 py-2 text-sm leading-tight text-gray-500 bg-white border
+        border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400
+        dark:hover:bg-gray-700 dark:hover:text-white;
+
+        &:first-child {
+            @apply rounded-l-lg font-semibold;
+        }
+
+        &:last-child {
+            @apply rounded-r-lg font-semibold;
+        }
+
+        &.current {
+            @apply z-10 flex items-center justify-center px-3 py-2 text-sm font-semibold leading-tight border
+            text-gray-600 bg-gray-100 border-gray-300 hover:text-gray-700 dark:border-gray-700
+            dark:bg-gray-700 dark:text-white
+        }
+    }
+}
+
+.dark [type=checkbox]:checked {
+    background-size: 100% 100%;
+}

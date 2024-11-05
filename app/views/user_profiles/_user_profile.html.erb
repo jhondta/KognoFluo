@@ -1,0 +1,37 @@
+<div id="<%= dom_id user_profile %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= user_profile.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">First name:</strong>
+    <%= user_profile.first_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Last name:</strong>
+    <%= user_profile.last_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Date of birth:</strong>
+    <%= user_profile.date_of_birth %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Country:</strong>
+    <%= user_profile.country_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Gender:</strong>
+    <%= user_profile.gender %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Avatar:</strong>
+    <%= link_to user_profile.avatar.filename, user_profile.avatar if user_profile.avatar.attached? %>
+  </p>
+
+</div>

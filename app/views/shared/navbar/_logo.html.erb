@@ -1,0 +1,6 @@
+<%= link_to root_path, class: "flex ml-2 md:mr-24" do %>
+  <%= image_tag 'kognado_logo.svg', class: "h-8 mr-3", alt: "Kognado Logo" %>
+  <%= content_tag :span, full_title,
+                  class: "hidden md:block self-center text-xl font-semibold sm:text-2xl whitespace-nowrap
+                          dark:text-white app-title" %>
+<% end %>

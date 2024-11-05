@@ -1,0 +1,366 @@
+<!-- TODO: Hardcoded, fill this view with configurable menu options -->
+<div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
+  <div class="flex-1 px-3 space-y-1 bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+    <ul class="pb-2 space-y-2">
+      <li>
+        <form action="#" method="GET" class="lg:hidden">
+          <label for="mobile-search" class="sr-only">Buscar</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414
+                         1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+            <input type="text" name="email" id="mobile-search"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500
+                          focus:border-primary-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600
+                          dark:placeholder-gray-400 dark:text-gray-200 dark:focus:ring-primary-500
+                          dark:focus:border-primary-500" placeholder="Search">
+          </div>
+        </form>
+      </li>
+      <li>
+        <%= link_to root_path,
+                    class: "flex items-center p-2 text-base text-gray-900 rounded-lg hover:bg-gray-100 group
+                            dark:text-gray-200 dark:hover:bg-gray-700" do %>
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                  d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm16 14a1 1 0 0 1-1 1h-4a1 1 0
+                  0 1-1-1v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2ZM4 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0
+                  0 1-1-1v-6Zm16-2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6Z"/>
+          </svg>
+          <%= content_tag :span, t('shared.sidebar.links.dashboard'), class: "ml-3 font-medium" %>
+        <% end %>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-finance" data-collapse-toggle="dropdown-finance">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446
+                     4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899
+                     4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2"/>
+          </svg>
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Finanzas</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-finance" class="hidden py-2 space-y-1">
+          <li>
+            <%= link_to 'Contabilidad', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Gestión de pagos', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Tesorería', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Presupuestos', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Impuestos', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Reportes financieros', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+
+          </li>
+        </ul>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-hhrr" data-collapse-toggle="dropdown-hhrr">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                  d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0
+                     0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0
+                     1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"/>
+          </svg>
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Recursos Humanos</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-hhrr" class="hidden py-2 space-y-2">
+          <li>
+            <%= link_to 'Empleados', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Nómina', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Gestión de personal', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Reclutamiento', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-sales" data-collapse-toggle="dropdown-sales">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13.6 16.733c.234.269.548.456.895.534a1.4 1.4 0 0 0
+                     1.75-.762c.172-.615-.446-1.287-1.242-1.481-.796-.194-1.41-.861-1.241-1.481a1.4 1.4 0 0 1
+                     1.75-.762c.343.077.654.26.888.524m-1.358 4.017v.617m0-5.939v.725M4 15v4m3-6v6M6 8.5 10.5 5 14 7.5
+                     18 4m0 0h-3.5M18 4v3m2 8a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z"/>
+          </svg>
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Ventas y CRM</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-sales" class="hidden py-2 space-y-2">
+          <li>
+            <%= link_to 'Clientes', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Oportunidades', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Ventas', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Servicio al cliente', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Marketing', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-purchases" data-collapse-toggle="dropdown-purchases">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0
+                     0-4Zm-8.5-3h9.25L19 7H7.312"/>
+          </svg>
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Compras</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-purchases" class="hidden py-2 space-y-2">
+          <li>
+            <%= link_to 'Proveedores', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Proceso de compra', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Recepción', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-inventory" data-collapse-toggle="dropdown-inventory">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12
+                     16h3m-6 0h.01M10 3v4h4V3h-4Z"/>
+          </svg>
+
+
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Inventario</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-inventory" class="hidden py-2 space-y-2">
+          <li>
+            <%= link_to 'Productos', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Almacenes', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Movimientos', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-operations" data-collapse-toggle="dropdown-operations">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 15v3c0 .5523.44772 1 1 1h4v-4m-5 0v-4m0 4h5m-5-4V6c0-.55228.44772-1 1-1h16c.5523 0 1 .44772 1
+                     1v1.98935M3 11h5v4m9.4708 4.1718-.8696-1.4388-2.8164-.235-2.573-4.2573 1.4873-2.8362 1.4441
+                     2.3893c.3865.6396
+                     1.2183.8447 1.8579.4582.6396-.3866.8447-1.2184.4582-1.858l-1.444-2.38925h3.1353l2.6101
+                     4.27715-1.0713 2.5847.8695 1.4388"/>
+          </svg>
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Operaciones</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-operations" class="hidden py-2 space-y-2">
+          <li>
+            <%= link_to 'Producción', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Mantenimiento', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Activos', maintenance_assets_path,
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Logística', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                       hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
+                aria-controls="dropdown-projects" data-collapse-toggle="dropdown-projects">
+          <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                      dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+               xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 9a3 3 0 0 1 3-3m-2 15h4m0-3c0-4.1 4-4.9 4-9A6 6 0 1 0 6 9c0 4 4 5 4 9h4Z"/>
+          </svg>
+          <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Proyectos</span>
+          <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+               xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1
+                     1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+          </svg>
+        </button>
+        <ul id="dropdown-projects" class="hidden py-2 space-y-2">
+          <li>
+            <%= link_to 'Gestión', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Recursos', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+          <li>
+            <%= link_to 'Control', '#',
+                        class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <div class="pt-2 space-y-2">
+      <%= link_to '#',
+                  class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
+                          hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' do %>
+        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
+                    dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 3v4a1 1 0 0 1-1 1H5m4 10v-2m3 2v-6m3 6v-3m4-11v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1
+                   .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"/>
+        </svg>
+        <span class="flex-1 ml-3 text-left font-medium whitespace-nowrap">Reportes</span>
+      <% end %>
+    </div>
+  </div>
+</div>

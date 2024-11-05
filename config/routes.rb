@@ -11,12 +11,65 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
-  root 'public#home'
+  # Defines the unauthenticated root path route ("/")
+  unauthenticated do
+    root 'public#home'
+  end
 
-  get 'public/help'
-  get 'public/about'
-  get 'public/contact'
+  # Defines the authenticated root path route ("/") for the User model
+  authenticated :user do
+    root 'dashboard#show', as: :authenticated_root
+  end
 
-  devise_for :users
+  get 'help', to: 'public#help'
+  get 'about', to: 'public#about'
+  get 'contact', to: 'public#contact'
+
+  # Defines the routes for the Devise User model
+  devise_for :users,
+             controllers: { sessions: 'users/sessions',
+                            registrations: 'users/registrations',
+                            passwords: 'users/passwords',
+                            unlocks: 'users/unlocks',
+                            confirmations: 'users/confirmations' },
+             path: '',
+             path_names: { sign_in: 'login',
+                           sign_out: 'logout',
+                           sign_up: 'signup' }
+
+  resources :countries
+
+  namespace :configuration do
+    resources :production_lines
+    resources :areas
+    resources :plants
+  end
+
+  # Defines the resources
+  resources :user_profiles
+
+  namespace :inventory do
+    resources :stocks
+    resources :item_categories
+    resources :items
+    resources :warehouses
+    resources :categories
+  end
+
+  namespace :maintenance do
+    resources :assets do
+      resources :asset_documents, path: 'documents', shallow: true
+      resources :asset_components, path: 'components', shallow: true
+      resources :asset_assignees, path: 'assignees', shallow: true,
+                only: %i[ index create destroy ]
+    end
+
+    resources :technicians
+    resources :manufacturers
+    resources :asset_types
+    resources :services
+    resources :frequencies
+    resources :responsibles
+    resources :equipment
+  end
 end

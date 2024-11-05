@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
+# PublicController is a controller for static pages that are publicly accessible.
 class PublicController < ApplicationController
-  def home
-  end
+  skip_before_action :authenticate_user!
 
-  def help
-  end
+  def home; end
 
-  def about
-  end
+  def help; end
 
-  def contact
-  end
+  def about; end
+
+  def contact; end
 end

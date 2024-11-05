@@ -1,0 +1,11 @@
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <%= render @maintenance_service %>
+
+    <%= link_to "Edit this service", edit_maintenance_service_path(@maintenance_service), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to services", maintenance_services_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to "Destroy this service", @maintenance_service, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+es-MX:
+  activerecord:
+    models:
+      user:
+        one: "Usuario"
+        other: "Usuarios"
+      maintenance/service:
+        one: "Servicio de mantenimiento"
+        other: "Servicios de mantenimiento"
+      maintenance/asset:
+        one: "Activo"
+        other: "Activos"
+    attributes:
+      user:
+        name: "Nombre"
+        email: "Correo electrónico"
+      maintenance/service:
+        name: "Nombre"
+        description: "Descripción"
+        scheduled_date: "Fecha programada"
+        maintenance_frequency_id: "Frecuencia"
+        maintenance_responsible_id: "Responsable"
+        status: "Estado"
+        resources: "Recursos"
+      maintenance/asset:
+        code: "Código"
+        name: "Nombre"
+        maintenance_asset_type_id: "Tipo de activo"
+        configuration_area_id: "Área de configuración"
+        maintenance_manufacturer_id: "Fabricante"
+        model: "Modelo"
+        serial_number: "Número de serie"
+        manufacturing_date: "Fecha de fabricación"
+        purchase_date: "Fecha de compra"
+        warranty_expiration: "Fecha de expiración de garantiía"
+        status: "Estado"
+        criticality_level: "Nivel crítico"
+        technical_specs: "Especificaciones técnicas"
+        operation_conditions: "Condiciones de operación"
+        physical_location: "Ubicación física"
+        notes: "Notas"
+        active: "Activo"
+    enums:
+      maintenance/service:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+          served: "Servido"
+          cancelled: "Cancelado"
+          expired: "Expirado"
+      maintenance/asset:
+        status:
+          active: "Activo"
+          inactive: "Inactivo"
+          maintenance: "Mantenimiento"
+          retired: "Retirado"

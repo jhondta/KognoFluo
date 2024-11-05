@@ -1,0 +1,46 @@
+<div id="<%= dom_id country %>">
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium mb-1">Common name:</strong>
+    <%= country.common_name %>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Official name:</strong>
+    <%= country.official_name %>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Iso code2:</strong>
+    <%= country.iso_code2 %>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Iso code3:</strong>
+    <%= country.iso_code3 %>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Phone code:</strong>
+    <%= country.phone_code %>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">TLD:</strong>
+    <%= country.tld %>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Flag SVG:</strong>
+    <div class="flex justify-left max-h-10 rounded-lg">
+      <%= country.flag_svg %>
+    </div>
+  </div>
+
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Flag PNG:</strong>
+    <img src="data:image/png;base64,<%= country.flag_png %>"
+         alt="<%= country.common_name %> flag"
+         class="max-h-10 rounded-lg">
+  </div>
+
+</div>
