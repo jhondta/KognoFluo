@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class CountryTest < ActiveSupport::TestCase
+class Common::CountryTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
