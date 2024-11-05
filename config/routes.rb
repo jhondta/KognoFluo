@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :user_profiles
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -38,6 +37,9 @@ Rails.application.routes.draw do
                            sign_out: 'logout',
                            sign_up: 'signup' }
 
+  # Defines the resources
+  resources :user_profiles
+
   namespace :common do
     resources :languages
     resources :timezones
@@ -45,14 +47,11 @@ Rails.application.routes.draw do
     resources :countries
   end
 
-  namespace :configuration do
+  namespace :organization do
     resources :production_lines
     resources :areas
     resources :plants
   end
-
-  # Defines the resources
-
 
   namespace :maintenance do
     resources :assets do
