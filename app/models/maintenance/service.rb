@@ -2,8 +2,7 @@
 
 class Maintenance::Service < ApplicationRecord
   # Constants
-  STATUSES = { inactive: 'inactive', active: 'active', served: 'served',
-               cancelled: 'cancelled', expired: 'expired' }.freeze
+  STATUSES = %i[ inactive active served cancelled expired ].freeze
   # Associations
   belongs_to :frequency, class_name: 'Maintenance::Frequency',
              foreign_key: :maintenance_frequency_id
@@ -18,8 +17,7 @@ class Maintenance::Service < ApplicationRecord
   validates :status, inclusion: { in: STATUSES.values }
 
   # Scopes
-  scope :active, -> { where(status: 'active') }
 
   # Enumerations
-  enum status: STATUSES
+  enum :status, STATUSES
 end

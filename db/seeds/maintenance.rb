@@ -67,9 +67,9 @@ end
     code: Faker::Alphanumeric.unique.alpha(number: 5).upcase,
     name: Faker::Appliance.equipment,
     description: Faker::Lorem.sentence,
-    requires_calibration: [true, false].sample,
+    requires_calibration: [ true, false ].sample,
     maintenance_frequency: rand(1..12),
-    active: [true, false].sample
+    active: [ true, false ].sample
   )
 end
 

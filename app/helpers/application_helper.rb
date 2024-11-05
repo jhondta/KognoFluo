@@ -29,7 +29,7 @@ module ApplicationHelper
   #
   def enum_options_for_select(class_name, enum)
     class_name.send(enum.to_s.pluralize).map do |key, _|
-      [I18n.t("activerecord.enums.#{class_name.model_name.i18n_key}.#{enum}.#{key}"), key]
+      [ I18n.t("activerecord.enums.#{class_name.model_name.i18n_key}.#{enum}.#{key}"), key ]
     end
   end
 end
