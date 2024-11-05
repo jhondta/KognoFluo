@@ -1,42 +1,46 @@
 <div id="<%= dom_id country %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Common name:</strong>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium mb-1">Common name:</strong>
     <%= country.common_name %>
-  </p>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Official name:</strong>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Official name:</strong>
     <%= country.official_name %>
-  </p>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Code alpha2:</strong>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Code alpha2:</strong>
     <%= country.code_alpha2 %>
-  </p>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Code alpha3:</strong>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Code alpha3:</strong>
     <%= country.code_alpha3 %>
-  </p>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone code:</strong>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Phone code:</strong>
     <%= country.phone_code %>
-  </p>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Tld:</strong>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">TLD:</strong>
     <%= country.tld %>
-  </p>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Flag svg:</strong>
-    <%= country.flag_svg %>
-  </p>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Flag SVG:</strong>
+    <div class="flex justify-left max-h-10 rounded-lg">
+      <%= country.flag_svg %>
+    </div>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Flag png:</strong>
-    <%= country.flag_png %>
-  </p>
+  <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
+    <strong class="font-medium">Flag PNG:</strong>
+    <img src="data:image/png;base64,<%= country.flag_png %>"
+         alt="<%= country.common_name %> flag"
+         class="max-h-10 rounded-lg">
+  </div>
 
 </div>

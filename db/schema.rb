@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_04_213134) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_05_083607) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,23 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_04_213134) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "common_countries", force: :cascade do |t|
+    t.string "common_name", limit: 100, null: false
+    t.string "official_name", limit: 100, null: false
+    t.string "code_alpha2", limit: 2, null: false
+    t.string "code_alpha3", limit: 3, null: false
+    t.string "phone_code", limit: 10, null: false
+    t.string "tld", limit: 5, null: false
+    t.text "flag_svg", null: false
+    t.binary "flag_png", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code_alpha2"], name: "index_common_countries_on_code_alpha2", unique: true
+    t.index ["code_alpha3"], name: "index_common_countries_on_code_alpha3", unique: true
+    t.index ["common_name"], name: "index_common_countries_on_common_name", unique: true
+    t.index ["official_name"], name: "index_common_countries_on_official_name", unique: true
   end
 
   create_table "configuration_areas", force: :cascade do |t|
@@ -238,7 +255,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_04_213134) do
     t.string "code", limit: 10, null: false
     t.string "name", limit: 100, null: false
     t.integer "maintenance_asset_type_id", null: false
-    t.integer "configuration_area_id", null: false
+    t.integer "configuration_production_line_id", null: false
     t.integer "maintenance_manufacturer_id", null: false
     t.string "model"
     t.string "serial_number"
@@ -254,7 +271,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_04_213134) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_maintenance_assets_on_code", unique: true
-    t.index ["configuration_area_id"], name: "index_maintenance_assets_on_configuration_area_id"
+    t.index ["configuration_production_line_id"], name: "index_maintenance_assets_on_configuration_production_line_id"
     t.index ["maintenance_asset_type_id"], name: "index_maintenance_assets_on_maintenance_asset_type_id"
     t.index ["maintenance_manufacturer_id"], name: "index_maintenance_assets_on_maintenance_manufacturer_id"
   end
@@ -426,9 +443,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_04_213134) do
   add_foreign_key "maintenance_asset_assignees", "maintenance_technicians"
   add_foreign_key "maintenance_asset_components", "maintenance_assets", column: "maintenance_assets_id"
   add_foreign_key "maintenance_asset_documents", "maintenance_assets", column: "maintenance_assets_id"
-  add_foreign_key "maintenance_assets", "configuration_areas"
-  add_foreign_key "maintenance_assets", "maintenance_asset_types"
-  add_foreign_key "maintenance_assets", "maintenance_manufacturers"
+  add_foreign_key "maintenance_assets", "configuration_production_lines", primary_key: "id"
+  add_foreign_key "maintenance_assets", "maintenance_asset_types", primary_key: "id"
+  add_foreign_key "maintenance_assets", "maintenance_manufacturers", primary_key: "id"
   add_foreign_key "maintenance_responsibles", "users"
   add_foreign_key "maintenance_services", "maintenance_frequencies"
   add_foreign_key "maintenance_services", "maintenance_responsibles"

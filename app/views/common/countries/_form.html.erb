@@ -1,4 +1,4 @@
-<%= form_with(model: common_country, class: "contents") do |form| %>
+<%= form_with(model: common_country, class: "contents mt-8 space-y-6") do |form| %>
   <% if common_country.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(common_country.errors.count, "error") %> prohibited this common_country from being saved:</h2>
@@ -12,46 +12,80 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :common_name %>
-    <%= form.text_field :common_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :common_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :common_name,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :official_name %>
-    <%= form.text_field :official_name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :official_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :official_name,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :code_alpha2 %>
-    <%= form.text_field :code_alpha2, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :code_alpha2, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :code_alpha2,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :code_alpha3 %>
-    <%= form.text_field :code_alpha3, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :code_alpha3, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :code_alpha3,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :phone_code %>
-    <%= form.text_field :phone_code, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :phone_code, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :phone_code,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :tld %>
-    <%= form.text_field :tld, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :tld, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :tld,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :flag_svg %>
-    <%= form.textarea :flag_svg, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :flag_svg, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :flag_svg,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
   <div class="my-5">
-    <%= form.label :flag_png %>
-    <%= form.text_field :flag_png, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :flag_png, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+    <%= form.text_field :flag_png,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="actions">
+    <%= form.submit class: "w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700
+                            rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto
+                            dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
   </div>
 <% end %>
