@@ -14,7 +14,7 @@ class Maintenance::Service < ApplicationRecord
             length: { minimum: 3, maximum: 255 }
   validates :description, presence: true, allow_blank: true
   validates :scheduled_date, comparison: { greater_than_or_equal_to: Date.today }
-  validates :status, inclusion: { in: STATUSES.values }
+  validates :status, inclusion: { in: STATUSES }
 
   # Scopes
 
