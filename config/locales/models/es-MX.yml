@@ -26,7 +26,7 @@ es-MX:
         code: "Código"
         name: "Nombre"
         maintenance_asset_type_id: "Tipo de activo"
-        configuration_area_id: "Área de configuración"
+        organization_production_line_id: "Línea de producción"
         maintenance_manufacturer_id: "Fabricante"
         model: "Modelo"
         serial_number: "Número de serie"
@@ -54,3 +54,8 @@ es-MX:
           inactive: "Inactivo"
           maintenance: "Mantenimiento"
           retired: "Retirado"
+        criticality_level:
+          low: "Bajo"
+          medium: "Medio"
+          high: "Alto"
+          critical: "Crítico"

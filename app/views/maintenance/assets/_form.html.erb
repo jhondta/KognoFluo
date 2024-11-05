@@ -1,7 +1,8 @@
 <%= form_with(model: maintenance_asset, class: "contents") do |form| %>
   <% if maintenance_asset.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(maintenance_asset.errors.count, "error") %> prohibited this maintenance_asset from being saved:</h2>
+      <h2><%= pluralize(maintenance_asset.errors.count, "error") %>
+        prohibited this maintenance_asset from being saved:</h2>
 
       <ul>
         <% maintenance_asset.errors.each do |error| %>
@@ -10,88 +11,155 @@
       </ul>
     </div>
   <% end %>
+  <div class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-2 xl:gap-4 dark:bg-gray-900">
+    <div class="field">
+      <%= form.label :code, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :code,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :code %>
-    <%= form.text_field :code, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :name,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :maintenance_asset_type_id,
+                     class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.collection_select :maintenance_asset_type_id, Maintenance::AssetType.all, :id, :name, {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :maintenance_asset_type_id %>
-    <%= form.text_field :maintenance_asset_type_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :organization_production_line_id, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.collection_select :organization_production_line_id, Organization::ProductionLine.all, :id, :name, {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :organization_production_line_id %>
-    <%= form.text_field :organization_production_line_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :maintenance_manufacturer_id, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.collection_select :maintenance_manufacturer_id, Maintenance::Manufacturer.all, :id, :name, {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :maintenance_manufacturer_id %>
-    <%= form.text_field :maintenance_manufacturer_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :model, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :model, class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :model %>
-    <%= form.text_field :model, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :serial_number, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :serial_number,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :serial_number %>
-    <%= form.text_field :serial_number, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :manufacturing_date, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.date_field :manufacturing_date,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :manufacturing_date %>
-    <%= form.date_field :manufacturing_date, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :purchase_date, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.date_field :purchase_date,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :purchase_date %>
-    <%= form.date_field :purchase_date, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :warranty_expiration, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.date_field :warranty_expiration,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :warranty_expiration %>
-    <%= form.date_field :warranty_expiration, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :status, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.select :status, enum_options_for_select(Maintenance::Asset, :status), {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :status %>
-    <%= form.text_field :status, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :criticality_level, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.select :criticality_level, enum_options_for_select(Maintenance::Asset, :criticality_level), {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :criticality_level %>
-    <%= form.text_field :criticality_level, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :technical_specs, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :technical_specs,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :technical_specs %>
-    <%= form.text_field :technical_specs, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :operation_conditions, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :operation_conditions,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :operation_conditions %>
-    <%= form.text_field :operation_conditions, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :physical_location, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_area :physical_location, rows: 4,
+                         class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :physical_location %>
-    <%= form.text_area :physical_location, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="field">
+      <%= form.label :notes, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_area :notes, rows: 4,
+                         class: 'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                  dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :notes %>
-    <%= form.text_area :notes, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+    <div class="inline">
+      <%= form.submit class: 'w-full px-5 py-3 text-base font-medium text-center text-white bg-blue-700
+                              rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto
+                              dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' %>
+    </div>
 <% end %>
+</div>
