@@ -3,7 +3,7 @@
 puts 'Starting maintenance seed...'
 Faker::Config.locale = 'es-MX'
 
-0.times do
+9.times do
   User.create!(
     email: Faker::Internet.email,
     password: '123456',
@@ -13,76 +13,72 @@ Faker::Config.locale = 'es-MX'
 end
 
 # Datos de prueba para la tabla plants
-0.times do |i|
-  Configuration::Plant.create!(
+2.times do |i|
+  Organization::Plant.create!(
     code: Faker::Alphanumeric.alpha(number: 3).upcase,
     name: Faker::Company.unique.name,
     address: Faker::Address.full_address,
-    active: true
+    status: :active
   )
 end
 
 # Datos de prueba para la tabla areas
-plants = Configuration::Plant.all
-0.times do |i|
-  Configuration::Area.create!(
+plants = Organization::Plant.all
+2.times do |i|
+  Organization::Area.create!(
     code: Faker::Alphanumeric.alpha(number: 3).upcase,
     name: Faker::Commerce.department,
     description: Faker::Lorem.paragraph(sentence_count: 2),
-    configuration_plant_id: plants.sample.id,
-    active: true
+    organization_plant_id: plants.sample.id,
+    status: :active
   )
 end
 
 # Datos de prueba para la tabla production_lines
-areas = Configuration::Area.all
-0.times do |i|
-  Configuration::ProductionLine.create!(
+areas = Organization::Area.all
+3.times do |i|
+  Organization::ProductionLine.create!(
     code: Faker::Alphanumeric.alpha(number: 3).upcase,
     name: "Línea de Producción #{i + 1}",
     description: Faker::Lorem.paragraph(sentence_count: 2),
-    configuration_area_id: areas.sample.id,
-    active: true
+    organization_area_id: areas.sample.id,
+    status: :active
   )
 end
 
 # Datos de prueba para la tabla manufacturers
-0.times do |i|
+10.times do |i|
   Maintenance::Manufacturer.create!(
     name: Faker::Company.unique.name,
     code: Faker::Alphanumeric.alpha(number: 3).upcase,
     website: Faker::Internet.url,
-    contact_info: { email: Faker::Internet.email,
-                    phone: Faker::PhoneNumber.phone_number },
     support_phone: Faker::PhoneNumber.phone_number,
     suport_email: Faker::Internet.email,
     notes: Faker::Lorem.paragraph(sentence_count: 2),
-    active: true
+    status: :active
   )
 end
 
 # Datos de prueba para la tabla asset_types
-0.times do
+10.times do
   Maintenance::AssetType.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 5).upcase,
     name: Faker::Appliance.equipment,
     description: Faker::Lorem.sentence,
-    requires_calibration: [ true, false ].sample,
-    maintenance_frequency: rand(1..12),
-    active: [ true, false ].sample
+    status: :active
   )
 end
 
 # Datos de prueba para la tabla assets
 asset_types = Maintenance::AssetType.all
-production_lines = Configuration::ProductionLine.includes(area: :plant)
+production_lines = Organization::ProductionLine.includes(area: :plant)
 manufacturers = Maintenance::Manufacturer.all
 50.times do
   Maintenance::Asset.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 3).upcase,
     name: Faker::Appliance.equipment,
     maintenance_asset_type_id: asset_types.sample.id,
-    configuration_production_line_id: production_lines.sample.id,
+    organization_production_line_id: production_lines.sample.id,
     maintenance_manufacturer_id: manufacturers.sample.id,
     model: Faker::Alphanumeric.alpha(number: 8).upcase,
     serial_number: Faker::Alphanumeric.unique.alpha(number: 12).upcase,

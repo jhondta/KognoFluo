@@ -8,5 +8,9 @@ class CreateMaintenanceAssetAssignees < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+
+    add_index :maintenance_asset_assignees,
+              %i[maintenance_asset_id maintenance_technician_id],
+              unique: true
   end
 end

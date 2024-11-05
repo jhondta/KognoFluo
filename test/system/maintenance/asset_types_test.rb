@@ -16,12 +16,10 @@ class Maintenance::AssetTypesTest < ApplicationSystemTestCase
     visit maintenance_asset_types_url
     click_on 'New asset type'
 
-    check 'Active' if @maintenance_asset_type.active
     fill_in 'Code', with: @maintenance_asset_type.code
     fill_in 'Description', with: @maintenance_asset_type.description
-    fill_in 'Maintenance frequency', with: @maintenance_asset_type.maintenance_frequency
     fill_in 'Name', with: @maintenance_asset_type.name
-    check 'Requires calibration' if @maintenance_asset_type.requires_calibration
+    fill_in 'Status', with: @maintenance_asset_type.status
     click_on 'Create Asset type'
 
     assert_text 'Asset type was successfully created'
@@ -32,12 +30,10 @@ class Maintenance::AssetTypesTest < ApplicationSystemTestCase
     visit maintenance_asset_type_url(@maintenance_asset_type)
     click_on 'Edit this asset type', match: :first
 
-    check 'Active' if @maintenance_asset_type.active
     fill_in 'Code', with: @maintenance_asset_type.code
     fill_in 'Description', with: @maintenance_asset_type.description
-    fill_in 'Maintenance frequency', with: @maintenance_asset_type.maintenance_frequency
     fill_in 'Name', with: @maintenance_asset_type.name
-    check 'Requires calibration' if @maintenance_asset_type.requires_calibration
+    fill_in 'Status', with: @maintenance_asset_type.status
     click_on 'Update Asset type'
 
     assert_text 'Asset type was successfully updated'

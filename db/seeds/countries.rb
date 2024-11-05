@@ -139,7 +139,7 @@ module Seeds
       countries_file_path = Rails.root.join('db', 'seeds', 'data', 'countries.json')
       countries_data = JSON.parse(File.read(countries_file_path))
       countries_data.each do |country_data|
-        country = Country.find_or_initialize_by(iso_code2: country_data['cca2'])
+        country = Common::Country.find_or_initialize_by(code_alpha2: country_data['cca2'])
         common_name = name_by_type(country_data['name'], 'common')
         official_name = name_by_type(country_data['name'], 'official')
         tld = tld(country_data['tld'])
@@ -148,7 +148,7 @@ module Seeds
         country.update!(
           common_name: common_name,
           official_name: official_name,
-          iso_code3: country_data['cca3'],
+          code_alpha3: country_data['cca3'],
           phone_code: phone_code,
           tld: tld,
           flag_svg: Seeds::Utilities.download_image(country_data['flags'], 'svg'),

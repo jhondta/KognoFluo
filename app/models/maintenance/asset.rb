@@ -12,8 +12,8 @@ class Maintenance::Asset < ApplicationRecord
   # Associations
   belongs_to :type, class_name: 'Maintenance::AssetType',
              foreign_key: :maintenance_asset_type_id
-  belongs_to :production_line, class_name: 'Configuration::ProductionLine',
-             foreign_key: :configuration_production_line_id
+  belongs_to :production_line, class_name: 'Organization::ProductionLine',
+             foreign_key: :organization_production_line_id
   belongs_to :manufacturer, class_name: 'Maintenance::Manufacturer',
              foreign_key: :maintenance_manufacturer_id
 
@@ -38,7 +38,7 @@ class Maintenance::Asset < ApplicationRecord
   # Scopes
 
   # Callbacks
-  has_paper_trail
+  # has_paper_trail
 
   # Methods
 

@@ -16,11 +16,10 @@ class Maintenance::ManufacturersTest < ApplicationSystemTestCase
     visit maintenance_manufacturers_url
     click_on 'New manufacturer'
 
-    check 'Active' if @maintenance_manufacturer.active
     fill_in 'Code', with: @maintenance_manufacturer.code
-    fill_in 'Contact info', with: @maintenance_manufacturer.contact_info
     fill_in 'Name', with: @maintenance_manufacturer.name
     fill_in 'Notes', with: @maintenance_manufacturer.notes
+    fill_in 'Status', with: @maintenance_manufacturer.status
     fill_in 'Suport email', with: @maintenance_manufacturer.suport_email
     fill_in 'Support phone', with: @maintenance_manufacturer.support_phone
     fill_in 'Website', with: @maintenance_manufacturer.website
@@ -34,11 +33,10 @@ class Maintenance::ManufacturersTest < ApplicationSystemTestCase
     visit maintenance_manufacturer_url(@maintenance_manufacturer)
     click_on 'Edit this manufacturer', match: :first
 
-    check 'Active' if @maintenance_manufacturer.active
     fill_in 'Code', with: @maintenance_manufacturer.code
-    fill_in 'Contact info', with: @maintenance_manufacturer.contact_info
     fill_in 'Name', with: @maintenance_manufacturer.name
     fill_in 'Notes', with: @maintenance_manufacturer.notes
+    fill_in 'Status', with: @maintenance_manufacturer.status
     fill_in 'Suport email', with: @maintenance_manufacturer.suport_email
     fill_in 'Support phone', with: @maintenance_manufacturer.support_phone
     fill_in 'Website', with: @maintenance_manufacturer.website

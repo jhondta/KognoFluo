@@ -13,8 +13,8 @@ module Seeds
       puts 'Seeding Currencies...'
       currency_csv_file_path = Rails.root.join('db', 'seeds', 'data', 'currencies.tsv')
       CSV.foreach(currency_csv_file_path, headers: true, col_sep: "\t") do |row|
-        Currency.find_or_create_by!(
-          iso_code: row['Code'],
+        Common::Currency.find_or_create_by!(
+          code_alpha: row['Code'],
           name: row['Currency'],
           symbol: row['Symbol']
         )

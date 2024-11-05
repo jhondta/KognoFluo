@@ -19,7 +19,7 @@ class Maintenance::ManufacturersControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create maintenance_manufacturer' do
     assert_difference('Maintenance::Manufacturer.count') do
-      post maintenance_manufacturers_url, params: { maintenance_manufacturer: { active: @maintenance_manufacturer.active, code: @maintenance_manufacturer.code, contact_info: @maintenance_manufacturer.contact_info, name: @maintenance_manufacturer.name, notes: @maintenance_manufacturer.notes, suport_email: @maintenance_manufacturer.suport_email, support_phone: @maintenance_manufacturer.support_phone, website: @maintenance_manufacturer.website } }
+      post maintenance_manufacturers_url, params: { maintenance_manufacturer: { code: @maintenance_manufacturer.code, name: @maintenance_manufacturer.name, notes: @maintenance_manufacturer.notes, status: @maintenance_manufacturer.status, suport_email: @maintenance_manufacturer.suport_email, support_phone: @maintenance_manufacturer.support_phone, website: @maintenance_manufacturer.website } }
     end
 
     assert_redirected_to maintenance_manufacturer_url(Maintenance::Manufacturer.last)
@@ -36,7 +36,7 @@ class Maintenance::ManufacturersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update maintenance_manufacturer' do
-    patch maintenance_manufacturer_url(@maintenance_manufacturer), params: { maintenance_manufacturer: { active: @maintenance_manufacturer.active, code: @maintenance_manufacturer.code, contact_info: @maintenance_manufacturer.contact_info, name: @maintenance_manufacturer.name, notes: @maintenance_manufacturer.notes, suport_email: @maintenance_manufacturer.suport_email, support_phone: @maintenance_manufacturer.support_phone, website: @maintenance_manufacturer.website } }
+    patch maintenance_manufacturer_url(@maintenance_manufacturer), params: { maintenance_manufacturer: { code: @maintenance_manufacturer.code, name: @maintenance_manufacturer.name, notes: @maintenance_manufacturer.notes, status: @maintenance_manufacturer.status, suport_email: @maintenance_manufacturer.suport_email, support_phone: @maintenance_manufacturer.support_phone, website: @maintenance_manufacturer.website } }
     assert_redirected_to maintenance_manufacturer_url(@maintenance_manufacturer)
   end
 

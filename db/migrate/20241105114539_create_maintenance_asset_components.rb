@@ -9,7 +9,7 @@ class CreateMaintenanceAssetComponents < ActiveRecord::Migration[7.2]
       t.integer :quantity, null: false, default: 0
       t.json :specifications
       t.integer :replacement_period, default: 0
-      t.boolean :active, null: false, default: true
+      t.integer :status, null: false, default: true
 
       t.timestamps
     end

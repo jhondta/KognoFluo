@@ -9,7 +9,7 @@ class CreateMaintenanceAssetDocuments < ActiveRecord::Migration[7.2]
       t.text :description
       t.string :version
       t.date :expiration_date
-      t.boolean :active, null: false, default: true
+      t.integer :status, null: false, default: true
 
       t.timestamps
     end

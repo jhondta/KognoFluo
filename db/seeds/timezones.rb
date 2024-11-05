@@ -13,7 +13,7 @@ module Seeds
       puts 'Seeding Timezones...'
       timezone_csv_file_path = Rails.root.join('db', 'seeds', 'data', 'timezones.tsv')
       CSV.foreach(timezone_csv_file_path, headers: true, col_sep: "\t") do |row|
-        timezone = Timezone.find_or_initialize_by(name: row['Time'])
+        timezone = Common::Timezone.find_or_initialize_by(name: row['Time'])
         # Convert GMT Offset to decimal(3, 1)
         gmt_offset = row['GMT Offset'].match(/([+-]\d{2}):(\d{2})/)
         timezone.update!(gmt_offset: gmt_offset[1].to_i + gmt_offset[2].to_i / 60.0)

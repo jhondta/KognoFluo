@@ -62,11 +62,11 @@ class Maintenance::ManufacturersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_manufacturer
-      @maintenance_manufacturer = Maintenance::Manufacturer.find(params[:id])
+      @maintenance_manufacturer = Maintenance::Manufacturer.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def maintenance_manufacturer_params
-      params.require(:maintenance_manufacturer).permit(:code, :name, :website, :contact_info, :support_phone, :suport_email, :notes, :active)
+      params.expect(maintenance_manufacturer: %i[code name status website support_phone suport_email notes])
     end
 end

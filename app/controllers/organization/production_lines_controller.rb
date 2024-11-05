@@ -67,6 +67,6 @@ class Organization::ProductionLinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def organization_production_line_params
-      params.expect(organization_production_line: %i[code name description configuration_area_id status])
+      params.expect(organization_production_line: %i[code name description organization_producion_line_id status])
     end
 end

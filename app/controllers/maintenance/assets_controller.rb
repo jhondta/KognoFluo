@@ -63,11 +63,11 @@ class Maintenance::AssetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_asset
-      @maintenance_asset = Maintenance::Asset.find(params[:id])
+      @maintenance_asset = Maintenance::Asset.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def maintenance_asset_params
-      params.require(:maintenance_asset).permit(:code, :name, :maintenance_asset_type_id, :configuration_area_id, :maintenance_manufacturer_id, :model, :serial_number, :manufacturing_date, :purchase_date, :warranty_expiration, :status, :criticality_level, :technical_specs, :operation_conditions, :physical_location, :notes, :active)
+      params.expect(maintenance_asset: %i[code name maintenance_asset_type_id organization_area_id maintenance_manufacturer_id model serial_number manufacturing_date purchase_date warranty_expiration status criticality_level technical_specs operation_conditions physical_location notes active])
     end
 end

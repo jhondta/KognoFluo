@@ -19,7 +19,7 @@ class Maintenance::AssetTypesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create maintenance_asset_type' do
     assert_difference('Maintenance::AssetType.count') do
-      post maintenance_asset_types_url, params: { maintenance_asset_type: { active: @maintenance_asset_type.active, code: @maintenance_asset_type.code, description: @maintenance_asset_type.description, maintenance_frequency: @maintenance_asset_type.maintenance_frequency, name: @maintenance_asset_type.name, requires_calibration: @maintenance_asset_type.requires_calibration } }
+      post maintenance_asset_types_url, params: { maintenance_asset_type: { code: @maintenance_asset_type.code, description: @maintenance_asset_type.description, name: @maintenance_asset_type.name, status: @maintenance_asset_type.status } }
     end
 
     assert_redirected_to maintenance_asset_type_url(Maintenance::AssetType.last)
@@ -36,7 +36,7 @@ class Maintenance::AssetTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update maintenance_asset_type' do
-    patch maintenance_asset_type_url(@maintenance_asset_type), params: { maintenance_asset_type: { active: @maintenance_asset_type.active, code: @maintenance_asset_type.code, description: @maintenance_asset_type.description, maintenance_frequency: @maintenance_asset_type.maintenance_frequency, name: @maintenance_asset_type.name, requires_calibration: @maintenance_asset_type.requires_calibration } }
+    patch maintenance_asset_type_url(@maintenance_asset_type), params: { maintenance_asset_type: { code: @maintenance_asset_type.code, description: @maintenance_asset_type.description, name: @maintenance_asset_type.name, status: @maintenance_asset_type.status } }
     assert_redirected_to maintenance_asset_type_url(@maintenance_asset_type)
   end
 

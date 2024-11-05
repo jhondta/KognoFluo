@@ -62,11 +62,11 @@ class Maintenance::TechniciansController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_technician
-      @maintenance_technician = Maintenance::Technician.find(params[:id])
+      @maintenance_technician = Maintenance::Technician.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def maintenance_technician_params
-      params.require(:maintenance_technician).permit(:user_id, :specialty, :certificacion_level, :active)
+      params.expect(maintenance_technician: %i[user_id specialty certificacion_level status])
     end
 end

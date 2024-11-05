@@ -13,10 +13,11 @@ module Seeds
       puts 'Seeding Languages...'
       languages_file_path = Rails.root.join('db', 'seeds', 'data', 'languages.tsv')
       CSV.foreach(languages_file_path, headers: true, col_sep: "\t") do |row|
-        Language.find_or_create_by!(
+        Common::Language.find_or_create_by!(
           name: row['Name'],
-          iso_code2: row['ISO 639-1'].upcase,
-          iso_code3: row['ISO 639-2'].upcase
+          native_name: row['Name'],
+          code_iso_639_1: row['ISO 639-1'].upcase,
+          code_iso_639_2: row['ISO 639-2'].upcase
         )
       end
     end
