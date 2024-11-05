@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UserProfilesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user_profile = user_profiles(:one)
+    @user_profile = create(:user_profile)
   end
 
   test 'should get index' do
@@ -19,7 +19,7 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create user_profile' do
     assert_difference('UserProfile.count') do
-      post user_profiles_url, params: { user_profile: { country_id: @user_profile.country_id, date_of_birth: @user_profile.date_of_birth, first_name: @user_profile.first_name, gender: @user_profile.gender, last_name: @user_profile.last_name, user_id: @user_profile.user_id } }
+      post user_profiles_url, params: { user_profile: { birth_date: @user_profile.birth_date, first_name: @user_profile.first_name, gender: @user_profile.gender, last_name: @user_profile.last_name, user_id: @user_profile.user_id } }
     end
 
     assert_redirected_to user_profile_url(UserProfile.last)
@@ -36,7 +36,7 @@ class UserProfilesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update user_profile' do
-    patch user_profile_url(@user_profile), params: { user_profile: { country_id: @user_profile.country_id, date_of_birth: @user_profile.date_of_birth, first_name: @user_profile.first_name, gender: @user_profile.gender, last_name: @user_profile.last_name, user_id: @user_profile.user_id } }
+    patch user_profile_url(@user_profile), params: { user_profile: { birth_date: @user_profile.birth_date, first_name: @user_profile.first_name, gender: @user_profile.gender, last_name: @user_profile.last_name, user_id: @user_profile.user_id } }
     assert_redirected_to user_profile_url(@user_profile)
   end
 

@@ -62,11 +62,11 @@ class UserProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
-      @user_profile = UserProfile.find(params[:id])
+      @user_profile = UserProfile.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
     def user_profile_params
-      params.require(:user_profile).permit(:user_id, :first_name, :last_name, :date_of_birth, :country_id, :gender, :avatar)
+      params.expect(user_profile: %i[user_id first_name last_name birth_date gender avatar])
     end
 end

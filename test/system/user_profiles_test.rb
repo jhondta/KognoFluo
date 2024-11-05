@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class UserProfilesTest < ApplicationSystemTestCase
   setup do
-    @user_profile = user_profiles(:one)
+    @user_profile = create(:user_profile)
   end
 
   test 'visiting the index' do
@@ -16,8 +16,7 @@ class UserProfilesTest < ApplicationSystemTestCase
     visit user_profiles_url
     click_on 'New user profile'
 
-    fill_in 'Country', with: @user_profile.country_id
-    fill_in 'Date of birth', with: @user_profile.date_of_birth
+    fill_in 'Birth date', with: @user_profile.birth_date
     fill_in 'First name', with: @user_profile.first_name
     fill_in 'Gender', with: @user_profile.gender
     fill_in 'Last name', with: @user_profile.last_name
@@ -32,8 +31,7 @@ class UserProfilesTest < ApplicationSystemTestCase
     visit user_profile_url(@user_profile)
     click_on 'Edit this user profile', match: :first
 
-    fill_in 'Country', with: @user_profile.country_id
-    fill_in 'Date of birth', with: @user_profile.date_of_birth
+    fill_in 'Birth date', with: @user_profile.birth_date
     fill_in 'First name', with: @user_profile.first_name
     fill_in 'Gender', with: @user_profile.gender
     fill_in 'Last name', with: @user_profile.last_name
