@@ -6,7 +6,7 @@ class CreateMaintenanceAssets < ActiveRecord::Migration[7.2]
       t.string :code, null: false, limit: 10, index: { unique: true }
       t.string :name, null: false, limit: 100
       t.references :maintenance_asset_type, null: false, foreign_key: true
-      t.references :configuration_area, null: false, foreign_key: true
+      t.references :configuration_production_line, null: false, foreign_key: true
       t.references :maintenance_manufacturer, null: false, foreign_key: true
       t.string :model
       t.string :serial_number
