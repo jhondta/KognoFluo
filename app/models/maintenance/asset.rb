@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Maintenance::Asset < ApplicationRecord
-  # Constants
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
   STATUSES = %i[ active inactive maintenance retired ].freeze
   STATUS_COLORS = { active: 'green', inactive: 'red', maintenance: 'yellow',
                     retired: 'gray' }.freeze
@@ -9,7 +10,13 @@ class Maintenance::Asset < ApplicationRecord
   CRITICALITY_COLORS = { low: 'green', medium: 'yellow', high: 'orange',
                          critical: 'red' }.freeze
 
-  # Associations
+  # -- -------------------------------------------------------------------------
+  # -- Enums -------------------------------------------------------------------
+  enum :status, STATUSES
+  enum :criticality_level, CRITICALITY_LEVELS
+
+  # -- -------------------------------------------------------------------------
+  # -- Associations ------------------------------------------------------------
   belongs_to :type, class_name: 'Maintenance::AssetType',
              foreign_key: :maintenance_asset_type_id
   belongs_to :production_line, class_name: 'Organization::ProductionLine',
@@ -27,20 +34,20 @@ class Maintenance::Asset < ApplicationRecord
   has_many :components, through: :asset_components
   has_many :documents, through: :asset_documents
 
-  # Validations
+  # -- -------------------------------------------------------------------------
+  # -- Scopes ------------------------------------------------------------------
 
-  # Enums
-  enum :status, STATUSES
-  enum :criticality_level, CRITICALITY_LEVELS
+  # -- -------------------------------------------------------------------------
+  # -- Validations -------------------------------------------------------------
 
-  # Delegations
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ---------------------------------------------------------------
 
-  # Scopes
+  # -- -------------------------------------------------------------------------
+  # -- Delegations -------------------------------------------------------------
 
-  # Callbacks
-  # has_paper_trail
-
-  # Methods
+  # -- -------------------------------------------------------------------------
+  # -- Methods -----------------------------------------------------------------
 
   # Returns the status color
   # @return [String]

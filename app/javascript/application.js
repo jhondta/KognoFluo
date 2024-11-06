@@ -2,6 +2,8 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "flowbite"
+import "trix"
+import "@rails/actiontext"
 
 window.document.addEventListener('turbo:render', (_event) => {
     window.initFlowbite();

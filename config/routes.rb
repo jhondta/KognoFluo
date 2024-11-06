@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     root 'dashboard#show', as: :authenticated_root
   end
 
+  # Public routes
   get 'help', to: 'public#help'
   get 'about', to: 'public#about'
   get 'contact', to: 'public#contact'
@@ -41,6 +42,8 @@ Rails.application.routes.draw do
   resources :user_profiles
 
   namespace :common do
+    resources :measure_units
+    resources :measure_unit_types
     resources :languages
     resources :timezones
     resources :currencies
@@ -54,10 +57,11 @@ Rails.application.routes.draw do
   end
 
   namespace :maintenance do
+    resources :plans
     resources :technicians
     resources :manufacturers
     resources :asset_types
-    
+
     resources :assets do
       resources :asset_documents, path: 'documents', shallow: true
       resources :asset_components, path: 'components', shallow: true
