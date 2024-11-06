@@ -19,7 +19,7 @@ class Maintenance::PlansControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create maintenance_plan' do
     assert_difference('Maintenance::Plan.count') do
-      post maintenance_plans_url, params: { maintenance_plan: { component_id: @maintenance_plan.component_id, last_execution_date: @maintenance_plan.last_execution_date, maintenace_asset_id: @maintenance_plan.maintenace_asset_id, maintenance_plan_template_id: @maintenance_plan.maintenance_plan_template_id, next_execution_date: @maintenance_plan.next_execution_date, start_date: @maintenance_plan.start_date, status: @maintenance_plan.status } }
+      post maintenance_plans_url, params: { maintenance_plan: { maintenance_asset_component_id: @maintenance_plan.maintenance_asset_component_id, last_execution_date: @maintenance_plan.last_execution_date, maintenance_asset_id: @maintenance_plan.maintenance_asset_id, maintenance_plan_template_id: @maintenance_plan.maintenance_plan_template_id, next_execution_date: @maintenance_plan.next_execution_date, start_date: @maintenance_plan.start_date, status: @maintenance_plan.status } }
     end
 
     assert_redirected_to maintenance_plan_url(Maintenance::Plan.last)
@@ -36,7 +36,7 @@ class Maintenance::PlansControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update maintenance_plan' do
-    patch maintenance_plan_url(@maintenance_plan), params: { maintenance_plan: { component_id: @maintenance_plan.component_id, last_execution_date: @maintenance_plan.last_execution_date, maintenace_asset_id: @maintenance_plan.maintenace_asset_id, maintenance_plan_template_id: @maintenance_plan.maintenance_plan_template_id, next_execution_date: @maintenance_plan.next_execution_date, start_date: @maintenance_plan.start_date, status: @maintenance_plan.status } }
+    patch maintenance_plan_url(@maintenance_plan), params: { maintenance_plan: { maintenance_asset_component_id: @maintenance_plan.maintenance_asset_component_id, last_execution_date: @maintenance_plan.last_execution_date, maintenance_asset_id: @maintenance_plan.maintenance_asset_id, maintenance_plan_template_id: @maintenance_plan.maintenance_plan_template_id, next_execution_date: @maintenance_plan.next_execution_date, start_date: @maintenance_plan.start_date, status: @maintenance_plan.status } }
     assert_redirected_to maintenance_plan_url(@maintenance_plan)
   end
 

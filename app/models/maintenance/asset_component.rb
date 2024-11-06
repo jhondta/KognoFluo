@@ -3,20 +3,28 @@
 class Maintenance::AssetComponent < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  STATUSES = %i[inactive active].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
+  enum :status, STATUSES
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_assets, class_name: 'Maintenance::Asset',
+  belongs_to :asset, class_name: 'Maintenance::Asset',
              foreign_key: :maintenance_asset_id
+
+  has_many :plans, class_name: 'Maintenance::Plan',
+           foreign_key: :maintenance_asset_component_id
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :maintenance_asset_id, presence: true
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

@@ -124,7 +124,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   end
 
   create_table "maintenance_asset_components", force: :cascade do |t|
-    t.integer "maintenance_assets_id", null: false
+    t.integer "maintenance_asset_id", null: false
     t.string "name", limit: 100, null: false
     t.text "description", default: "", null: false
     t.integer "quantity", default: 0, null: false
@@ -133,11 +133,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["maintenance_assets_id"], name: "index_maintenance_asset_components_on_maintenance_assets_id"
+    t.index ["maintenance_asset_id"], name: "index_maintenance_asset_components_on_maintenance_asset_id"
   end
 
   create_table "maintenance_asset_documents", force: :cascade do |t|
-    t.integer "maintenance_assets_id", null: false
+    t.integer "maintenance_asset_id", null: false
     t.string "document_type", limit: 100, null: false
     t.string "name", limit: 100, null: false
     t.text "description"
@@ -146,7 +146,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["maintenance_assets_id"], name: "index_maintenance_asset_documents_on_maintenance_assets_id"
+    t.index ["maintenance_asset_id"], name: "index_maintenance_asset_documents_on_maintenance_asset_id"
   end
 
   create_table "maintenance_asset_types", force: :cascade do |t|
@@ -254,16 +254,16 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
 
   create_table "maintenance_plans", force: :cascade do |t|
     t.integer "maintenance_plan_template_id", null: false
-    t.integer "maintenace_asset_id", null: false
-    t.integer "component_id", null: false
+    t.integer "maintenance_asset_id", null: false
+    t.integer "maintenance_asset_component_id", null: false
     t.integer "status", default: 0, null: false
     t.date "start_date"
     t.date "last_execution_date"
     t.date "next_execution_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["component_id"], name: "index_maintenance_plans_on_component_id"
-    t.index ["maintenace_asset_id"], name: "index_maintenance_plans_on_maintenace_asset_id"
+    t.index ["maintenance_asset_component_id"], name: "index_maintenance_plans_on_maintenance_asset_component_id"
+    t.index ["maintenance_asset_id"], name: "index_maintenance_plans_on_maintenance_asset_id"
     t.index ["maintenance_plan_template_id"], name: "index_maintenance_plans_on_maintenance_plan_template_id"
   end
 
@@ -455,8 +455,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   add_foreign_key "common_measure_units", "common_measure_unit_types"
   add_foreign_key "maintenance_asset_assignees", "maintenance_assets"
   add_foreign_key "maintenance_asset_assignees", "maintenance_technicians"
-  add_foreign_key "maintenance_asset_components", "maintenance_assets", column: "maintenance_assets_id"
-  add_foreign_key "maintenance_asset_documents", "maintenance_assets", column: "maintenance_assets_id"
+  add_foreign_key "maintenance_asset_components", "maintenance_assets", column: "maintenance_asset_id"
+  add_foreign_key "maintenance_asset_documents", "maintenance_assets", column: "maintenance_asset_id"
   add_foreign_key "maintenance_assets", "maintenance_asset_types"
   add_foreign_key "maintenance_assets", "maintenance_manufacturers"
   add_foreign_key "maintenance_assets", "organization_production_lines"
@@ -467,7 +467,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   add_foreign_key "maintenance_plan_templates", "maintenance_frequency_types"
   add_foreign_key "maintenance_plan_templates", "maintenance_plan_types"
   add_foreign_key "maintenance_plans", "components"
-  add_foreign_key "maintenance_plans", "maintenace_assets"
+  add_foreign_key "maintenance_plans", "maintenance_assets"
   add_foreign_key "maintenance_plans", "maintenance_plan_templates"
   add_foreign_key "maintenance_schedule_assignments", "maintenance_schedules"
   add_foreign_key "maintenance_schedule_assignments", "maintenance_specialties"

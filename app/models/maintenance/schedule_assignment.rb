@@ -3,15 +3,21 @@
 class Maintenance::ScheduleAssignment < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  STATUSES = %i[inactive active].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
+  enum :status, STATUSES
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_schedule
-  belongs_to :maintenance_technician
-  belongs_to :maintenance_specialty
+  belongs_to :schedule, class_name: 'Maintenance::Schedule',
+             foreign_key: :maintenance_schedule_id
+  belongs_to :technician, class_name: 'Maintenance::Technician',
+             foreign_key: :maintenance_technician_id
+  belongs_to :specialty, class_name: 'Maintenance::Specialty',
+             foreign_key: :maintenance_specialty_id
+
   has_rich_text :notes
 
   # -- -------------------------------------------------------------------------
@@ -19,6 +25,7 @@ class Maintenance::ScheduleAssignment < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

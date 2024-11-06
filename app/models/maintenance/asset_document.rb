@@ -3,9 +3,11 @@
 class Maintenance::AssetDocument < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  STATUSES = %i[inactive active].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
+  enum :status, STATUSES
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
@@ -17,6 +19,10 @@ class Maintenance::AssetDocument < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :maintenance_asset_id, presence: true
+  validates :document_type, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

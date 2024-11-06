@@ -7,7 +7,7 @@ class CreateOrganizationProductionLines < ActiveRecord::Migration[8.0]
       t.string :name, null: false, limit: 100
       t.text :description
       t.references :organization_area, null: false, foreign_key: true
-      t.integer :status, null: false
+      t.integer :status, null: false, default: 1
 
       t.timestamps
     end

@@ -9,14 +9,22 @@ class Maintenance::PlanTemplateTask < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_plan_template
-  belongs_to :maintenance_standard_task
+  belongs_to :plan_template, class_name: 'Maintenance::PlanTemplate',
+             foreign_key: :maintenance_plan_template_id
+  belongs_to :standard_task, class_name: 'Maintenance::StandardTask',
+             foreign_key: :maintenance_standard_task_id
+
+  has_many :standard_tasks, class_name: 'Maintenance::StandardTask',
+           foreign_key: :maintenance_plan_template_task_id,
+           dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :sequence_number, presence: true,
+            numericality: { only_integer: true, greater_than_or_equal_to: 1 }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

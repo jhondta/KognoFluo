@@ -16,9 +16,9 @@ class Maintenance::PlansTest < ApplicationSystemTestCase
     visit maintenance_plans_url
     click_on 'New plan'
 
-    fill_in 'Component', with: @maintenance_plan.component_id
+    fill_in 'Component', with: @maintenance_plan.maintenance_asset_component_id
     fill_in 'Last execution date', with: @maintenance_plan.last_execution_date
-    fill_in 'Maintenace asset', with: @maintenance_plan.maintenace_asset_id
+    fill_in 'Maintenance asset', with: @maintenance_plan.maintenance_asset_id
     fill_in 'Maintenance plan template', with: @maintenance_plan.maintenance_plan_template_id
     fill_in 'Next execution date', with: @maintenance_plan.next_execution_date
     fill_in 'Start date', with: @maintenance_plan.start_date
@@ -33,9 +33,9 @@ class Maintenance::PlansTest < ApplicationSystemTestCase
     visit maintenance_plan_url(@maintenance_plan)
     click_on 'Edit this plan', match: :first
 
-    fill_in 'Component', with: @maintenance_plan.component_id
+    fill_in 'Component', with: @maintenance_plan.maintenance_asset_component_id
     fill_in 'Last execution date', with: @maintenance_plan.last_execution_date
-    fill_in 'Maintenace asset', with: @maintenance_plan.maintenace_asset_id
+    fill_in 'Maintenance asset', with: @maintenance_plan.maintenance_asset_id
     fill_in 'Maintenance plan template', with: @maintenance_plan.maintenance_plan_template_id
     fill_in 'Next execution date', with: @maintenance_plan.next_execution_date
     fill_in 'Start date', with: @maintenance_plan.start_date

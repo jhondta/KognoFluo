@@ -9,7 +9,9 @@ class Maintenance::StandardTaskStep < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_standard_task
+  belongs_to :standard_task, class_name: 'Maintenance::StandardTask',
+             foreign_key: :maintenance_standard_task_id
+
   has_rich_text :description
 
   # -- -------------------------------------------------------------------------
@@ -17,6 +19,7 @@ class Maintenance::StandardTaskStep < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :sequence_number, presence: true
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

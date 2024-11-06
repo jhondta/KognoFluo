@@ -7,7 +7,7 @@ class CreateMaintenanceScheduleAssignments < ActiveRecord::Migration[8.0]
       t.references :maintenance_technician, null: false, foreign_key: true
       t.references :maintenance_specialty, null: false, foreign_key: true
       t.decimal :assigned_hours
-      t.integer :status, null: false, default: 0
+      t.integer :status, null: false, default: 1
 
       t.timestamps
     end

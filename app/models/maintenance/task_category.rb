@@ -9,12 +9,17 @@ class Maintenance::TaskCategory < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
+  has_many :standard_tasks, class_name: 'Maintenance::StandardTask',
+           foreign_key: :maintenance_task_category_id,
+           dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 100 }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

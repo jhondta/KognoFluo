@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :maintenance_plan, class: 'Maintenance::Plan' do
     maintenance_plan_template { nil }
-    maintenace_asset { nil }
+    maintenance_asset { nil }
     component { nil }
     status { 1 }
     start_date { '2024-11-05' }

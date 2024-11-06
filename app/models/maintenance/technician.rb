@@ -3,7 +3,7 @@
 class Maintenance::Technician < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
-  STATUSES = %i[active inactive].freeze
+  STATUSES = %i[inactive active].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
@@ -13,11 +13,19 @@ class Maintenance::Technician < ApplicationRecord
   # -- Associations ------------------------------------------------------------
   belongs_to :user
 
+  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
+           foreign_key: :maintenance_technician_id
+  has_many :assets, through: :asset_assignees
+  has_many :schedule_assignments, class_name: 'Maintenance::ScheduleAssignment',
+           foreign_key: :maintenance_technician_id, dependent: :restrict_with_error
+
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :user, presence: true
+  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

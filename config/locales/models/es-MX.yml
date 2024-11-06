@@ -1,27 +1,155 @@
 es-MX:
   activerecord:
     models:
-      user:
-        one: "Usuario"
-        other: "Usuarios"
-      maintenance/service:
-        one: "Servicio de mantenimiento"
-        other: "Servicios de mantenimiento"
+      common/country:
+        one: "Pais"
+        other: "Paises"
+      common/currency:
+        one: "Moneda"
+        other: "Monedas"
+      common/language:
+        one: "Idioma"
+        other: "Idiomas"
+      common/measurement_unit_type:
+        one: "Tipo de unidad"
+        other: "Tipos de unidad"
+      common/measurement_unit:
+        one: "Unidad de medida"
+        other: "Unidades de medida"
+      maintenance/asset_assignee:
+        one: "Asignado a"
+        other: "Asignados a"
+      maintenance/asset_component:
+        one: "Componente"
+        other: "Componentes"
+      maintenance/asset_document:
+        one: "Documento"
+        other: "Documentos"
+      maintenance/asset_type:
+        one: "Tipo de activo"
+        other: "Tipos de activos"
       maintenance/asset:
         one: "Activo"
         other: "Activos"
-    attributes:
+      maintenance/frequency_type:
+        one: "Tipo de frecuencia"
+        other: "Tipos de frecuencia"
+      maintenance/manufacturer:
+        one: "Fabricante"
+        other: "Fabricantes"
+      maintenance/measurement_type:
+        one: "Tipo de medida"
+        other: "Tipos de medida"
+      maintenance/plan_template_task:
+        one: "Tarea"
+        other: "Tareas"
+      maintenance/plan_template:
+        one: "Plantilla"
+        other: "Plantillas"
+      maintenance/plan_type:
+        one: "Tipo de plan"
+        other: "Tipos de plan"
+      maintenance/plan:
+        one: "Plan"
+        other: "Planes"
+      maintenance/scheduled_assignment:
+        one: "Asignación programada"
+        other: "Asignaciones programadas"
+      maintenance/schedule:
+        one: "Horario"
+        other: "Horarios"
+      maintenance/specialty:
+        one: "Especialidad"
+        other: "Especialidades"
+      maintenance/standard_task_measurement:
+        one: "Medida estandard"
+        other: "Medidas estandard"
+      maintenance/standard_task_step:
+        one: "Paso estandard"
+        other: "Pasos estandard"
+      maintenance/standard_task_tool:
+        one: "Herramienta estandard"
+        other: "Herramientas estandard"
+      maintenance/standard_task:
+        one: "Tarea estandard"
+        other: "Tareas estandard"
+      maintenance/task_category:
+        one: "Categoria de tarea"
+        other: "Categorias de tarea"
+      maintenance/technician:
+        one: "Técnico"
+        other: "Técnicos"
+      maintenance/tool:
+        one: "Herramienta"
+        other: "Herramientas"
+      organization/area:
+        one: "Area"
+        other: "Areas"
+      organization/plant:
+        one: "Planta"
+        other: "Plantas"
+      organization/production_line:
+        one: "Línea de producción"
+        other: "Líneas de producción"
+      user_profile:
+        one: "Perfil de usuario"
+        other: "Perfiles de usuario"
       user:
+        one: "Usuario"
+        other: "Usuarios"
+    attributes:
+      common/country:
+        common_name: "Nombre"
+        official_name: "Nombre oficial"
+        code_alpha2: "ISO 3166-1 alpha-2"
+        code_alpha3: "ISO 3166-1 alpha-3"
+        phone_code: "Código de telefonia"
+        tld: "TLD"
+        flag_svg: "Bandera SVG"
+        flag_png: "Bandera PNG"
+      common/currency:
         name: "Nombre"
-        email: "Correo electrónico"
-      maintenance/service:
+        code_alpha: "ISO 4217 alpha"
+        code_numeric: "ISO 4217 numeric"
+        symbol: "Simbolo"
+      common/language:
+        name: "Nombre"
+        native_name: "Nombre nativo"
+        code_iso_639_1: "ISO 639-1"
+        code_iso_639_2: "ISO 639-2"
+      common/measurement_unit_type:
+        name: "Nombre"
+      common/measurement_unit:
+        name: "Nombre"
+        abbreviation: "Abreviatura"
+        common_measurement_unit_type_id: "Tipo de unidad"
+      common/timezone:
+        name: "Nombre"
+        gmt_offset: "Desfase GMT"
+      maintenance/asset_assignee:
+        maintenance_asset_id: "Activo"
+        maintenance_technician_id: "Técnico"
+      maintenance/asset_component:
+        maintenance_asset_id: "Activo"
         name: "Nombre"
         description: "Descripción"
-        scheduled_date: "Fecha programada"
-        maintenance_frequency_id: "Frecuencia"
-        maintenance_responsible_id: "Responsable"
+        quantity: "Cantidad"
+        specifications: "Especificaciones"
+        replacement_period: "Período de reemplazo"
         status: "Estado"
-        resources: "Recursos"
+      maintenance_asset_document:
+        maintenance_asset_id: "Activo"
+        document_type: "Tipo de documento"
+        name: "Nombre"
+        description: "Descripción"
+        version: "Versión"
+        expiration_date: "Fecha de expiración"
+        status: "Estado"
+      maintenance/asset_type:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+        status: "Estado"
       maintenance/asset:
         code: "Código"
         name: "Nombre"
@@ -34,24 +162,149 @@ es-MX:
         purchase_date: "Fecha de compra"
         warranty_expiration: "Fecha de expiración de garantiía"
         status: "Estado"
-        criticality_level: "Nivel crítico"
+        criticality_level: "Nivel de criticidad"
         technical_specs: "Especificaciones técnicas"
         operation_conditions: "Condiciones de operación"
         physical_location: "Ubicación física"
         notes: "Notas"
-        active: "Activo"
+      maintenance/frequency_type:
+        code: "Código"
+        name: "Nombre"
+        common_measure_unit_id: "Unidad de medida"
+      maintenance/manufacturer:
+        code: "Código"
+        name: "Nombre"
+        status: "Estado"
+        website: "Sitio web"
+        support_phone: "Teléfono de soporte"
+        support_email: "Correo de soporte"
+        notes: "Notas"
+      maintenance/measurement_type:
+        code: "Código"
+        name: "Nombre"
+        common_measure_unit_id: "Unidad de medida"
+      maintenance/plan_template_task:
+        maintenance_plan_template_id: "Plan de mantenimiento"
+        maintenance_standard_task_id: "Tarea estandard"
+        sequence_number: "Secuencia"
+        custom_duration: "Duración personalizada"
+        custom_description: "Descripción personalizada"
+      maintenance/plan_template:
+        code: "Código"
+        name: "Nombre"
+        maintenance_plan_type_id: "Tipo de plan"
+        maintenance_frequency_type_id: "Tipo de frecuencia"
+        frequency_value: "Valor de frecuencia"
+        estimated_duration: "Duración estimada"
+        requires_shutdown: "Requiere apagado"
+        criticality: "Importancia"
+      maintenance/plan_type:
+        code: "Código"
+        name: "Nombre"
+      maintenance/plan:
+        maintenance_plan_template_id: "Plan de mantenimiento"
+        maintenance_asset_id: "Activo"
+        maintenance_asset_component_id: "Componente"
+        status: "Estado"
+        start_date: "Fecha de inicio"
+        last_execution_date: "Fecha de ejecución"
+        next_execution_date: "Fecha de proxima ejecución"
+      maintenance/scheduled_assignment:
+        maintenance_schedule_id: "Programado"
+        maintenance_technician_id: "Técnico"
+        maintenance_specialty_id: "Especialidad"
+        assigned_hours: "Horas asignadas"
+        status: "Estado"
+      maintenance/schedule:
+        maintenance_plan_id: "Plan de mantenimiento"
+        planned_date: "Fecha programada"
+        estimated_duration: "Duración estimada"
+        status: "Estado"
+        priority: "Prioridad"
+      maintenance/specialty:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+      maintenance/standard_task_measurement:
+        maintenance_standard_task_id: "Tarea estandard"
+        maintenance_measurement_type_id: "Tipo de medida"
+        min_value: "Valor minimo"
+        max_value: "Valor maximo"
+        nominal_value: "Valor nominal"
+        tolerance_percentage: "Porcentaje de tolerancia"
+        is_critical: "Es crítico"
+      maintenance/standard_task_step:
+        maintenance_standard_task_id: "Tarea estandard"
+        sequence_number: "Secuencia"
+        estimated_duration: "Duración estimada"
+      maintenance/standard_task_tool:
+        maintenance_standard_task_id: "Tarea estandard"
+        maintenance_tool_id: "Herramienta"
+        quantity: "Cantidad"
+      maintenance/standard_task:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+        maintenance_task_category_id: "Categoria de tarea"
+        estimated_duration: "Duración estimada"
+        requires_shutdown: "Requiere apagado"
+      maintenance/task_category:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+      maintenance/technician:
+        user_id: "Usuario"
+        specialty_id: "Especialidad"
+        certificcation_level: "Nivel de certificación"
+        status: "Estado"
+      maintenance/tool:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+        calibration_required: "Requiere calibración"
+      organization/area:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+        organization_plant_id: "Planta"
+        status: "Estado"
+      organization/plant:
+        code: "Código"
+        name: "Nombre"
+        address: "Dirección"
+        status: "Estado"
+      organization/production_line:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+        organization_area_id: "Area"
+        status: "Estado"
+      user_profile:
+        user_id: "Usuario"
+        first_name: "Nombre"
+        last_name: "Apellidos"
+        birth_date: "Fecha de nacimiento"
+        gender: "Genero"
+      user:
+        name: "Nombre"
+        email: "Correo electrónico"
     enums:
-      maintenance/service:
+      maintenance/asset_component:
         status:
           inactive: "Inactivo"
           active: "Activo"
-          served: "Servido"
-          cancelled: "Cancelado"
-          expired: "Expirado"
+      maintenance/asset_document:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+      maintenance/asset_type:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
       maintenance/asset:
         status:
-          active: "Activo"
           inactive: "Inactivo"
+          active: "Activo"
           maintenance: "Mantenimiento"
           retired: "Retirado"
         criticality_level:
@@ -59,3 +312,32 @@ es-MX:
           medium: "Medio"
           high: "Alto"
           critical: "Crítico"
+      maintenance/manufacturer:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+      maintenance/plan:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+      maintenance/plan_template:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+        criticality:
+          low: "Bajo"
+          medium: "Medio"
+          high: "Alto"
+          critical: "Crítico"
+      maintenance/schedule:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+      maintenance/scheduled_assignment:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"
+      maintenance/technician:
+        status:
+          inactive: "Inactivo"
+          active: "Activo"

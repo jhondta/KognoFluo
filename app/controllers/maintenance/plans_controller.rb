@@ -67,6 +67,6 @@ class Maintenance::PlansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_plan_params
-      params.expect(maintenance_plan: %i[maintenance_plan_template_id maintenace_asset_id component_id status start_date last_execution_date next_execution_date notes])
+      params.expect(maintenance_plan: %i[maintenance_plan_template_id maintenance_asset_id maintenance_asset_component_id status start_date last_execution_date next_execution_date notes])
     end
 end

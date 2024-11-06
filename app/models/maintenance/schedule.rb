@@ -3,13 +3,20 @@
 class Maintenance::Schedule < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  STATUSES = %i[ inactive active ].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
+  enum :status, STATUSES
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_plan
+  belongs_to :plan, class_name: 'Maintenance::Plan',
+             foreign_key: :maintenance_plan_id
+
+  has_many :schedule_assignments, class_name: 'Maintenance::ScheduleAssignment',
+           foreign_key: :maintenance_schedule_id, dependent: :restrict_with_error
+
   has_rich_text :notes
 
   # -- -------------------------------------------------------------------------
@@ -17,6 +24,8 @@ class Maintenance::Schedule < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :planned_date, presence: true
+  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

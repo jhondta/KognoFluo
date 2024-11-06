@@ -9,8 +9,10 @@ class Maintenance::StandardTaskTool < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_standard_task
-  belongs_to :maintenance_tool
+  belongs_to :standard_task, class_name: 'Maintenance::StandardTask',
+             foreign_key: :maintenance_standard_task_id
+  belongs_to :tool, class_name: 'Maintenance::Tool',
+             foreign_key: :maintenance_tool_id
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------

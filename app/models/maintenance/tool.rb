@@ -9,12 +9,18 @@ class Maintenance::Tool < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
+  has_many :standard_task_tools, class_name: 'Maintenance::StandardTaskTool',
+           foreign_key: :maintenance_tool_id, dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :calibration_required, presence: true,
+            inclusion: { in: [ true, false ] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

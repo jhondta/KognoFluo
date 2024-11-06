@@ -9,13 +9,19 @@ class Maintenance::FrequencyType < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :common_measure_unit
+  belongs_to :measure_unit, class_name: 'Common::MeasureUnit',
+             foreign_key: :common_measure_unit_id
+
+  has_many :plan_templates, class_name: 'Maintenance::PlanTemplate',
+            foreign_key: :maintenance_frequency_type_id
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 100 }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

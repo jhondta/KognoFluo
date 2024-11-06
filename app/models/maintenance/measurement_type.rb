@@ -9,13 +9,21 @@ class Maintenance::MeasurementType < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :common_measure_unit
+  belongs_to :measure_unit, class_name: 'Common::MeasureUnit',
+             foreign_key: :common_measure_unit_id
+
+  has_many :standard_task_measurement_types,
+           class_name: 'Maintenance::StandardTaskMeasurement',
+           foreign_key: :maintenance_measurement_type_id,
+           dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 50 }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

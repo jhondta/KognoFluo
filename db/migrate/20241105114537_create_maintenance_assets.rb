@@ -13,12 +13,11 @@ class CreateMaintenanceAssets < ActiveRecord::Migration[7.2]
       t.date :manufacturing_date
       t.date :purchase_date
       t.date :warranty_expiration
-      t.integer :status
-      t.string :criticality_level
+      t.integer :status, null: false, default: 1
+      t.string :criticality_level, null: false, default: 0
       t.json :technical_specs
       t.json :operation_conditions
       t.string :physical_location
-      t.text :notes
 
       t.timestamps
     end

@@ -9,8 +9,10 @@ class Maintenance::AssetAssignee < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :maintenance_asset
-  belongs_to :maintenance_technician
+  belongs_to :asset, class_name: 'Maintenance::Asset',
+             foreign_key: :maintenance_asset_id
+  belongs_to :technician, class_name: 'Maintenance::Technician',
+             foreign_key: :maintenance_technician_id
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------

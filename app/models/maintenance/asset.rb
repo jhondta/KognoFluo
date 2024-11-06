@@ -3,7 +3,7 @@
 class Maintenance::Asset < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
-  STATUSES = %i[ active inactive maintenance retired ].freeze
+  STATUSES = %i[ inactive active maintenance retired ].freeze
   STATUS_COLORS = { active: 'green', inactive: 'red', maintenance: 'yellow',
                     retired: 'gray' }.freeze
   CRITICALITY_LEVELS = %i[ low medium high critical ].freeze
@@ -24,21 +24,30 @@ class Maintenance::Asset < ApplicationRecord
   belongs_to :manufacturer, class_name: 'Maintenance::Manufacturer',
              foreign_key: :maintenance_manufacturer_id
 
-  has_many :maintenance_asset_assignees, class_name: 'Maintenance::AssetAssignee',
+  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
            foreign_key: :maintenance_asset_id
-  has_many :asset_components, class_name: 'Maintenance::AssetComponent',
+  has_many :components, class_name: 'Maintenance::AssetComponent',
            foreign_key: :maintenance_asset_id
-  has_many :asset_documents, class_name: 'Maintenance::AssetDocument',
+  has_many :documents, class_name: 'Maintenance::AssetDocument',
            foreign_key: :maintenance_asset_id
-  has_many :assignees, through: :maintenance_asset_assignees
-  has_many :components, through: :asset_components
-  has_many :documents, through: :asset_documents
+  has_many :technicians, through: :asset_assignees
+  has_many :plans, class_name: 'Maintenance::Plan',
+           foreign_key: :maintenance_asset_id
+
+  has_rich_text :notes
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :maintenance_asset_type_id, presence: true
+  validates :organization_production_line_id, presence: true
+  validates :maintenance_manufacturer_id, presence: true
+  validates :status, presence: true, inclusion: { in: STATUSES }
+  validates :criticality_level, presence: true, inclusion: { in: CRITICALITY_LEVELS }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
