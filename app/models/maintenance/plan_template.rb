@@ -3,12 +3,10 @@
 class Maintenance::PlanTemplate < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
-  STATUSES = %i[inactive active].freeze
   CRITICALITY_LEVELS = %i[low medium high critical].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  enum :status, STATUSES
   enum :criticality, CRITICALITY_LEVELS
 
   # -- -------------------------------------------------------------------------
