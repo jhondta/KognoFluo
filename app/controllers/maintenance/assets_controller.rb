@@ -16,15 +16,24 @@ class Maintenance::AssetsController < ApplicationController
   # GET /maintenance/assets/new
   def new
     @maintenance_asset = Maintenance::Asset.new
+    @maintenance_asset_types = Maintenance::AssetType.all
+    @organization_production_lines = Organization::ProductionLine.includes(area: :plant).all
+    @maintenance_manufacturers = Maintenance::Manufacturer.all
   end
 
   # GET /maintenance/assets/1/edit
   def edit
+    @maintenance_asset_types = Maintenance::AssetType.all
+    @organization_production_lines = Organization::ProductionLine.includes(area: :plant).all
+    @maintenance_manufacturers = Maintenance::Manufacturer.all
   end
 
   # POST /maintenance/assets or /maintenance/assets.json
   def create
     @maintenance_asset = Maintenance::Asset.new(maintenance_asset_params)
+    @maintenance_asset_types = Maintenance::AssetType.all
+    @organization_production_lines = Organization::ProductionLine.includes(area: :plant).all
+    @maintenance_manufacturers = Maintenance::Manufacturer.all
 
     respond_to do |format|
       if @maintenance_asset.save
