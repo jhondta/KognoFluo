@@ -24,15 +24,14 @@ class Maintenance::Asset < ApplicationRecord
   belongs_to :manufacturer, class_name: 'Maintenance::Manufacturer',
              foreign_key: :maintenance_manufacturer_id
 
-  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
-           foreign_key: :maintenance_asset_id
+  has_many :assignees, class_name: 'Maintenance::AssetAssignee',
+           foreign_key: :maintenance_asset_id, dependent: :restrict_with_error
   has_many :components, class_name: 'Maintenance::AssetComponent',
-           foreign_key: :maintenance_asset_id
+           foreign_key: :maintenance_asset_id, dependent: :restrict_with_error
   has_many :documents, class_name: 'Maintenance::AssetDocument',
-           foreign_key: :maintenance_asset_id
-  has_many :technicians, through: :asset_assignees
+           foreign_key: :maintenance_asset_id, dependent: :restrict_with_error
   has_many :plans, class_name: 'Maintenance::Plan',
-           foreign_key: :maintenance_asset_id
+           foreign_key: :maintenance_asset_id, dependent: :restrict_with_error
 
   has_rich_text :notes
 
@@ -43,9 +42,6 @@ class Maintenance::Asset < ApplicationRecord
   # -- Validations -------------------------------------------------------------
   validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
   validates :name, presence: true, length: { maximum: 100 }
-  validates :maintenance_asset_type_id, presence: true
-  validates :organization_production_line_id, presence: true
-  validates :maintenance_manufacturer_id, presence: true
   validates :status, presence: true, inclusion: { in: STATUSES.map(&:to_s) }
   validates :criticality_level, presence: true,
             inclusion: { in: CRITICALITY_LEVELS.map(&:to_s) }
