@@ -46,8 +46,9 @@ class Maintenance::Asset < ApplicationRecord
   validates :maintenance_asset_type_id, presence: true
   validates :organization_production_line_id, presence: true
   validates :maintenance_manufacturer_id, presence: true
-  validates :status, presence: true, inclusion: { in: STATUSES }
-  validates :criticality_level, presence: true, inclusion: { in: CRITICALITY_LEVELS }
+  validates :status, presence: true, inclusion: { in: STATUSES.map(&:to_s) }
+  validates :criticality_level, presence: true,
+            inclusion: { in: CRITICALITY_LEVELS.map(&:to_s) }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
