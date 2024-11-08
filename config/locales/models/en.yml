@@ -4,7 +4,14 @@ en:
       user:
         one: "User"
         other: "Users"
+      maintenance/asset:
+        other: "Assets"
     attributes:
       user:
         name: "Name"
         email: "Email"
+    errors:
+      template:
+        header:
+          one: "%{count} error prohibited this %{model} from being saved"
+          other: "%{count} errors prohibited this %{model} from being saved"

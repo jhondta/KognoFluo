@@ -239,3 +239,6 @@ es-MX:
     sidebar:
       links:
         dashboard: "Tablero"
+  search_placeholder: "Buscar %{resource}"
+  new_resource: "Nuevo %{resource}"
+  export: "Exportar"

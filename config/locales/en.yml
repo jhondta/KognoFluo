@@ -50,3 +50,6 @@ en:
     sidebar:
       links:
         dashboard: "Dashboard"
+  search_placeholder: "Search %{resource}"
+  new_resource: "New %{resource}"
+  export: "Export"

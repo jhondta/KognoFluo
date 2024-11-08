@@ -341,3 +341,8 @@ es-MX:
         status:
           inactive: "Inactivo"
           active: "Activo"
+    errors:
+      template:
+        header:
+          one: "%{count} error impidió que este %{model} se guardara"
+          other: "%{count} errores impidieron que este %{model} se guardara"
