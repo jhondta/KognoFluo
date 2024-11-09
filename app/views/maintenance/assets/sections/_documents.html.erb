@@ -1,0 +1,28 @@
+<% if maintenance_asset.documents.any? %>
+  <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+    <% maintenance_asset.documents.each do |document| %>
+      <li>
+
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="flex items-center justify-center w-full">
+    <div class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed
+                      rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+      <div class="flex flex-col items-center justify-center pt-5 pb-6">
+        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1
+                         .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z"/>
+        </svg>
+        <p class="mb-2 text-lg font-semibold text-gray-500 dark:text-gray-400">
+          No hay documentos adjuntos
+        </p>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          Adjunta documentos relacionados con este activo
+      </div>
+    </div>
+  </div>
+<% end %>
