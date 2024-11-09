@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 8.0.0.rc2'
+gem 'rails', '~> 8.0.0'
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem 'propshaft'
 # Use sqlite3 as the database for Active Record
@@ -47,14 +47,15 @@ gem 'devise'
 # Use Argon2 for password hashing
 gem 'devise-argon2'
 # Use Rails i18n for internationalization [https://guides.rubyonrails.org/i18n.html]
-gem 'rails-i18n'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n'
+# Use I18n Tasks for i18n tasks [https://github.com/alexdotdev/i18n-tasks]
+gem 'i18n-tasks'
 # Use http_accept_language to detect the user's preferred language
 gem 'http_accept_language'
-
 # Use Pagy for pagination [https://ddnexus.github.io/pagy/]
 gem 'pagy'
 # Use PaperTrail for tracking changes
-# gem 'paper_trail'
+gem 'paper_trail'
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
