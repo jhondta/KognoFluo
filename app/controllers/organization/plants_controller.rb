@@ -27,7 +27,7 @@ class Organization::PlantsController < ApplicationController
 
     respond_to do |format|
       if @organization_plant.save
-        format.html { redirect_to @organization_plant, notice: 'Plant was successfully created.' }
+        format.html { redirect_to @organization_plant, notice: t('.notice') }
         format.json { render :show, status: :created, location: @organization_plant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Organization::PlantsController < ApplicationController
   def update
     respond_to do |format|
       if @organization_plant.update(organization_plant_params)
-        format.html { redirect_to @organization_plant, notice: 'Plant was successfully updated.' }
+        format.html { redirect_to @organization_plant, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @organization_plant }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Organization::PlantsController < ApplicationController
     @organization_plant.destroy!
 
     respond_to do |format|
-      format.html { redirect_to organization_plants_path, status: :see_other, notice: 'Plant was successfully destroyed.' }
+      format.html { redirect_to organization_plants_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

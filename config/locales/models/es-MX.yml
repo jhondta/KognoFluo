@@ -110,7 +110,7 @@ es-MX:
       common/currency:
         name: "Nombre"
         code_alpha: "ISO 4217 alpha"
-        code_numeric: "ISO 4217 numeric"
+        code_numeric: "ISO 4217 numerico"
         symbol: "Simbolo"
       common/language:
         name: "Nombre"

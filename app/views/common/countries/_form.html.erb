@@ -1,15 +1,5 @@
 <%= form_with(model: common_country, class: "contents mt-8 space-y-6") do |form| %>
-  <% if common_country.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(common_country.errors.count, "error") %> prohibited this common_country from being saved:</h2>
-
-      <ul>
-        <% common_country.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render partial: 'shared/error_messages', locals: { resource: common_country } %>
 
   <div class="my-5">
     <%= form.label :common_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>

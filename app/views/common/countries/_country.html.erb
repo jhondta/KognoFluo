@@ -1,43 +1,59 @@
 <div id="<%= dom_id country %>">
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium mb-1">Common name:</strong>
+    <strong class="font-medium mb-1">
+      <%= t('activerecord.attributes.common/country.common_name') %>:
+    </strong>
     <%= country.common_name %>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">Official name:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.official_name') %>:
+    </strong>
     <%= country.official_name %>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">Code alpha2:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.code_alpha2') %>:
+    </strong>
     <%= country.code_alpha2 %>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">Code alpha3:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.code_alpha3') %>:
+    </strong>
     <%= country.code_alpha3 %>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">Phone code:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.phone_code') %>:
+    </strong>
     <%= country.phone_code %>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">TLD:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.tld') %>:
+    </strong>
     <%= country.tld %>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">Flag SVG:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.flag_svg') %>:
+    </strong>
     <div class="flex justify-left max-h-10 rounded-lg">
       <%= country.flag_svg %>
     </div>
   </div>
 
   <div class="my-5 mb-2 text-sm text-gray-900 dark:text-white">
-    <strong class="font-medium">Flag PNG:</strong>
+    <strong class="font-medium">
+      <%= t('activerecord.attributes.common/country.flag_png') %>:
+    </strong>
     <img src="data:image/png;base64,<%= country.flag_png %>"
          alt="<%= country.common_name %> flag"
          class="max-h-10 rounded-lg">

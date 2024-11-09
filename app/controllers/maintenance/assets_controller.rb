@@ -37,7 +37,7 @@ class Maintenance::AssetsController < ApplicationController
 
     respond_to do |format|
       if @maintenance_asset.save
-        format.html { redirect_to @maintenance_asset, notice: 'Asset was successfully created.' }
+        format.html { redirect_to @maintenance_asset, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_asset }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ class Maintenance::AssetsController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_asset.update(maintenance_asset_params)
-        format.html { redirect_to @maintenance_asset, notice: 'Asset was successfully updated.' }
+        format.html { redirect_to @maintenance_asset, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_asset }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,7 +64,7 @@ class Maintenance::AssetsController < ApplicationController
     @maintenance_asset.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_assets_path, status: :see_other, notice: 'Asset was successfully destroyed.' }
+      format.html { redirect_to maintenance_assets_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

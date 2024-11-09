@@ -27,7 +27,7 @@ class UserProfilesController < ApplicationController
 
     respond_to do |format|
       if @user_profile.save
-        format.html { redirect_to @user_profile, notice: 'User profile was successfully created.' }
+        format.html { redirect_to @user_profile, notice: t('.notice') }
         format.json { render :show, status: :created, location: @user_profile }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class UserProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to @user_profile, notice: 'User profile was successfully updated.' }
+        format.html { redirect_to @user_profile, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @user_profile }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class UserProfilesController < ApplicationController
     @user_profile.destroy!
 
     respond_to do |format|
-      format.html { redirect_to user_profiles_path, status: :see_other, notice: 'User profile was successfully destroyed.' }
+      format.html { redirect_to user_profiles_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

@@ -27,7 +27,7 @@ class Common::CountriesController < ApplicationController
 
     respond_to do |format|
       if @common_country.save
-        format.html { redirect_to @common_country, notice: 'Country was successfully created.' }
+        format.html { redirect_to @common_country, notice: t('.notice') }
         format.json { render :show, status: :created, location: @common_country }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Common::CountriesController < ApplicationController
   def update
     respond_to do |format|
       if @common_country.update(common_country_params)
-        format.html { redirect_to @common_country, notice: 'Country was successfully updated.' }
+        format.html { redirect_to @common_country, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @common_country }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Common::CountriesController < ApplicationController
     @common_country.destroy!
 
     respond_to do |format|
-      format.html { redirect_to common_countries_path, status: :see_other, notice: 'Country was successfully destroyed.' }
+      format.html { redirect_to common_countries_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

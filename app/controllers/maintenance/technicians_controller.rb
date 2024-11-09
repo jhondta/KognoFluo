@@ -27,7 +27,7 @@ class Maintenance::TechniciansController < ApplicationController
 
     respond_to do |format|
       if @maintenance_technician.save
-        format.html { redirect_to @maintenance_technician, notice: 'Technician was successfully created.' }
+        format.html { redirect_to @maintenance_technician, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_technician }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Maintenance::TechniciansController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_technician.update(maintenance_technician_params)
-        format.html { redirect_to @maintenance_technician, notice: 'Technician was successfully updated.' }
+        format.html { redirect_to @maintenance_technician, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_technician }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Maintenance::TechniciansController < ApplicationController
     @maintenance_technician.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_technicians_path, status: :see_other, notice: 'Technician was successfully destroyed.' }
+      format.html { redirect_to maintenance_technicians_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

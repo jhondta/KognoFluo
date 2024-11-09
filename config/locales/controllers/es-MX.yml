@@ -1,0 +1,130 @@
+es-MX:
+  common:
+    countries:
+      create:
+        notice: "País creado exitosamente."
+      update:
+        notice: "País actualizado exitosamente."
+      destroy:
+        notice: "País eliminado exitosamente."
+    currencies:
+      create:
+        notice: "Moneda creada exitosamente."
+      update:
+        notice: "Moneda actualizada exitosamente."
+      destroy:
+        notice: "Moneda eliminada exitosamente."
+    languages:
+      create:
+        notice: "Idioma creado exitosamente."
+      update:
+        notice: "Idioma actualizado exitosamente."
+      destroy:
+        notice: "Idioma eliminado exitosamente."
+    measure_unit_types:
+      create:
+        notice: "Tipo de unidad de medida creada exitosamente."
+      update:
+        notice: "Tipo de unidad de medida actualizado exitosamente."
+      destroy:
+        notice: "Tipo de unidad de medida eliminado exitosamente."
+    measure_units:
+      create:
+        notice: "Unidad de medida creada exitosamente."
+      update:
+        notice: "Unidad de medida actualizada exitosamente."
+      destroy:
+        notice: "Unidad de medida eliminada exitosamente."
+    timezones:
+      create:
+        notice: "Zona horaria creada exitosamente."
+      update:
+        notice: "Zona horaria actualizada exitosamente."
+      destroy:
+        notice: "Zona horaria eliminada exitosamente."
+  maintenance:
+    asset_assignees:
+      create:
+        notice: "Responsable del activo creado exitosamente."
+      update:
+        notice: "Responsable del activo actualizado exitosamente."
+      destroy:
+        notice: "Responsable del activo eliminado exitosamente."
+    asset_components:
+      create:
+        notice: "Componente creado exitosamente."
+      update:
+        notice: "Componente actualizado existosamente."
+      destroy:
+        notice: "Componente eliminado exitosamente."
+    asset_documents:
+      create:
+        notice: "Documento creado exitosamente."
+      update:
+        notice: "Documento actualizado exitosamente."
+      destroy:
+        notice: "Documento eliminado exitosamente."
+    asset_types:
+      create:
+        notice: "Tipo de activo creado exitosamente."
+      update:
+        notice: "Tipo de activo actualizado exitosamente."
+      destroy:
+        notice: "Tipo de activo eliminado exitosamente."
+    assets:
+      create:
+        notice: "Activo creado exitosamente."
+      update:
+        notice: "Activo actualizado exitosamente."
+      destroy:
+        notice: "Activo eliminado exitosamente."
+    manufacturers:
+      create:
+        notice: "Fabricante creado exitosamente."
+      update:
+        notice: "Fabricante actualizado exitosamente."
+      destroy:
+        notice: "Fabricante eliminado exitosamente."
+    plans:
+      create:
+        notice: "Plan creado exitosamente."
+      update:
+        notice: "Plan editado exitosamente."
+      destroy:
+        notice: "Plan eliminado exitosamente."
+    technicians:
+      create:
+        notice: "Técnico creado exitosamente."
+      update:
+        notice: "Técnico editado exitosamente."
+      destroy:
+        notice: "Técnico eliminado exitosamente."
+  organization:
+    areas:
+      create:
+        notice: "Area creada exitosamente."
+      update:
+        notice: "Area actualizada exitosamente."
+      destroy:
+        notice: "Area eliminada exitosamente."
+    plants:
+      create:
+        notice: "Planta creada exitosamente."
+      update:
+        notice: "Planta editada exitosamente."
+      destroy:
+        notice: "Planta eliminada exitosamente."
+    production_lines:
+      create:
+        notice: "Linea de producción creada exitosamente."
+      update:
+        notice: "Linea de producción editada exitosamente."
+      destroy:
+        notice: "Linea de producción eliminada exitosamente."
+  user_profiles:
+    create:
+      notice: "Perfil de usuario creado exitosamente."
+    update:
+      notice: "Perfil de usuario ediado exitosamente."
+    destroy:
+      notice: "Perfil de usuario eliminado exitosamente."

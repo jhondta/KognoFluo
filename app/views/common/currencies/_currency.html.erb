@@ -1,21 +1,29 @@
 <div id="<%= dom_id currency %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.common/currency.name') %>:
+    </strong>
     <%= currency.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Code alpha:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.common/currency.code_alpha') %>:
+    </strong>
     <%= currency.code_alpha %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Code numeric:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.common/currency.code_numeric') %>:
+    </strong>
     <%= currency.code_numeric %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Symbol:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.common/currency.symbol') %>:
+    </strong>
     <%= currency.symbol %>
   </p>
 

@@ -27,7 +27,7 @@ class Maintenance::AssetAssigneesController < ApplicationController
 
     respond_to do |format|
       if @maintenance_asset_assignee.save
-        format.html { redirect_to @maintenance_asset_assignee, notice: 'Asset assignee was successfully created.' }
+        format.html { redirect_to @maintenance_asset_assignee, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_asset_assignee }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Maintenance::AssetAssigneesController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_asset_assignee.update(maintenance_asset_assignee_params)
-        format.html { redirect_to @maintenance_asset_assignee, notice: 'Asset assignee was successfully updated.' }
+        format.html { redirect_to @maintenance_asset_assignee, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_asset_assignee }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Maintenance::AssetAssigneesController < ApplicationController
     @maintenance_asset_assignee.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_asset_assignees_path, status: :see_other, notice: 'Asset assignee was successfully destroyed.' }
+      format.html { redirect_to maintenance_asset_assignees_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,6 @@ class Maintenance::AssetAssigneesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_asset_assignee_params
-      params.require(:maintenance_asset_assignee).permit(:maintenance_asset_id, :maintenance_technician_id)
+      params.expect(maintenance_asset_assignee: %i[ maintenance_asset_id maintenance_technician_id ])
     end
 end

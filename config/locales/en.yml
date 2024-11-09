@@ -29,27 +29,3 @@
 
 en:
   hello: "Hello world"
-  user_menu:
-    sr:
-      open_user_menu: "Open user menu"
-  shared:
-    navbar:
-      sr:
-        tsb: "Toggle sidebar"
-        search: "Search"
-        tsearch: "Toggle search"
-        ttheme: "Toggle theme"
-      links:
-        my_profile: "My profile"
-        account_settings: "Account settings"
-        logout: "Log out"
-        login: "Log in"
-    flash:
-      sr:
-        close: "Close"
-    sidebar:
-      links:
-        dashboard: "Dashboard"
-  search_placeholder: "Search %{resource}"
-  new_resource: "New %{resource}"
-  export: "Export"

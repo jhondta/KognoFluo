@@ -27,7 +27,7 @@ class Maintenance::AssetDocumentsController < ApplicationController
 
     respond_to do |format|
       if @maintenance_asset_document.save
-        format.html { redirect_to @maintenance_asset_document, notice: 'Asset document was successfully created.' }
+        format.html { redirect_to @maintenance_asset_document, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_asset_document }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Maintenance::AssetDocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_asset_document.update(maintenance_asset_document_params)
-        format.html { redirect_to @maintenance_asset_document, notice: 'Asset document was successfully updated.' }
+        format.html { redirect_to @maintenance_asset_document, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_asset_document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Maintenance::AssetDocumentsController < ApplicationController
     @maintenance_asset_document.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_asset_documents_path, status: :see_other, notice: 'Asset document was successfully destroyed.' }
+      format.html { redirect_to maintenance_asset_documents_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,6 @@ class Maintenance::AssetDocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_asset_document_params
-      params.require(:maintenance_asset_document).permit(:maintenance_asset_id, :document_type, :name, :description, :version, :expiration_date, :active)
+      params.expect(maintenance_asset_document: %i[ :maintenance_asset_id, :document_type, :name, :description, :version, :expiration_date, :active ])
     end
 end

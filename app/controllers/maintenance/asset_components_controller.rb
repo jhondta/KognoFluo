@@ -27,7 +27,7 @@ class Maintenance::AssetComponentsController < ApplicationController
 
     respond_to do |format|
       if @maintenance_asset_component.save
-        format.html { redirect_to @maintenance_asset_component, notice: 'Asset component was successfully created.' }
+        format.html { redirect_to @maintenance_asset_component, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_asset_component }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Maintenance::AssetComponentsController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_asset_component.update(maintenance_asset_component_params)
-        format.html { redirect_to @maintenance_asset_component, notice: 'Asset component was successfully updated.' }
+        format.html { redirect_to @maintenance_asset_component, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_asset_component }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Maintenance::AssetComponentsController < ApplicationController
     @maintenance_asset_component.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_asset_components_path, status: :see_other, notice: 'Asset component was successfully destroyed.' }
+      format.html { redirect_to maintenance_asset_components_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -67,6 +67,6 @@ class Maintenance::AssetComponentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_asset_component_params
-      params.require(:maintenance_asset_component).permit(:maintenance_asset_id, :name, :description, :quantity, :specifications, :replacement_period, :active)
+      params.expect(maintenance_asset_component: %i[ :maintenance_asset_id, :name, :description, :quantity, :specifications, :replacement_period, :active ])
     end
 end

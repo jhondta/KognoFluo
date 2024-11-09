@@ -1,0 +1,47 @@
+en:
+  user_menu:
+    sr:
+      open_user_menu: "Open user menu"
+  shared:
+    navbar:
+      sr:
+        tsb: "Toggle sidebar"
+        search: "Search"
+        tsearch: "Toggle search"
+        ttheme: "Toggle theme"
+      links:
+        my_profile: "My profile"
+        account_settings: "Account settings"
+        logout: "Log out"
+        login: "Log in"
+    flash:
+      sr:
+        close: "Close"
+    sidebar:
+      links:
+        dashboard: "Dashboard"
+  search_placeholder: "Search %{resource}"
+  new_resource: "New %{resource}"
+  export: "Export"
+  common:
+    countries:
+      edit:
+        show: "Show country"
+        back: "Back to countries"
+        title: "Edit country"
+      new:
+        back: "Back to countries"
+        title: "New country"
+    currencies:
+      edit:
+        title: "Editing currency"
+      new:
+        title: "New currency"
+        back: "Back to currencies"
+      show:
+        edit: "Edit this currency"
+        back: "Back to currencies"
+        destroy: "Destroy this currency"
+      index:
+        show: "Show this currency"
+        new: "New currency"

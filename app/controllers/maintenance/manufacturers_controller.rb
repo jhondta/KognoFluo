@@ -27,7 +27,7 @@ class Maintenance::ManufacturersController < ApplicationController
 
     respond_to do |format|
       if @maintenance_manufacturer.save
-        format.html { redirect_to @maintenance_manufacturer, notice: 'Manufacturer was successfully created.' }
+        format.html { redirect_to @maintenance_manufacturer, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_manufacturer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Maintenance::ManufacturersController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_manufacturer.update(maintenance_manufacturer_params)
-        format.html { redirect_to @maintenance_manufacturer, notice: 'Manufacturer was successfully updated.' }
+        format.html { redirect_to @maintenance_manufacturer, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_manufacturer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Maintenance::ManufacturersController < ApplicationController
     @maintenance_manufacturer.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_manufacturers_path, status: :see_other, notice: 'Manufacturer was successfully destroyed.' }
+      format.html { redirect_to maintenance_manufacturers_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

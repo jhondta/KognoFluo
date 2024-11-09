@@ -27,7 +27,7 @@ class Common::MeasureUnitsController < ApplicationController
 
     respond_to do |format|
       if @common_measure_unit.save
-        format.html { redirect_to @common_measure_unit, notice: 'Measure unit was successfully created.' }
+        format.html { redirect_to @common_measure_unit, notice: t('.notice') }
         format.json { render :show, status: :created, location: @common_measure_unit }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Common::MeasureUnitsController < ApplicationController
   def update
     respond_to do |format|
       if @common_measure_unit.update(common_measure_unit_params)
-        format.html { redirect_to @common_measure_unit, notice: 'Measure unit was successfully updated.' }
+        format.html { redirect_to @common_measure_unit, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @common_measure_unit }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Common::MeasureUnitsController < ApplicationController
     @common_measure_unit.destroy!
 
     respond_to do |format|
-      format.html { redirect_to common_measure_units_path, status: :see_other, notice: 'Measure unit was successfully destroyed.' }
+      format.html { redirect_to common_measure_units_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

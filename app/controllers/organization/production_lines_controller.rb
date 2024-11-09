@@ -27,7 +27,7 @@ class Organization::ProductionLinesController < ApplicationController
 
     respond_to do |format|
       if @organization_production_line.save
-        format.html { redirect_to @organization_production_line, notice: 'Production line was successfully created.' }
+        format.html { redirect_to @organization_production_line, notice: t('.notice') }
         format.json { render :show, status: :created, location: @organization_production_line }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Organization::ProductionLinesController < ApplicationController
   def update
     respond_to do |format|
       if @organization_production_line.update(organization_production_line_params)
-        format.html { redirect_to @organization_production_line, notice: 'Production line was successfully updated.' }
+        format.html { redirect_to @organization_production_line, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @organization_production_line }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Organization::ProductionLinesController < ApplicationController
     @organization_production_line.destroy!
 
     respond_to do |format|
-      format.html { redirect_to organization_production_lines_path, status: :see_other, notice: 'Production line was successfully destroyed.' }
+      format.html { redirect_to organization_production_lines_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

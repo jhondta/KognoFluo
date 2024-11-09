@@ -27,7 +27,7 @@ class Common::CurrenciesController < ApplicationController
 
     respond_to do |format|
       if @common_currency.save
-        format.html { redirect_to @common_currency, notice: 'Currency was successfully created.' }
+        format.html { redirect_to @common_currency, notice: t('.notice') }
         format.json { render :show, status: :created, location: @common_currency }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Common::CurrenciesController < ApplicationController
   def update
     respond_to do |format|
       if @common_currency.update(common_currency_params)
-        format.html { redirect_to @common_currency, notice: 'Currency was successfully updated.' }
+        format.html { redirect_to @common_currency, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @common_currency }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Common::CurrenciesController < ApplicationController
     @common_currency.destroy!
 
     respond_to do |format|
-      format.html { redirect_to common_currencies_path, status: :see_other, notice: 'Currency was successfully destroyed.' }
+      format.html { redirect_to common_currencies_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

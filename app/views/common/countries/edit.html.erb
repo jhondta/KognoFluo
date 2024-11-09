@@ -1,14 +1,14 @@
 <div class="flex flex-col flex-start justify-start mx-auto md:h-screen dark:bg-gray-900">
   <div class="w-full p-6 space-y-2 sm:p-8 bg-white rounded-lg shadow dark:bg-gray-800">
-    <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Editing country</h1>
+    <h1 class="text-2xl font-bold text-gray-900 dark:text-white"><%= t('.title') %></h1>
 
     <%= render "form", common_country: @common_country %>
 
     <div class="flex items-center justify-center">
-      <%= link_to "Show this country", @common_country,
+      <%= link_to t('.show'), @common_country,
                   class: 'px-5 py-3 text-base font-medium text-center rounded-lg bg-gray-100 inline-block' %>
 
-      <%= link_to "Back to countries", common_countries_path,
+      <%= link_to t('.back'), common_countries_path,
                   class: 'mr-auto text-sm text-blue-700 hover:underline dark:text-blue-500 block mt-0' %>
     </div>
   </div>

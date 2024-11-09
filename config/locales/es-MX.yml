@@ -218,27 +218,3 @@ es-MX:
       long: "%A, %d de %B de %Y a las %I:%M %p"
       short: "%d de %b a las %H:%M hrs"
     pm: "pm"
-  user_menu:
-    sr:
-      open_user_menu: "Abrir menú de usuario"
-  shared:
-    navbar:
-      sr:
-        tsb: "Alternar barra lateral"
-        search: "Buscar"
-        tsearch: "Alternar busqueda"
-        ttheme: "Alternar tema"
-      links:
-        my_profile: "Mi perfil"
-        account_settings: "Configuración de la cuenta"
-        logout: "Cerrar sesión"
-        login: "Iniciar sesión"
-    flash:
-      sr:
-        close: "Cerrar"
-    sidebar:
-      links:
-        dashboard: "Tablero"
-  search_placeholder: "Buscar %{resource}"
-  new_resource: "Nuevo %{resource}"
-  export: "Exportar"

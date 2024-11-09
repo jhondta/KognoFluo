@@ -27,7 +27,7 @@ class Organization::AreasController < ApplicationController
 
     respond_to do |format|
       if @organization_area.save
-        format.html { redirect_to @organization_area, notice: 'Area was successfully created.' }
+        format.html { redirect_to @organization_area, notice: t('.notice') }
         format.json { render :show, status: :created, location: @organization_area }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Organization::AreasController < ApplicationController
   def update
     respond_to do |format|
       if @organization_area.update(organization_area_params)
-        format.html { redirect_to @organization_area, notice: 'Area was successfully updated.' }
+        format.html { redirect_to @organization_area, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @organization_area }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Organization::AreasController < ApplicationController
     @organization_area.destroy!
 
     respond_to do |format|
-      format.html { redirect_to organization_areas_path, status: :see_other, notice: 'Area was successfully destroyed.' }
+      format.html { redirect_to organization_areas_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

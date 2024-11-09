@@ -1,0 +1,131 @@
+en:
+  common:
+    countries:
+      create:
+        notice: "Country was successfully created."
+      update:
+        notice: "Country was successfully updated."
+      destroy:
+        notice: "Country was successfully destroyed."
+    currencies:
+      create:
+        notice: "Currency was successfully created."
+      update:
+        notice: "Currency was successfully updated."
+      destroy:
+        notice: "Currency was successfully destroyed."
+    languages:
+      create:
+        notice: "Language was successfully created."
+      update:
+        notice: "Language was successfully updated."
+      destroy:
+        notice: "Language was successfully destroyed."
+    measure_unit_types:
+      create:
+        notice: "Measure unit type was successfully created."
+      update:
+        notice: "Measure unit type was successfully created."
+      destroy:
+        notice: "Measure unit type was successfully destroyed."
+    measure_units:
+      create:
+        notice: "Measure unit was successfully created."
+      update:
+        notice: "Measure unit was successfully updated."
+      destroy:
+        notice: "Measure unit was successfully destroyed."
+    timezones:
+      create:
+        notice: "Timezone was successfully created."
+      update:
+        notice: "Timezone was successfully updated."
+      destroy:
+        notice: "Timezone was successfully destroyed."
+  maintenance:
+    asset_assignees:
+      create:
+        notice: "Asset assignee was successfully created."
+      update:
+        notice: "Asset assignee was successfully updated."
+      destroy:
+        notice: "Asset assignee was successfully updated."
+    asset_components:
+      create:
+        notice: "Component was successfully created."
+      update:
+        notice: "Component was successfully updated."
+      destroy:
+        notice: "Component was successfully destroyed."
+    asset_documents:
+      create:
+        notice: "Document was successfully created."
+      update:
+        notice: "Document was successfully updated."
+      destroy:
+        notice: "Document was successfully destroyed."
+    asset_types:
+      create:
+        notice: "Asset type was successfully created."
+      update:
+        notice: "Asset type was successfully updated."
+      destroy:
+        notice: "Asset type was successfully destroyed."
+    assets:
+      create:
+        notice: "Asset type was successfully destroyed."
+      update:
+        notice: "Asset was successfully updated."
+      destroy:
+        notice: "Asset was successfully destroyed."
+    manufacturers:
+      create:
+        notice: "Manufacturer was successfully created."
+      update:
+        notice: "Manufacturer was successfully updated."
+      destroy:
+        notice: "Manufacturer was successfully destroyed."
+    plans:
+      create:
+        notice: "Plan was successfully created."
+      update:
+        notice: "Plan was successfully updated."
+      destroy:
+        notice: "Plan was successfully destroyed."
+    technicians:
+      create:
+        notice: "Technician was successfully created."
+      update:
+        notice: "Technician was successfully updated."
+      destroy:
+        notice: "Technician was successfully destroyed."
+  organization:
+    areas:
+      create:
+        notice: "Area was successfully created."
+      update:
+        notice: "Area was successfully updated."
+      destroy:
+        notice: "Area was successfully destroyed."
+    plants:
+      create:
+        notice: "Plant was successfully created."
+      update:
+        notice: "Plant was successfully updated."
+      destroy:
+        notice: "Plant was successfully destroyed."
+    production_lines:
+      create:
+        notice: "Production line was successfully created."
+      update:
+        notice: "Production line was successfully updated."
+      destroy:
+        notice: "Production line was successfully destroyed."
+  user_profiles:
+    create:
+      notice: "User profile was successfully created."
+    update:
+      notice: "User profile was successfully updated."
+    destroy:
+      notice: "User profile was successfully destroyed."
+  

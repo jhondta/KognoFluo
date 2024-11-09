@@ -1,0 +1,47 @@
+es-MX:
+  user_menu:
+    sr:
+      open_user_menu: "Abrir menú de usuario"
+  shared:
+    navbar:
+      sr:
+        tsb: "Alternar barra lateral"
+        search: "Buscar"
+        tsearch: "Alternar busqueda"
+        ttheme: "Alternar tema"
+      links:
+        my_profile: "Mi perfil"
+        account_settings: "Configuración de la cuenta"
+        logout: "Cerrar sesión"
+        login: "Iniciar sesión"
+    flash:
+      sr:
+        close: "Cerrar"
+    sidebar:
+      links:
+        dashboard: "Tablero"
+  search_placeholder: "Buscar %{resource}"
+  new_resource: "Nuevo %{resource}"
+  export: "Exportar"
+  common:
+    countries:
+      edit:
+        show: "Mostrar país"
+        back: "Regresar a paises"
+        title: "Editar país"
+      new:
+        back: "Regresar a paises"
+        title: "Nuevo país"
+    currencies:
+      edit:
+        title: "Editar moneda"
+      new:
+        title: "Nueva moneda"
+        back: "Regresar a monedas"
+      show:
+        edit: "Editar esta moneda"
+        back: "Regresar a monedas"
+        destroy: "Eliminar esta moneda"
+      index:
+        show: "Mostrar esta moneda"
+        new: "Nueva moneda"

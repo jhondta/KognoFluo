@@ -27,7 +27,7 @@ class Maintenance::PlansController < ApplicationController
 
     respond_to do |format|
       if @maintenance_plan.save
-        format.html { redirect_to @maintenance_plan, notice: 'Plan was successfully created.' }
+        format.html { redirect_to @maintenance_plan, notice: t('.notice') }
         format.json { render :show, status: :created, location: @maintenance_plan }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Maintenance::PlansController < ApplicationController
   def update
     respond_to do |format|
       if @maintenance_plan.update(maintenance_plan_params)
-        format.html { redirect_to @maintenance_plan, notice: 'Plan was successfully updated.' }
+        format.html { redirect_to @maintenance_plan, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @maintenance_plan }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +54,7 @@ class Maintenance::PlansController < ApplicationController
     @maintenance_plan.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_plans_path, status: :see_other, notice: 'Plan was successfully destroyed.' }
+      format.html { redirect_to maintenance_plans_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
