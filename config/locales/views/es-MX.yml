@@ -45,3 +45,12 @@ es-MX:
       index:
         show: "Mostrar esta moneda"
         new: "Nueva moneda"
+  home: "Inicio"
+  maintenance:
+    assets:
+      index:
+        title: "Activos"
+      new:
+        title: "Nuevo activo"
+      edit:
+        title: "Editar activo"

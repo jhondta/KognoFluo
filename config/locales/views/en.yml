@@ -45,3 +45,12 @@ en:
       index:
         show: "Show this currency"
         new: "New currency"
+  home: "Home"
+  maintenance:
+    assets:
+      index:
+        title: "Assets"
+      new:
+        title: "New asset"
+      edit:
+        title: "Edit asset"

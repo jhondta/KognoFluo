@@ -1,7 +1,7 @@
+<% breadcrumb :edit_maintenance_asset, @maintenance_asset %> 
 <div class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-2 xl:gap-4 dark:bg-gray-900">
   <div class="mb-4 col-span-full xl:mb-2">
-    <%= render 'shared/breadcrumb', pages: { 'Activos': maintenance_assets_path,
-                                             "#{@maintenance_asset.full_code}": maintenance_asset_path(@maintenance_asset) } %>
+    <%= render 'shared/breadcrumb' %>
     <div class="flex items-center space-x-2">
       <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
         Editar Activo

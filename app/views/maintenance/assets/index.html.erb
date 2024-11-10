@@ -1,3 +1,4 @@
+<% breadcrumb :maintenance_assets %>
 <% resource_class = Maintenance::Asset %>
 <% resource_key = "activerecord.models.#{resource_class.model_name.i18n_key}" %>
 <% content_for :title, full_title(t("#{resource_key}.other")) %>
@@ -5,9 +6,7 @@
             dark:border-gray-700">
   <div class="w-full mb-1">
     <div class="mb-4">
-      <%= render partial: 'shared/breadcrumb',
-                 locals: { pages: { 'Mantenimiento': '#',
-                                    "#{t("#{resource_key}.other")}": maintenance_assets_path } } %>
+      <%= render 'shared/breadcrumb' %>
       <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
         Todos los activos: <%= @pagy.count %>
       </h1>
