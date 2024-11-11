@@ -73,9 +73,16 @@ en:
         select_plant: "Select a plant"
         select_area: "Select an area"
         select_production_line: "Select a production line"
+        notes: "Notes"
       show:
         edit: "Edit"
         cancel: "Back"
+      sections:
+        general:
+          general_information: "General information"
+          location: "Location"
+          dates: "Dates"
+          technical_specifications: "Technical specification"
   organization:
     areas:
       area_select:
