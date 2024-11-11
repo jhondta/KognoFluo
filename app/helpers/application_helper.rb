@@ -28,8 +28,9 @@ module ApplicationHelper
   # @return [Array]
   #
   def enum_options_for_select(class_name, enum)
-    class_name.send(enum.to_s.pluralize).map do |key, _|
-      [ I18n.t("activerecord.enums.#{class_name.model_name.i18n_key}.#{enum}.#{key}"), key ]
+    class_name.send(enum.to_s.pluralize).map do |key, _value|
+      model_key = class_name.model_name.i18n_key
+      [ I18n.t("activerecord.enums.#{model_key}.#{enum}.#{key}"), key ]
     end
   end
 end
