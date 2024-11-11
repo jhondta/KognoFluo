@@ -50,7 +50,27 @@ es-MX:
     assets:
       index:
         title: "Activos"
+        breadcrumb: "Activos"
       new:
         title: "Nuevo activo"
+        breadcrumb: "Nuevo"
+        cancel: "Cancelar"
+        save: "Guardar"
       edit:
-        title: "Editar activo"
+        title: "Editar %{resource}"
+        breadcrumb: "Editar"
+        cancel: "Cancelar"
+        save: "Guardar"
+      form:
+        general_information: "Información general"
+        technical_specification: "Especificación técnica"
+        add_specification: "Agregar especificación"
+        operation_conditions: "Condiciones de operación"
+        add_condition: "Agregar condición"
+        location: "Ubicación"
+        dates: "Fechas"
+        save: "Guardar"
+        cancel: "Cancelar"
+      show:
+        edit: "Editar"
+        cancel: "Volver"

@@ -11,7 +11,7 @@ crumb :root do
 end
 
 crumb :maintenance_assets do
-  link t('maintenance.assets.index.title'), maintenance_assets_path
+  link t('maintenance.assets.index.breadcrumb'), maintenance_assets_path
   parent :root
 end
 
@@ -21,11 +21,11 @@ crumb :maintenance_asset do |asset|
 end
 
 crumb :new_maintenance_asset do
-  link t('maintenance.assets.new.title'), new_maintenance_asset_path
+  link t('maintenance.assets.new.breadcrumb'), new_maintenance_asset_path
   parent :maintenance_assets
 end
 
 crumb :edit_maintenance_asset do |asset|
-  link t('maintenance.assets.edit.title'), edit_maintenance_asset_path(asset)
+  link t('maintenance.assets.edit.breadcrumb'), edit_maintenance_asset_path(asset)
   parent :maintenance_asset, asset
 end

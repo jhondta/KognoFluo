@@ -50,7 +50,27 @@ en:
     assets:
       index:
         title: "Assets"
+        breadcrumb: "Assets"
       new:
         title: "New asset"
+        breadcrumb: "New"
+        cancel: "Cancel"
+        save: "Save"
       edit:
-        title: "Edit asset"
+        title: "Edit %{resource}"
+        breadcrumb: "Edit"
+        cancel: "Cancel"
+        save: "Save"
+      form:
+        general_information: "General information"
+        technical_specification: "Technical specification"
+        add_specification: "Add specification"
+        operation_conditions: "Operation conditions"
+        add_condition: "Add condition"
+        location: "Location"
+        dates: "Dates"
+        save: "Save"
+        cancel: "Cancel"
+      show:
+        edit: "Edit"
+        cancel: "Back"

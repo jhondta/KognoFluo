@@ -1,18 +1,37 @@
-<% breadcrumb :edit_maintenance_asset, @maintenance_asset %> 
-<div class="grid grid-cols-1 px-4 pt-6 xl:grid-cols-2 xl:gap-4 dark:bg-gray-900">
-  <div class="mb-4 col-span-full xl:mb-2">
-    <%= render 'shared/breadcrumb' %>
-    <div class="flex items-center space-x-2">
-      <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-        Editar Activo
-      </h1>
+<% breadcrumb :edit_maintenance_asset, @maintenance_asset %>
+<div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800
+            dark:border-gray-700">
+  <div class="w-full mb-1">
+    <div class="mb-4">
+      <%= render 'shared/breadcrumb' %>
+      <div class="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
+        <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+          <%= "#{@maintenance_asset.full_code}:  #{@maintenance_asset.name}" %>
+        </h1>
+        
+        
+        
+        <div class="flex items-center space-x-2 justify-end">
+          <%= link_to t('.cancel'), maintenance_asset_path(@maintenance_asset),
+                      class: 'inline-flex items-center justify-center px-4 py-2 ml-2 text-sm font-medium text-center
+                              text-white rounded-lg bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:ring-gray-300
+                              dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800' %>
+          <%= button_tag type: 'submit', form: 'asset_form',
+                         class: 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center
+                                 text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                                 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' do %>
+            <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                 width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 11.917 9.724 16.5 19 7.5"/>
+            </svg>
+            <%= t('.save') %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="col-span-2">
-    <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700 sm:p-6
-                dark:bg-gray-800">
-      <%= render "form", maintenance_asset: @maintenance_asset %>
+    <div class="flex flex-col">
+      <%= render 'form', maintenance_asset: @maintenance_asset %>
     </div>
   </div>
 </div>
