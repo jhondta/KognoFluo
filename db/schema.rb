@@ -172,7 +172,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "status"
     t.string "criticality_level"
     t.json "technical_specs"
-    t.json "operation_conditions"
     t.string "physical_location"
     t.text "notes"
     t.datetime "created_at", null: false

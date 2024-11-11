@@ -167,7 +167,6 @@ es-MX:
         status: "Estado"
         criticality_level: "Nivel de criticidad"
         technical_specs: "Especificaciones técnicas"
-        operation_conditions: "Condiciones de operación"
         physical_location: "Ubicación física"
         notes: "Notas"
       maintenance/frequency_type:

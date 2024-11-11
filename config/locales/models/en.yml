@@ -167,7 +167,6 @@ en:
         status: "Status"
         criticality_level: "Criticality level"
         technical_specs: "Technical specifications"
-        operation_conditions: "Operation conditions"
         physical_location: "Physical location"
         notes: "Notes"
       maintenance/frequency_type:

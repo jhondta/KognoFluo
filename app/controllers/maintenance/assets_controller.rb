@@ -40,7 +40,7 @@ class Maintenance::AssetsController < ApplicationController
   # POST /maintenance/assets or /maintenance/assets.json
   def create
     @maintenance_asset = Maintenance::Asset.new(maintenance_asset_params)
-    
+
     # If there is an error, reload the filtered collections according to the parameters
     if maintenance_asset_params[:organization_production_line_id].present?
       production_line = Organization::ProductionLine.find_by(id: maintenance_asset_params[:organization_production_line_id])
@@ -111,6 +111,6 @@ class Maintenance::AssetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_asset_params
-      params.expect(maintenance_asset: %i[ code name maintenance_asset_type_id organization_production_line_id maintenance_manufacturer_id model serial_number manufacturing_date purchase_date warranty_expiration status criticality_level physical_location notes technical_specs: {} operation_conditions: {}])
+      params.expect(maintenance_asset: %i[ code name maintenance_asset_type_id organization_production_line_id maintenance_manufacturer_id model serial_number manufacturing_date purchase_date warranty_expiration status criticality_level physical_location notes technical_specs: {}])
     end
 end

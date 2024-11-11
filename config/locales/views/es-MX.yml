@@ -65,7 +65,6 @@ es-MX:
         general_information: "Información general"
         technical_specification: "Especificación técnica"
         add_specification: "Agregar especificación"
-        operation_conditions: "Condiciones de operación"
         add_condition: "Agregar condición"
         location: "Ubicación"
         dates: "Fechas"
