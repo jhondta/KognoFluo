@@ -71,6 +71,16 @@ es-MX:
         dates: "Fechas"
         save: "Guardar"
         cancel: "Cancelar"
+        select_plant: "Seleccione una planta"
+        select_area: "Seleccione un área"
+        select_production_line: "Seleccione una línea de producción"
       show:
         edit: "Editar"
         cancel: "Volver"
+  organization:
+    areas:
+      area_select:
+        select_area: "Seleccione un área"
+    production_lines:
+      production_line_select:
+        select_production_line: "Seleccione una línea de producción"

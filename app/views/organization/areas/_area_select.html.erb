@@ -1,0 +1,11 @@
+<%= turbo_frame_tag 'areas_select' do %>
+  <%= select_tag 'maintenance_asset[organization_area_id]',
+                 options_from_collection_for_select(areas, :id, :name),
+                 {
+                   prompt: t('.select_area'),
+                   class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                           focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                           dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                   data: { asset_location_target: 'area',
+                           action: 'change->asset-location#updateProductionLines' } } %>
+<% end %>

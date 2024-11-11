@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Organization::PlantsController < ApplicationController
-  before_action :set_organization_plant, only: %i[ show edit update destroy ]
+  before_action :set_organization_plant, only: %i[ show edit update destroy areas ]
 
   # GET /organization/plants or /organization/plants.json
   def index
@@ -59,7 +59,17 @@ class Organization::PlantsController < ApplicationController
     end
   end
 
+  def areas
+    @organization_areas = Organization::Plant.find(params[:id]).areas
+    render turbo_stream: turbo_stream.replace(
+      'areas_select',
+      partial: 'organization/areas/area_select',
+      locals: { areas: @organization_areas }
+    )
+  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_organization_plant
       @organization_plant = Organization::Plant.find(params.expect(:id))

@@ -175,34 +175,48 @@
             <%= t('.location') %>
           </h3>
 
-          <div class="space-y-4">
+          <div class="space-y-4" data-controller="asset-location"
+               data-asset-location-plant-id="<%= @plant.id if @plant %>"
+               data-asset-location-area-id="<%= @area.id if @area %>">
             <div>
-              <%= form.label :plant,
-                             class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-              <div class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5 
-                dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300">
-                <%= maintenance_asset&.production_line&.area&.plant&.name %>
-              </div>
+              <%= form.label :organization_plant_id,
+                             class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+              <%= form.collection_select :organization_plant_id, @organization_plants, :id, :name,
+                                         { prompt: t('.select_plant'),
+                                           selected: @plant&.id },
+                                         { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                           data: { asset_location_target: 'plant',
+                                                   action: 'change->asset-location#updateAreas' }, } %>
             </div>
 
             <div>
-              <%= form.label :area,
-                             class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-              <div class="bg-gray-100 border border-gray-300 text-gray-700 text-sm rounded-lg block w-full p-2.5 
-                dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300">
-                <%= maintenance_asset&.production_line&.area&.name %>
-              </div>
+              <%= form.label :organization_area_id,
+                             class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+              <%= turbo_frame_tag 'areas_select' do %>
+                <%= form.collection_select :organization_area_id, @organization_areas || [], :id, :name,
+                                           { prompt: t('.select_area'),
+                                             selected: @area&.id },
+                                           { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                     dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                             data: { asset_location_target: 'area',
+                                                     action: 'change->asset-location#updateProductionLines' } } %>
+              <% end %>
             </div>
 
             <div>
               <%= form.label :organization_production_line_id,
                              class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-              <%= form.collection_select :organization_production_line_id, @organization_production_lines, :id, :name, {},
-                                         class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                     dark:bg-gray-700 dark:border-gray-600 dark:text-white',
-                                         data: { action: "change->location#updateDependentFields",
-                                                 location_target: "productionLine" } %>
+              <%= turbo_frame_tag 'production_lines_select' do %>
+                <%= form.collection_select :organization_production_line_id, @organization_production_lines || [], :id, :name,
+                                           { prompt: t('.select_production_line') },
+                                           { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                     dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                             data: { asset_location_target: 'productionLine' } } %>
+              <% end %>
             </div>
 
             <div>
@@ -210,8 +224,8 @@
                              class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
               <%= form.text_field :physical_location,
                                   class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                               focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                               dark:border-gray-600 dark:text-white" %>
+                                          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                          dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" %>
             </div>
           </div>
         </div>
