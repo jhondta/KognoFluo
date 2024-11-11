@@ -1,42 +1,66 @@
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-  <!-- Información General -->
+  <!-- General information -->
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M5 12h14M5 12l4-4m-4 4 4 4"/>
       </svg>
-      Información General
+      <%= t('.general_information') %>
     </h3>
     <dl class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400"><%= t('activerecord.attributes.maintenance/asset.code') %></dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= maintenance_asset.full_code %></dd>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.code') %>
+        </dt>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= maintenance_asset.full_code %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Nombre</dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= maintenance_asset.name %></dd>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.name') %>
+        </dt>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= maintenance_asset.name %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Tipo</dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= maintenance_asset.type.name %></dd>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.maintenance_asset_type_id') %>
+        </dt>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= maintenance_asset.type.name %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Fabricante</dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= maintenance_asset.manufacturer.name %></dd>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.maintenance_manufacturer_id') %>
+        </dt>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= maintenance_asset.manufacturer.name %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Modelo</dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= maintenance_asset.model %></dd>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.model') %>
+        </dt>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= maintenance_asset.model %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Serie</dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= maintenance_asset.serial_number %></dd>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.serial_number') %>
+        </dt>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= maintenance_asset.serial_number %>
+        </dd>
       </div>
     </dl>
   </div>
 
-  <!-- Ubicación -->
+  <!-- Location -->
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -44,29 +68,37 @@
               d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z M12 21s6.375-6.37 6.375-12.37c0-3.316-2.858-6-6.375-6C8.483 2.63
                  5.625 5.314 5.625 8.63 5.625 14.63 12 21 12 21Z"/>
       </svg>
-      Ubicación
+      <%= t('.location') %>
     </h3>
     <dl class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Planta</dt>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.models.organization/plant.one') %>
+        </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
           <%= maintenance_asset.production_line.area.plant.name %>
         </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Área</dt>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.models.organization/area.one') %>
+        </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
           <%= maintenance_asset.production_line.area.name %>
         </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Línea</dt>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.models.organization/production_line.one') %>
+        </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
           <%= maintenance_asset.production_line.name %>
         </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Ubicación</dt>
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.physical_location') %>
+        </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
           <%= maintenance_asset.physical_location %>
         </dd>
@@ -74,37 +106,45 @@
     </dl>
   </div>
 
-  <!-- Fechas -->
+  <!-- Dates -->
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+              d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0
+                 1 1Z"/>
       </svg>
-      Fechas
+      <%= t('.dates') %>
     </h3>
     <dl class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Fecha
-          de fabricación
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.manufacturing_date') %>
         </dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= l(maintenance_asset.manufacturing_date) %></dd>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= l(maintenance_asset.manufacturing_date) %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Fecha
-          de adquisición
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.purchase_date') %>
         </dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= l maintenance_asset.purchase_date %></dd>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= l maintenance_asset.purchase_date %>
+        </dd>
       </div>
       <div class="flex flex-col py-3">
-        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">Expiración
-          de garantía
+        <dt class="mb-1 text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/asset.warranty_expiration') %>
         </dt>
-        <dd class="text-gray-900 font-medium dark:text-white"><%= l maintenance_asset.warranty_expiration %></dd>
+        <dd class="text-gray-900 font-medium dark:text-white">
+          <%= l maintenance_asset.warranty_expiration %>
+        </dd>
       </div>
     </dl>
   </div>
 
-  <!-- Especificación técnica -->
+  <!-- Technical specifications -->
   <% if maintenance_asset.technical_specs.present? %>
     <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
@@ -113,7 +153,7 @@
                 d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2
                    2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
         </svg>
-        Especificación técnica
+        <%= t('.technical_specifications') %>
       </h3>
       <dl class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
         <% maintenance_asset.technical_specs.each_pair do |key, value| %>
@@ -123,6 +163,24 @@
           </div>
         <% end %>
       </dl>
+    </div>
+  <% end %>
+
+  <!-- Notes -->
+  <% if maintenance_asset.notes.present? %>
+    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700
+                md:col-span-2">
+      <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2
+                   2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+        </svg>
+        <%= t('activerecord.attributes.maintenance/asset.notes') %>
+      </h3>
+      <p class="text-gray-900 font-medium dark:text-white">
+        <%= maintenance_asset.notes %>
+      </p>
     </div>
   <% end %>
 </div>
