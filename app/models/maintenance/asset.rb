@@ -33,10 +33,14 @@ class Maintenance::Asset < ApplicationRecord
   has_many :plans, class_name: 'Maintenance::Plan',
            foreign_key: :maintenance_asset_id, dependent: :restrict_with_error
 
+  has_one :area, through: :production_line
+  has_one :plant, through: :area
+
   has_rich_text :notes
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
+  default_scope { order(:code) }
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------

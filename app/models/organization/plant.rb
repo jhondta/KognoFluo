@@ -13,6 +13,7 @@ class Organization::Plant < ApplicationRecord
   # -- Associations ------------------------------------------------------------
   has_many :areas, class_name: 'Organization::Area',
            foreign_key: :organization_plant_id, dependent: :restrict_with_error
+  has_many :production_lines, through: :areas
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------

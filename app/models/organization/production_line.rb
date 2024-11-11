@@ -15,6 +15,7 @@ class Organization::ProductionLine < ApplicationRecord
              foreign_key: :organization_area_id
   has_many :assets, class_name: 'Maintenance::Asset',
            foreign_key: :organization_production_line_id
+  has_one :plant, through: :area
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
