@@ -51,13 +51,13 @@ Rails.application.routes.draw do
   end
 
   namespace :organization do
-    resources :plants, only: [] do
+    resources :plants do
       member do
         get :areas
       end
     end
 
-    resources :areas, only: [] do
+    resources :areas do
       member do
         get :production_lines
       end

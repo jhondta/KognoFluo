@@ -4,8 +4,8 @@ class Organization::ProductionLinesController < ApplicationController
   before_action :set_organization_production_line, only: %i[ show edit update destroy ]
 
   # GET /organization/production_lines or /organization/production_lines.json
-  def index
-    @organization_production_lines = Organization::ProductionLine.all
+  def index 
+    @pagy, @records = pagy(Organization::ProductionLine.all)
   end
 
   # GET /organization/production_lines/1 or /organization/production_lines/1.json

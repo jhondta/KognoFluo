@@ -24,6 +24,10 @@ es-MX:
       message: "¿Está seguro que desea realizar esta acción?"
       confirm_button_text: "Aceptar"
       cancel_button_text: "Cancelar"
+    modals:
+      delete_button: "Eliminar"
+      cancel_button: "Cancelar"
+      delete_message: "¿Quieres eliminar este %{resource}?"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"
@@ -91,10 +95,57 @@ es-MX:
           location: "Ubicación"
           dates: "Fechas"
           technical_specifications: "Especificación técnica"
+    asset_types:
+      index:
+        breadcrumb: "Tipos de activo"
+        all_asset_types: "Todos los tipos de activo: %{count}"
+        delete_message: "¿Está seguro que desea eliminar este tipo de activo?"
+        delete: "Eliminar"
+        cancel: "Cancelar"
+      new:
+        breadcrumb: "Nuevo"
+      edit:
+        breadcrumb: "Editar"
+    manufacturers:
+      index:
+        breadcrumb: "Fabricantes"
+        all_manufacturers: "Todos los fabricantes: %{count}"
+        delete_message: "¿Desea eliminar este fabricante?"
+        delete: "Eliminar"
+        cancel: "Cancelar"
+    technicians:
+      index:
+        breadcrumb: "Técnicos"
+        all_technicians: "Todos los técnicos: %{count}"
+        delete_message: "¿Desea eliminar este técnico?"
+        delete: "Eliminar"
+        cancel: "Cancelar"
+    areas:
+      index:
+        breadcrumb: "Áreas"
+    production_lines:
+      index:
+        breadcrumb: "Líneas de producción"
+    plants:
+      index:
+        breadcrumb: "Plantas"
   organization:
     areas:
       area_select:
         select_area: "Seleccione un área"
+      index:
+        breadcrumb: "Áreas"
+        all_areas: "Todas las áreas: %{count}"
     production_lines:
       production_line_select:
         select_production_line: "Seleccione una línea de producción"
+      index:
+        breadcrumb: "Líneas de producción"
+        all_production_lines: "Todas las líneas de producción: %{count}"
+    plants:
+      index:
+        breadcrumb: "Plantas"
+        all_plants: "Todas las plantas: %{count}"
+  breadcrumbs:
+    new: "Nuevo"
+    edit: "Editar"

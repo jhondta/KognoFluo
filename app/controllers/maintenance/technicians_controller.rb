@@ -5,7 +5,7 @@ class Maintenance::TechniciansController < ApplicationController
 
   # GET /maintenance/technicians or /maintenance/technicians.json
   def index
-    @maintenance_technicians = Maintenance::Technician.all
+    @pagy, @records = pagy(Maintenance::Technician.all)
   end
 
   # GET /maintenance/technicians/1 or /maintenance/technicians/1.json

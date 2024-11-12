@@ -5,7 +5,7 @@ class Organization::PlantsController < ApplicationController
 
   # GET /organization/plants or /organization/plants.json
   def index
-    @organization_plants = Organization::Plant.all
+    @pagy, @records = pagy(Organization::Plant.all)
   end
 
   # GET /organization/plants/1 or /organization/plants/1.json

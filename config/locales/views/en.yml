@@ -24,6 +24,10 @@ en:
       message: "Are you sure you want to perform this action?"
       confirm_button_text: "Accept"
       cancel_button_text: "Cancel"
+    modals:
+      delete_button: "Delete"
+      cancel_button: "Cancel"
+      delete_message: "Do you want to dleete this %{resource}?"
   search_placeholder: "Search %{resource}"
   new_resource: "New %{resource}"
   export: "Export"
@@ -91,10 +95,57 @@ en:
           location: "Location"
           dates: "Dates"
           technical_specifications: "Technical specification"
+    asset_types:
+      index:
+        breadcrumb: "Asset types"
+        all_asset_types: "All asset types: %{count}"
+        delete_message: "Are you sure you want to delete this asset type?"
+        delete: "Cancelar"
+        cancel: "Cancel"
+      new:
+        breadcrumb: "New"
+      edit:
+        breadcrumb: "Edit"
+    manufacturers:
+      index:
+        breadcrumb: "Manufacturers"
+        all_manufacturers: "All manufacturers: %{count}"
+        delete_message: "Do you want to delete this manufacturer?"
+        delete: "Delete"
+        cancel: "Cancel"
+    technicians:
+      index:
+        breadcrumb: "Technicians"
+        all_technicians: "All technicians: %{count}"
+        delete_message: "Do you want to delete this technician?"
+        delete: "Delete"
+        cancel: "Cancel"
+    areas:
+      index:
+        breadcrumb: "Areas"
+    production_lines:
+      index:
+        breadcrumb: "Production lines"
+    plants:
+      index:
+        breadcrumb: "Plants"
   organization:
     areas:
       area_select:
         select_area: "Select an area"
+      index:
+        breadcrumb: "Areas"
+        all_areas: "All areas: %{count}"
     production_lines:
       production_line_select:
         select_production_line: "Select a production line"
+      index:
+        breadcrumb: "Production lines"
+        all_production_lines: "All production lines: %{count}"
+    plants:
+      index:
+        breadcrumb: "Plants"
+        all_plants: "All plants: %{count}"
+  breadcrumbs:
+    new: "New"
+    edit: "Edit"
