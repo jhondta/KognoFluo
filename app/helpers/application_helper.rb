@@ -21,6 +21,7 @@ module ApplicationHelper
     colors = { 'notice' => 'blue',
                'success' => 'green',
                'warning' => 'yellow',
+               'alert' => 'orange',
                'error' => 'red' }
     colors[type] || 'blue'
   end
