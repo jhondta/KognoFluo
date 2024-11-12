@@ -11,9 +11,14 @@ class Maintenance::Asset < ApplicationRecord
                          critical: 'red' }.freeze
 
   # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+  include HasEnumState
+
+  # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  enum :status, STATUSES, validate: true, default: :active
-  enum :criticality_level, CRITICALITY_LEVELS, validate: true, default: :low
+  has_enum_state :status, values: STATUSES, colors: STATUS_COLORS, default: :active
+  has_enum_state :criticality_level, values: CRITICALITY_LEVELS,
+                 colors: CRITICALITY_COLORS, default: :low
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
@@ -40,15 +45,12 @@ class Maintenance::Asset < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
-  default_scope { order(:code) }
+  default_scope { order(created_at: :desc) }
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
   validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
   validates :name, presence: true, length: { maximum: 100 }
-  validates :status, presence: true, inclusion: { in: STATUSES.map(&:to_s) }
-  validates :criticality_level, presence: true,
-            inclusion: { in: CRITICALITY_LEVELS.map(&:to_s) }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
@@ -60,13 +62,6 @@ class Maintenance::Asset < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Methods -----------------------------------------------------------------
-
-  # Returns the status color
-  # @return [String]
-  #
-  def status_color
-    STATUS_COLORS[status.to_sym]
-  end
 
   # Returns the criticality color
   # @return [String]
