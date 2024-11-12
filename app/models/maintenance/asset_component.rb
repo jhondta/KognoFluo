@@ -7,7 +7,7 @@ class Maintenance::AssetComponent < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  enum :status, STATUSES
+  enum :status, STATUSES, validate: true
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
@@ -24,7 +24,6 @@ class Maintenance::AssetComponent < ApplicationRecord
   # -- Validations -------------------------------------------------------------
   validates :maintenance_asset_id, presence: true
   validates :name, presence: true, length: { maximum: 100 }
-  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

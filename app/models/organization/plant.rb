@@ -7,7 +7,7 @@ class Organization::Plant < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  enum :status, STATUSES
+  enum :status, STATUSES, validate: true
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
@@ -23,7 +23,6 @@ class Organization::Plant < ApplicationRecord
   validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
   validates :name, presence: true, length: { maximum: 100 }
   validates :address, presence: true
-  validates :status, presence: true, inclusion: { in: STATUSES }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

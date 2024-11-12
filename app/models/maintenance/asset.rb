@@ -12,8 +12,8 @@ class Maintenance::Asset < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  enum :status, STATUSES, default: :active
-  enum :criticality_level, CRITICALITY_LEVELS, default: :low
+  enum :status, STATUSES, validate: true, default: :active
+  enum :criticality_level, CRITICALITY_LEVELS, validate: true, default: :low
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
