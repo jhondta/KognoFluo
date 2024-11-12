@@ -20,6 +20,10 @@ en:
     sidebar:
       links:
         dashboard: "Dashboard"
+    confirmation_modal:
+      message: "Are you sure you want to perform this action?"
+      confirm_button_text: "Accept"
+      cancel_button_text: "Cancel"
   search_placeholder: "Search %{resource}"
   new_resource: "New %{resource}"
   export: "Export"
@@ -51,6 +55,10 @@ en:
       index:
         title: "Assets"
         breadcrumb: "Assets"
+        delete_message: "Are you sure you want to delete this asset?"
+        delete: "Delete"
+        cancel: "Cancelar"
+        all_assets: "All assets: %{count}"
       new:
         title: "New asset"
         breadcrumb: "New"

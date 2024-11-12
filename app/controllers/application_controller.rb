@@ -8,4 +8,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   include HttpAcceptLanguage::AutoLocale
   include Pagy::Backend
+  include RescueRecordNotDestroyed
+
+  add_flash_types :success, :error
 end

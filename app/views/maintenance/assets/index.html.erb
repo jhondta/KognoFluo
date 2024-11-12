@@ -8,8 +8,7 @@
     <div class="mb-4">
       <%= render partial: 'shared/breadcrumb' %>
       <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-        <%= t('.title', resource: t("#{resource_key}.other")) %>
-        Todos los activos: <%= @pagy.count %>
+        <%= t('.all_assets', count: @pagy.count) %>
       </h1>
     </div>
     <%= render partial: 'shared/table_header', locals: { resource_class: resource_class } %>
@@ -107,11 +106,10 @@
                             clip-rule="evenodd"></path>
                     </svg>
                   <% end %>
-                  <%= button_to maintenance_asset, method: :delete,
-                                data: { turbo_confirm: "¿Está seguro?" },
-                                class: 'inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white
-                                        bg-red-600 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 
-                                        dark:focus:ring-red-900' do %>
+                  <%= confirmation_modal_button(maintenance_asset,
+                                                class: 'inline-flex items-center px-3 py-2 text-sm font-medium
+                                                        text-center text-white bg-red-600 rounded-lg hover:bg-red-800
+                                                        focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900') do %>
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd"
                             d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0
@@ -120,6 +118,12 @@
                             clip-rule="evenodd"></path>
                     </svg>
                   <% end %>
+
+                  <%= render_confirmation_modal(maintenance_asset,
+                                                path: maintenance_asset_path(maintenance_asset),
+                                                message: t('.delete_message'),
+                                                confirm_button_text: t('.delete'),
+                                                cancel_button_text: t('.cancel')) %>
                 </div>
               </td>
             </tr>

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Seeds
-
   class Countries
     # Load the countries from the CSV file 'common_countries.csv' in the db/seeds/data folder
     # The country CSV file has the following columns:

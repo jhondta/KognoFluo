@@ -27,7 +27,7 @@ class Common::CountriesController < ApplicationController
 
     respond_to do |format|
       if @common_country.save
-        format.html { redirect_to @common_country, notice: t('.notice') }
+        format.html { redirect_to @common_country, success: t('.notice') }
         format.json { render :show, status: :created, location: @common_country }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -54,12 +54,14 @@ class Common::CountriesController < ApplicationController
     @common_country.destroy!
 
     respond_to do |format|
-      format.html { redirect_to common_countries_path, status: :see_other, notice: t('.notice') }
+      format.html { redirect_to common_countries_path, status: :see_other,
+                                notice: t('.notice') }
       format.json { head :no_content }
     end
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_common_country
       @common_country = Common::Country.find(params.expect(:id))

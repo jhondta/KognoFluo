@@ -20,6 +20,10 @@ es-MX:
     sidebar:
       links:
         dashboard: "Tablero"
+    confirmation_modal:
+      message: "¿Está seguro que desea realizar esta acción?"
+      confirm_button_text: "Aceptar"
+      cancel_button_text: "Cancelar"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"
@@ -51,6 +55,10 @@ es-MX:
       index:
         title: "Activos"
         breadcrumb: "Activos"
+        delete_message: "¿Está seguro que desea eliminar este activo?"
+        delete: "Eliminar"
+        cancel: "Cancelar"
+        all_assets: "Todos los activos: %{count}"
       new:
         title: "Nuevo activo"
         breadcrumb: "Nuevo"

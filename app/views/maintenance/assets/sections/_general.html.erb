@@ -122,7 +122,7 @@
           <%= t('activerecord.attributes.maintenance/asset.manufacturing_date') %>
         </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
-          <%= l(maintenance_asset.manufacturing_date) %>
+          <%= format_date(maintenance_asset.manufacturing_date) %>
         </dd>
       </div>
       <div class="flex flex-col py-3">
@@ -130,7 +130,7 @@
           <%= t('activerecord.attributes.maintenance/asset.purchase_date') %>
         </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
-          <%= l maintenance_asset.purchase_date %>
+          <%= format_date(maintenance_asset.purchase_date) %>
         </dd>
       </div>
       <div class="flex flex-col py-3">
@@ -138,7 +138,7 @@
           <%= t('activerecord.attributes.maintenance/asset.warranty_expiration') %>
         </dt>
         <dd class="text-gray-900 font-medium dark:text-white">
-          <%= l maintenance_asset.warranty_expiration %>
+          <%= format_date(maintenance_asset.warranty_expiration) %>
         </dd>
       </div>
     </dl>

@@ -342,9 +342,31 @@
 
           <div class="space-y-4">
             <%= form.rich_text_area :notes,
-                                    class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                            dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" %>
+                                    class: "block w-full rounded-lg border 
+            [&>trix-toolbar]:rounded-t-lg [&>trix-editor]:rounded-none [&>trix-editor]:rounded-b-lg
+            [&>trix-toolbar]:border-0 [&>trix-toolbar]:border-b [&>trix-editor]:border-0
+            
+            [&>trix-toolbar]:bg-gray-50 [&>trix-editor]:bg-gray-50 
+            [&>trix-toolbar]:border-gray-300 [&>trix-editor]:border-gray-300
+            [&>trix-toolbar_.trix-button]:bg-gray-50
+            [&>trix-editor]:text-gray-900
+            
+            focus:[&>trix-editor]:ring-blue-500 focus:[&>trix-editor]:border-blue-500
+            
+            dark:[&>trix-toolbar]:bg-gray-700 dark:[&>trix-editor]:bg-gray-700
+            dark:[&>trix-toolbar]:border-gray-600 dark:[&>trix-editor]:border-gray-600
+            dark:[&>trix-toolbar_.trix-button]:bg-gray-700
+            dark:[&>trix-toolbar_.trix-button-group]:border-gray-600
+            dark:[&>trix-toolbar_.trix-button]:border-gray-600
+            dark:[&>trix-toolbar_.trix-button]:text-gray-400
+            dark:[&>trix-toolbar_.trix-button--icon]:filter
+            dark:[&>trix-toolbar_.trix-button--icon]:invert
+            dark:[&>trix-toolbar_.trix-button]:hover:bg-gray-600
+            dark:[&>trix-toolbar_.trix-button.trix-active]:bg-gray-600
+            dark:[&>trix-editor]:text-white
+            
+            dark:focus:[&>trix-editor]:ring-blue-500 
+            dark:focus:[&>trix-editor]:border-blue-500" %>
           </div>
         </div>
     <% end %>
@@ -354,7 +376,6 @@
   <!-- Components -->
   <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="components" role="tabpanel"
        aria-labelledby="components-tab">
-
   </div>
 
   <!-- Documents -->
