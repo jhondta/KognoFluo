@@ -67,6 +67,6 @@ class Maintenance::TechniciansController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def maintenance_technician_params
-      params.expect(maintenance_technician: %i[user_id specialty certificacion_level status])
+      params.expect(maintenance_technician: %i[user_id specialty certification_level status])
     end
 end

@@ -19,7 +19,7 @@ class Maintenance::TechniciansControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create maintenance_technician' do
     assert_difference('Maintenance::Technician.count') do
-      post maintenance_technicians_url, params: { maintenance_technician: { certificacion_level: @maintenance_technician.certificacion_level, specialty: @maintenance_technician.specialty, status: @maintenance_technician.status, user_id: @maintenance_technician.user_id } }
+      post maintenance_technicians_url, params: { maintenance_technician: { certification_level: @maintenance_technician.certification_level, specialty: @maintenance_technician.specialty, status: @maintenance_technician.status, user_id: @maintenance_technician.user_id } }
     end
 
     assert_redirected_to maintenance_technician_url(Maintenance::Technician.last)
@@ -36,7 +36,7 @@ class Maintenance::TechniciansControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update maintenance_technician' do
-    patch maintenance_technician_url(@maintenance_technician), params: { maintenance_technician: { certificacion_level: @maintenance_technician.certificacion_level, specialty: @maintenance_technician.specialty, status: @maintenance_technician.status, user_id: @maintenance_technician.user_id } }
+    patch maintenance_technician_url(@maintenance_technician), params: { maintenance_technician: { certification_level: @maintenance_technician.certification_level, specialty: @maintenance_technician.specialty, status: @maintenance_technician.status, user_id: @maintenance_technician.user_id } }
     assert_redirected_to maintenance_technician_url(@maintenance_technician)
   end
 

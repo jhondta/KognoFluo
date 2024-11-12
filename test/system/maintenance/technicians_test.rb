@@ -16,7 +16,7 @@ class Maintenance::TechniciansTest < ApplicationSystemTestCase
     visit maintenance_technicians_url
     click_on 'New technician'
 
-    fill_in 'Certificacion level', with: @maintenance_technician.certificacion_level
+    fill_in 'certification level', with: @maintenance_technician.certification_level
     fill_in 'Specialty', with: @maintenance_technician.specialty
     fill_in 'Status', with: @maintenance_technician.status
     fill_in 'User', with: @maintenance_technician.user_id
@@ -30,7 +30,7 @@ class Maintenance::TechniciansTest < ApplicationSystemTestCase
     visit maintenance_technician_url(@maintenance_technician)
     click_on 'Edit this technician', match: :first
 
-    fill_in 'Certificacion level', with: @maintenance_technician.certificacion_level
+    fill_in 'certification level', with: @maintenance_technician.certification_level
     fill_in 'Specialty', with: @maintenance_technician.specialty
     fill_in 'Status', with: @maintenance_technician.status
     fill_in 'User', with: @maintenance_technician.user_id
