@@ -10,7 +10,10 @@ class User < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  has_one :user_profile, dependent: :destroy
+  has_one :profile, class_name: 'UserProfile', foreign_key: :user_id,
+          dependent: :destroy
+  has_one :technician, class_name: 'Maintenance::Technician',
+          foreign_key: :user_id, dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
@@ -23,7 +26,7 @@ class User < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :user_profile
+  delegate :full_name, to: :profile
 
   # -- -------------------------------------------------------------------------
   # -- Include default devise modules. Others available are: :omniauthable -----

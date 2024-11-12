@@ -103,6 +103,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["common_measure_unit_type_id"], name: "index_common_measure_units_on_common_measure_unit_type_id"
+    t.index ["name"], name: "index_common_measure_units_on_name", unique: true
   end
 
   create_table "common_timezones", force: :cascade do |t|
@@ -126,10 +127,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   create_table "maintenance_asset_components", force: :cascade do |t|
     t.integer "maintenance_asset_id", null: false
     t.string "name", limit: 100, null: false
-    t.text "description", default: "", null: false
-    t.integer "quantity", default: 0, null: false
+    t.text "description"
+    t.integer "quantity"
     t.json "specifications"
-    t.integer "replacement_period", default: 0
+    t.integer "replacement_period"
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -150,12 +151,13 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   end
 
   create_table "maintenance_asset_types", force: :cascade do |t|
-    t.string "code", null: false
-    t.string "name", null: false
+    t.string "code", limit: 10, null: false
+    t.string "name", limit: 100, null: false
     t.text "description"
-    t.integer "status", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_maintenance_asset_types_on_code", unique: true
   end
 
   create_table "maintenance_assets", force: :cascade do |t|
@@ -169,11 +171,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.date "manufacturing_date"
     t.date "purchase_date"
     t.date "warranty_expiration"
-    t.integer "status"
-    t.string "criticality_level"
-    t.json "technical_specs"
+    t.integer "status", default: 1, null: false
+    t.integer "criticality_level", default: 0, null: false
+    t.json "technical_specs", default: {}, null: false
     t.string "physical_location"
-    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_maintenance_assets_on_code", unique: true
@@ -193,15 +194,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   end
 
   create_table "maintenance_manufacturers", force: :cascade do |t|
-    t.string "code", null: false
-    t.string "name", null: false
-    t.integer "status", null: false
+    t.string "code", limit: 10, null: false
+    t.string "name", limit: 100, null: false
+    t.integer "status", default: 1, null: false
     t.string "website"
     t.string "support_phone"
     t.string "suport_email"
-    t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_maintenance_manufacturers_on_code", unique: true
   end
 
   create_table "maintenance_measurement_types", force: :cascade do |t|
@@ -253,10 +254,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
 
   create_table "maintenance_plans", force: :cascade do |t|
     t.integer "maintenance_plan_template_id", null: false
-    t.integer "maintenance_asset_id", null: false
-    t.integer "maintenance_asset_component_id", null: false
+    t.integer "maintenance_asset_id"
+    t.integer "maintenance_asset_component_id"
     t.integer "status", default: 0, null: false
-    t.date "start_date"
+    t.date "start_date", null: false
     t.date "last_execution_date"
     t.date "next_execution_date"
     t.datetime "created_at", null: false
@@ -271,7 +272,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "maintenance_technician_id", null: false
     t.integer "maintenance_specialty_id", null: false
     t.decimal "assigned_hours"
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["maintenance_schedule_id"], name: "idx_on_maintenance_schedule_id_0c7712bb8a"
@@ -283,7 +284,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "maintenance_plan_id", null: false
     t.datetime "planned_date", null: false
     t.integer "estimated_duration"
-    t.integer "status", default: 0, null: false
+    t.integer "status", default: 1, null: false
     t.string "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -356,9 +357,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
 
   create_table "maintenance_technicians", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.string "specialty"
-    t.string "certificacion_level"
-    t.integer "status", null: false
+    t.string "specialty", limit: 100
+    t.string "certification_level"
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_maintenance_technicians_on_user_id"
@@ -376,10 +377,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
 
   create_table "organization_areas", force: :cascade do |t|
     t.string "code", limit: 10, null: false
-    t.string "name", null: false
+    t.string "name", limit: 100, null: false
     t.text "description"
     t.integer "organization_plant_id", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_organization_areas_on_code", unique: true
@@ -390,7 +391,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.string "code", limit: 10, null: false
     t.string "name", limit: 100, null: false
     t.text "address", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_organization_plants_on_code", unique: true
@@ -401,7 +402,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.string "name", limit: 100, null: false
     t.text "description"
     t.integer "organization_area_id", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_organization_production_lines_on_code", unique: true
@@ -454,8 +455,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   add_foreign_key "common_measure_units", "common_measure_unit_types"
   add_foreign_key "maintenance_asset_assignees", "maintenance_assets"
   add_foreign_key "maintenance_asset_assignees", "maintenance_technicians"
-  add_foreign_key "maintenance_asset_components", "maintenance_assets", column: "maintenance_asset_id"
-  add_foreign_key "maintenance_asset_documents", "maintenance_assets", column: "maintenance_asset_id"
+  add_foreign_key "maintenance_asset_components", "maintenance_assets"
+  add_foreign_key "maintenance_asset_documents", "maintenance_assets"
   add_foreign_key "maintenance_assets", "maintenance_asset_types"
   add_foreign_key "maintenance_assets", "maintenance_manufacturers"
   add_foreign_key "maintenance_assets", "organization_production_lines"
@@ -465,7 +466,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   add_foreign_key "maintenance_plan_template_tasks", "maintenance_standard_tasks"
   add_foreign_key "maintenance_plan_templates", "maintenance_frequency_types"
   add_foreign_key "maintenance_plan_templates", "maintenance_plan_types"
-  add_foreign_key "maintenance_plans", "components"
+  add_foreign_key "maintenance_plans", "maintenance_asset_components"
   add_foreign_key "maintenance_plans", "maintenance_assets"
   add_foreign_key "maintenance_plans", "maintenance_plan_templates"
   add_foreign_key "maintenance_schedule_assignments", "maintenance_schedules"

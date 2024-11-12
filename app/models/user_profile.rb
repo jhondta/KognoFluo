@@ -12,6 +12,7 @@ class UserProfile < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
   belongs_to :user
+
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [ 100, 100 ], preprocessed: true
   end
@@ -23,7 +24,7 @@ class UserProfile < ApplicationRecord
   # -- Validations -------------------------------------------------------------
   validates :first_name, presence: true, length: { maximum: 255 }
   validates :last_name, presence: true, length: { maximum: 255 }
-  validates :date_of_birth, presence: true
+  validates :birth_date, presence: true
   validates :gender, presence: true, inclusion: { in: GENDERS }
 
   # -- -------------------------------------------------------------------------
@@ -40,7 +41,7 @@ class UserProfile < ApplicationRecord
   end
 
   def age
-    (Date.today - date_of_birth).to_i
+    (Date.today - birth_date).to_i
   end
 
   def age_in_years
