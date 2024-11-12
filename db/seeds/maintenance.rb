@@ -3,7 +3,8 @@
 puts 'Starting maintenance seed...'
 Faker::Config.locale = 'es-MX'
 
-9.times do
+puts 'Creating users...'
+0.times do
   User.create!(
     email: Faker::Internet.email,
     password: '123456',
@@ -12,68 +13,91 @@ Faker::Config.locale = 'es-MX'
   )
 end
 
-# Datos de prueba para la tabla plants
-2.times do |i|
-  Organization::Plant.create!(
-    code: Faker::Alphanumeric.alpha(number: 3).upcase,
-    name: Faker::Company.unique.name,
-    address: Faker::Address.full_address,
-    status: :active
+puts 'Creating profiles...'
+users = User.all
+users.each do |user|
+  next if user.profile.present?
+  user.create_profile(
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    birth_date: Faker::Date.birthday(min_age: 18, max_age: 65),
+    gender: UserProfile::GENDERS.sample
   )
 end
 
-# Datos de prueba para la tabla areas
+puts 'Creating technicians...'
+users.each do |user|
+  next if user.technician.present?
+  Maintenance::Technician.create!(
+    user: user,
+    specialty: Faker::Job.field,
+    certification_level: (1..5).to_a.sample,
+    status: 1
+  )
+end
+
+puts 'Creating plants...'
+3.times do |i|
+  Organization::Plant.create!(
+    code: "PL0#{i + 1}",
+    name: "Planta #{Faker::Address.unique.city}",
+    address: Faker::Address.full_address,
+    status: Organization::Plant::STATUSES.sample
+  )
+end
+
+puts 'Creating areas...'
 plants = Organization::Plant.all
-2.times do |i|
+3.times do |i|
   Organization::Area.create!(
-    code: Faker::Alphanumeric.alpha(number: 3).upcase,
+    code: "AR0#{i + 1}",
     name: Faker::Commerce.department,
     description: Faker::Lorem.paragraph(sentence_count: 2),
     organization_plant_id: plants.sample.id,
-    status: :active
+    status: Organization::Area::STATUSES.sample
   )
 end
 
-# Datos de prueba para la tabla production_lines
+puts 'Creating production lines...'
 areas = Organization::Area.all
 3.times do |i|
   Organization::ProductionLine.create!(
-    code: Faker::Alphanumeric.alpha(number: 3).upcase,
-    name: "Línea de Producción #{i + 1}",
+    code: "LI0#{i + 1}",
+    name: "Línea de #{Faker::Company.unique.industry}",
     description: Faker::Lorem.paragraph(sentence_count: 2),
     organization_area_id: areas.sample.id,
-    status: :active
+    status: Organization::ProductionLine::STATUSES.sample
   )
 end
 
-# Datos de prueba para la tabla manufacturers
+puts 'Creating manufacturers...'
 10.times do |i|
   Maintenance::Manufacturer.create!(
-    name: Faker::Company.unique.name,
     code: Faker::Alphanumeric.alpha(number: 3).upcase,
+    name: Faker::Company.unique.name,
     website: Faker::Internet.url,
     support_phone: Faker::PhoneNumber.phone_number,
     suport_email: Faker::Internet.email,
     notes: Faker::Lorem.paragraph(sentence_count: 2),
-    status: :active
+    status: Maintenance::Manufacturer::STATUSES.sample
   )
 end
 
-# Datos de prueba para la tabla asset_types
-10.times do
+puts 'Creating asset types...'
+7.times do
   Maintenance::AssetType.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 5).upcase,
     name: Faker::Appliance.equipment,
     description: Faker::Lorem.sentence,
-    status: :active
+    status: Maintenance::AssetType::STATUSES.sample
   )
 end
 
-# Datos de prueba para la tabla assets
+puts 'Creating assets...'
 asset_types = Maintenance::AssetType.all
 production_lines = Organization::ProductionLine.includes(area: :plant)
 manufacturers = Maintenance::Manufacturer.all
-50.times do
+35.times do
   Maintenance::Asset.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 3).upcase,
     name: Faker::Appliance.equipment,
@@ -87,10 +111,41 @@ manufacturers = Maintenance::Manufacturer.all
     warranty_expiration: Faker::Date.between(from: '2024-01-01', to: '2026-12-31'),
     status: Maintenance::Asset::STATUSES.sample,
     criticality_level: Maintenance::Asset::CRITICALITY_LEVELS.sample,
-    technical_specs: { power: "#{rand(100..500)}W", voltage: "#{rand(110..240)}V" },
+    technical_specs: { power: "#{rand(100..5000)}W", voltage: "#{rand(110..440)}V" },
     physical_location: Faker::Address.secondary_address,
     notes: Faker::Lorem.sentence
   )
+end
+
+puts 'Creating asset components, documents, and assignees...'
+assets = Maintenance::Asset.all
+technicians = Maintenance::Technician.all
+assets.each do |asset|
+  3.times do
+    asset.components.create(
+      name: Faker::Appliance.equipment,
+      description: Faker::Lorem.sentence,
+      quantity: rand(1..5),
+      specifications: { power: "#{rand(100..5000)}W", voltage: "#{rand(110..440)}V" },
+      replacement_period: rand(1..12),
+      status: Maintenance::AssetComponent::STATUSES.sample
+    )
+
+    asset.documents.create(
+      document_type: Faker::File.mime_type,
+      name: Faker::File.file_name,
+      description: Faker::Lorem.sentence,
+      version: Faker::App.semantic_version,
+      expiration_date: Faker::Date.between(from: '2021-01-01', to: '2023-12-31'),
+      status: Maintenance::AssetDocument::STATUSES.sample
+    )
+  end
+
+  2.times do
+    asset.assignees.create(
+      technician: technicians.sample
+    )
+  end
 end
 
 puts 'Maintenance seed completed.'
