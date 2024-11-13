@@ -1,5 +1,23 @@
-<p>Welcome <%= @email %>!</p>
+<!-- /app/views/devise/mailer/confirmation_instructions.html.erb -->
+<h1 style="margin: 0 0 20px 0; color: #111827; font-size: 24px; font-weight: 600;">
+  ¡Bienvenido a KognoFluo!
+</h1>
 
-<p>You can confirm your account email through the link below:</p>
+<p style="margin: 0 0 16px 0; color: #374151; font-size: 16px; line-height: 24px;">
+  Hola <%= @email %>,
+</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p style="margin: 0 0 24px 0; color: #374151; font-size: 16px; line-height: 24px;">
+  Gracias por registrarte. Para comenzar a usar tu cuenta, confirma tu correo
+  electrónico haciendo clic en el botón de abajo:
+</p>
+
+<div style="text-align: center; margin: 32px 0;">
+  <%= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token),
+              style: "display: inline-block; padding: 12px 24px; background-color: #3b82f6; color: white;
+                      text-decoration: none; font-weight: 500; border-radius: 6px;" %>
+</div>
+
+<p style="margin: 24px 0 0 0; color: #6b7280; font-size: 14px; line-height: 20px;">
+  Si no solicitaste crear una cuenta, puedes ignorar este correo.
+</p>

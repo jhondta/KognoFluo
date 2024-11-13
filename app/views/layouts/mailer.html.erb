@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-      /* Email styles need to be inline */
-    </style>
-  </head>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-  <body>
+<body style="margin: 0; padding: 0; background-color: #f9fafb; font-family: system-ui, -apple-system, 'Segoe UI',
+             sans-serif;">
+<div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+  <!-- Header -->
+  <div style="background-color: white; padding: 20px; border-radius: 8px 8px 0 0; border-bottom: 1px solid #e5e7eb;">
+    <img src="<%= asset_url('logo.png') %>" alt="KognoFluo" style="height: 40px;">
+  </div>
+
+  <!-- Content -->
+  <div style="background-color: white; padding: 30px; border-radius: 0 0 8px 8px;">
     <%= yield %>
-  </body>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align: center; padding: 20px; color: #6b7280; font-size: 14px;">
+    <p>© <%= Time.current.year %> KognoFluo. Todos los derechos reservados.</p>
+  </div>
+</div>
+</body>
 </html>
