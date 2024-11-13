@@ -3,8 +3,7 @@
 puts 'Starting maintenance seed...'
 Faker::Config.locale = 'es-MX'
 
-puts 'Creating users...'
-0.times do
+9.times do |i|
   User.create!(
     email: Faker::Internet.email,
     password: '123456',
@@ -32,7 +31,7 @@ users.each do |user|
     user: user,
     specialty: Faker::Job.field,
     certification_level: (1..5).to_a.sample,
-    status: 1
+    status: Maintenance::Technician::STATUSES.sample
   )
 end
 
@@ -48,26 +47,30 @@ end
 
 puts 'Creating areas...'
 plants = Organization::Plant.all
-3.times do |i|
-  Organization::Area.create!(
-    code: "AR0#{i + 1}",
-    name: Faker::Commerce.department,
-    description: Faker::Lorem.paragraph(sentence_count: 2),
-    organization_plant_id: plants.sample.id,
-    status: Organization::Area::STATUSES.sample
-  )
+plants.each do |plant|
+  3.times do |i|
+    Organization::Area.create!(
+      code: "AR0#{i + 1}",
+      name: Faker::Commerce.department,
+      description: Faker::Lorem.paragraph(sentence_count: 2),
+      organization_plant_id: plant.id,
+      status: Organization::Area::STATUSES.sample
+    )
+  end
 end
 
 puts 'Creating production lines...'
 areas = Organization::Area.all
-3.times do |i|
-  Organization::ProductionLine.create!(
-    code: "LI0#{i + 1}",
-    name: "Línea de #{Faker::Company.unique.industry}",
-    description: Faker::Lorem.paragraph(sentence_count: 2),
-    organization_area_id: areas.sample.id,
-    status: Organization::ProductionLine::STATUSES.sample
-  )
+areas.each do |area|
+  3.times do |i|
+    Organization::ProductionLine.create!(
+      code: "LI0#{i + 1}",
+      name: "Línea de #{Faker::Company.unique.industry}",
+      description: Faker::Lorem.paragraph(sentence_count: 2),
+      organization_area_id: area.id,
+      status: Organization::ProductionLine::STATUSES.sample
+    )
+  end
 end
 
 puts 'Creating manufacturers...'

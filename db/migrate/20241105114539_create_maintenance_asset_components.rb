@@ -13,5 +13,8 @@ class CreateMaintenanceAssetComponents < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+
+    add_index :maintenance_asset_components, %i[maintenance_asset_id name],
+              unique: true
   end
 end

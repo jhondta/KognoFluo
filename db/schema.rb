@@ -134,6 +134,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["maintenance_asset_id", "name"], name: "idx_on_maintenance_asset_id_name_a5e3516cdc", unique: true
     t.index ["maintenance_asset_id"], name: "index_maintenance_asset_components_on_maintenance_asset_id"
   end
 
@@ -147,6 +148,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["maintenance_asset_id", "document_type", "name"], name: "idx_on_maintenance_asset_id_document_type_name_3f73026ac3", unique: true
     t.index ["maintenance_asset_id"], name: "index_maintenance_asset_documents_on_maintenance_asset_id"
   end
 
@@ -362,7 +364,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_maintenance_technicians_on_user_id"
+    t.index ["user_id"], name: "index_maintenance_technicians_on_user_id", unique: true
   end
 
   create_table "maintenance_tools", force: :cascade do |t|
@@ -376,14 +378,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   end
 
   create_table "organization_areas", force: :cascade do |t|
+    t.integer "organization_plant_id", null: false
     t.string "code", limit: 10, null: false
     t.string "name", limit: 100, null: false
     t.text "description"
-    t.integer "organization_plant_id", null: false
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_organization_areas_on_code", unique: true
+    t.index ["organization_plant_id", "code"], name: "index_organization_areas_on_organization_plant_id_and_code", unique: true
     t.index ["organization_plant_id"], name: "index_organization_areas_on_organization_plant_id"
   end
 
@@ -398,14 +400,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   end
 
   create_table "organization_production_lines", force: :cascade do |t|
+    t.integer "organization_area_id", null: false
     t.string "code", limit: 10, null: false
     t.string "name", limit: 100, null: false
     t.text "description"
-    t.integer "organization_area_id", null: false
     t.integer "status", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_organization_production_lines_on_code", unique: true
+    t.index ["organization_area_id", "code"], name: "idx_on_organization_area_id_code_571ec478b4", unique: true
     t.index ["organization_area_id"], name: "index_organization_production_lines_on_organization_area_id"
   end
 

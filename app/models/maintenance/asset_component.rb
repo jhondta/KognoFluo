@@ -22,8 +22,8 @@ class Maintenance::AssetComponent < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :maintenance_asset_id, presence: true
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 100 },
+            uniqueness: { scope: %i[maintenance_asset_id] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

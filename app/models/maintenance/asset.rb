@@ -63,13 +63,6 @@ class Maintenance::Asset < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Methods -----------------------------------------------------------------
 
-  # Returns the criticality color
-  # @return [String]
-  #
-  def criticality_color
-    CRITICALITY_COLORS[criticality_level]
-  end
-
   def full_code
     line = production_line
     area = line.area

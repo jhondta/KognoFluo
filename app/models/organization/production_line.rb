@@ -30,7 +30,8 @@ class Organization::ProductionLine < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :code, presence: true, length: { maximum: 10 }, uniqueness: true
+  validates :code, presence: true, length: { maximum: 10 },
+            uniqueness: { scope: :organization_area_id }
   validates :name, presence: true, length: { maximum: 100 }
 
   # -- -------------------------------------------------------------------------

@@ -19,9 +19,9 @@ class Maintenance::AssetDocument < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :maintenance_asset_id, presence: true
   validates :document_type, presence: true, length: { maximum: 100 }
-  validates :name, presence: true, length: { maximum: 100 }
+  validates :name, presence: true, length: { maximum: 100 },
+            uniqueness: { scope: %i[maintenance_asset_id document_type] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

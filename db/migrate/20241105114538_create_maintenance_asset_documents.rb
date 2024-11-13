@@ -13,5 +13,8 @@ class CreateMaintenanceAssetDocuments < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+
+    add_index :maintenance_asset_documents,
+              %i[maintenance_asset_id document_type name], unique: true
   end
 end
