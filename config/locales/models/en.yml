@@ -256,7 +256,8 @@ en:
         description: "Description"
       maintenance/technician:
         user_id: "User"
-        specialty_id: "Specialty"
+        full_name: "Name"
+        specialty: "Specialty"
         certificcation_level: "Certification level"
         status: "Status"
       maintenance/tool:

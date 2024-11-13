@@ -256,7 +256,8 @@ es-MX:
         description: "Descripción"
       maintenance/technician:
         user_id: "Usuario"
-        specialty_id: "Especialidad"
+        specialty: "Especialidad"
+        full_name: "Nombre"
         certificcation_level: "Nivel de certificación"
         status: "Estado"
       maintenance/tool:

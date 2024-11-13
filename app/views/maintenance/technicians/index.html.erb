@@ -23,10 +23,10 @@
                         dark:text-gray-400">
           <tr>
             <th scope="col" class="p-4">
-              <%= t("activerecord.attributes.#{resource_class.model_name.i18n_key}.code") %>
+              <%= t("activerecord.attributes.#{resource_class.model_name.i18n_key}.full_name") %>
             </th>
             <th scope="col" class="p-4">
-              <%= t("activerecord.attributes.#{resource_class.model_name.i18n_key}.name") %>
+              <%= t("activerecord.attributes.#{resource_class.model_name.i18n_key}.specialty") %>
             </th>
             <th scope="col" class="p-4">
               <%= t("activerecord.attributes.#{resource_class.model_name.i18n_key}.status") %>
@@ -40,10 +40,10 @@
           <% @records.each do |maintenance_technician| %>
             <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
               <td class="p-4 text-gray-500 whitespace-nowrap dark:text-gray-400">
-                <%= maintenance_technician.code %>
+                <%= maintenance_technician.full_name %>
               </td>
               <td class="p-4 text-gray-500 whitespace-nowrap dark:text-gray-400">
-                <%= maintenance_technician.name %>
+                <%= maintenance_technician.specialty %>
               </td>
               <td class="p-4 text-gray-500 whitespace-nowrap dark:text-gray-400">
                 <div class="flex items-center">

@@ -3,28 +3,8 @@
 puts 'Starting maintenance seed...'
 Faker::Config.locale = 'es-MX'
 
-9.times do |i|
-  User.create!(
-    email: Faker::Internet.email,
-    password: '123456',
-    password_confirmation: '123456',
-    confirmed_at: Time.now
-  )
-end
-
-puts 'Creating profiles...'
-users = User.all
-users.each do |user|
-  next if user.profile.present?
-  user.create_profile(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    birth_date: Faker::Date.birthday(min_age: 18, max_age: 65),
-    gender: UserProfile::GENDERS.sample
-  )
-end
-
 puts 'Creating technicians...'
+users = User.all
 users.each do |user|
   next if user.technician.present?
   Maintenance::Technician.create!(

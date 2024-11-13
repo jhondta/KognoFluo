@@ -7,7 +7,7 @@ class UserProfile < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  enum :gender, GENDERS
+  enum :gender, GENDERS, validate: true
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
@@ -25,7 +25,6 @@ class UserProfile < ApplicationRecord
   validates :first_name, presence: true, length: { maximum: 255 }
   validates :last_name, presence: true, length: { maximum: 255 }
   validates :birth_date, presence: true
-  validates :gender, presence: true, inclusion: { in: GENDERS }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
