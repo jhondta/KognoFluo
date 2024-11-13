@@ -1,5 +1,5 @@
 <nav class="fixed z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-  <div class="px-3 py-3 lg:px-5 lg:pl-3">
+  <div class="px-3 py-3 lg:px-5 lg:pl-3 <%= 'max-w-screen-xl mx-auto' unless current_user %>">
     <div class="flex items-center justify-between">
       <div class="flex items-center justify-start">
         <%= render 'shared/navbar/sidebar_toggle' %>
@@ -9,8 +9,8 @@
 
       <div class="flex items-center">
         <%= render 'shared/navbar/search_toggle' %>
-        <%= render 'shared/navbar/notifications' %>
-        <%= render 'shared/navbar/apps' %>
+        <%= render 'shared/navbar/notifications' if user_signed_in? %>
+        <%= render 'shared/navbar/apps' if user_signed_in? %>
         <%= render 'shared/navbar/theme_toggle' %>
 
         <% if user_signed_in? %>
