@@ -40,7 +40,7 @@
       <li>
         <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group
                        hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
-                aria-controls="dropdown-operations" data-collapse-toggle="dropdown-operations">
+                aria-controls="dropdown-maintenance" data-collapse-toggle="dropdown-maintenance">
           <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 
                       dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true"
                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -60,7 +60,8 @@
                   clip-rule="evenodd"></path>
           </svg>
         </button>
-        <ul id="dropdown-operations" class="hidden py-2 space-y-2">
+        <ul id="dropdown-maintenance" class="hidden py-2 space-y-2" data-sidebar-target="submenu"
+            data-section="maintenance">
           <li>
             <button class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700"
                     aria-controls="dropdown-maintenance-masters"
@@ -77,64 +78,75 @@
                 <%= link_to 'Tipos de activo', maintenance_asset_types_path,
                             class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75
                                     rounded-lg pl-16 group hover:bg-gray-100 dark:text-gray-200
-                                    dark:hover:bg-gray-700' %>
+                                    dark:hover:bg-gray-700',
+                            data: { sidebar_target: 'menuItem' } %>
               </li>
               <li>
                 <%= link_to 'Fabricantes', maintenance_manufacturers_path,
                             class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75
                                     rounded-lg pl-16 group hover:bg-gray-100 dark:text-gray-200
-                                    dark:hover:bg-gray-700' %>
+                                    dark:hover:bg-gray-700',
+                            data: { sidebar_target: 'menuItem' } %>
               </li>
               <li>
                 <%= link_to 'Técnicos', maintenance_technicians_path,
                             class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75
                                     rounded-lg pl-16 group hover:bg-gray-100 dark:text-gray-200
-                                    dark:hover:bg-gray-700' %>
+                                    dark:hover:bg-gray-700',
+                            data: { sidebar_target: 'menuItem' } %>
               </li>
               <li>
                 <%= link_to 'Plantas', organization_plants_path,
                             class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75
                                     rounded-lg pl-16 group hover:bg-gray-100 dark:text-gray-200
-                                    dark:hover:bg-gray-700' %>
+                                    dark:hover:bg-gray-700',
+                            data: { sidebar_target: 'menuItem' } %>
               </li>
               <li>
                 <%= link_to 'Areas', organization_areas_path,
                             class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75
                                     rounded-lg pl-16 group hover:bg-gray-100 dark:text-gray-200
-                                    dark:hover:bg-gray-700' %>
+                                    dark:hover:bg-gray-700',
+                            data: { sidebar_target: 'menuItem' } %>
               </li>
               <li>
                 <%= link_to 'Lineas de producción', organization_production_lines_path,
                             class: 'flex items-center w-full p-2 text-base text-gray-900 transition duration-75
                                     rounded-lg pl-16 group hover:bg-gray-100 dark:text-gray-200
-                                    dark:hover:bg-gray-700' %>
+                                    dark:hover:bg-gray-700',
+                            data: { sidebar_target: 'menuItem' } %>
               </li>
             </ul>
           </li>
           <li>
             <%= link_to 'Activos', maintenance_assets_path,
                         class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
-                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700',
+                        data: { sidebar_target: 'menuItem' } %>
           </li>
           <li>
             <%= link_to 'Planificación', maintenance_plans_path,
                         class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
-                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700',
+                        data: { sidebar_target: 'menuItem' } %>
           </li>
           <li>
             <%= link_to 'Solicitudes', '#',
                         class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
-                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700',
+                        data: { sidebar_target: 'menuItem' } %>
           </li>
           <li>
             <%= link_to 'Ejecución', '#',
                         class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
-                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700',
+                        data: { sidebar_target: 'menuItem' } %>
           </li>
           <li>
             <%= link_to 'Análisis', '#',
                         class: 'flex items-center p-2 text-base text-gray-900 transition duration-75 rounded-lg
-                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700' %>
+                                pl-11 group hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700',
+                        data: { sidebar_target: 'menuItem' } %>
           </li>
         </ul>
       </li>
