@@ -1,22 +1,30 @@
 <div id="<%= dom_id asset_type %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Code:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.maintenance/asset_type.code') %>:
+    </strong>
     <%= asset_type.code %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.maintenance/asset_type.name') %>:
+    </strong>
     <%= asset_type.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.maintenance/asset_type.description') %>:
+    </strong>
     <%= asset_type.description %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= asset_type.status %>
+    <strong class="block font-medium mb-1">
+      <%= t('activerecord.attributes.maintenance/asset_type.status') %>:
+    </strong>
+    <%= asset_type.t_enum(:status) %>
   </p>
 
 </div>

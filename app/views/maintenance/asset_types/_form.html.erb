@@ -1,37 +1,40 @@
-<%= form_with(model: maintenance_asset_type, class: "contents") do |form| %>
-  <% if maintenance_asset_type.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(maintenance_asset_type.errors.count, "error") %> prohibited this maintenance_asset_type from being saved:</h2>
-
-      <ul>
-        <% maintenance_asset_type.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: maintenance_asset_type, id: 'asset_type_form', class: "contents") do |form| %>
+  <%= render partial: 'shared/error_messages', locals: { resource: maintenance_asset_type } %>
+  <div class="space-y-4">
+    <div class="my-5">
+      <%= form.label :code,
+                     class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :code,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                  dark:placeholder-gray-400 dark:text-white' %>
     </div>
-  <% end %>
 
-  <div class="my-5">
-    <%= form.label :code %>
-    <%= form.text_field :code, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="my-5">
+      <%= form.label :name,
+                     class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_field :name,
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                  dark:placeholder-gray-400 dark:text-white' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <div class="my-5">
+      <%= form.label :description,
+                     class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.textarea :description, rows: 4,
+                        class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                dark:placeholder-gray-400 dark:text-white' %>
+    </div>
 
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.textarea :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :status %>
-    <%= form.number_field :status, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <div class="my-5">
+      <%= form.label :status,
+                     class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.select :status, enum_options_for_select(maintenance_asset_type.class, :status), {},
+                      class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                              focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                              dark:placeholder-gray-400 dark:text-white' %>
+    </div>
   </div>
 <% end %>

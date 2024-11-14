@@ -28,6 +28,10 @@ es-MX:
       delete_button: "Eliminar"
       cancel_button: "Cancelar"
       delete_message: "¿Quieres eliminar este %{resource}?"
+    forms:
+      cancel_button: "Cancelar"
+      save_button: "Guardar"
+      edit_button: "Editar"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"
@@ -104,8 +108,11 @@ es-MX:
         cancel: "Cancelar"
       new:
         breadcrumb: "Nuevo"
+        title: "Nuevo tipo de activo"
       edit:
         breadcrumb: "Editar"
+        save: "Guardar"
+        cancel: "Cancelar"
     manufacturers:
       index:
         breadcrumb: "Fabricantes"

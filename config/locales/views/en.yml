@@ -27,7 +27,11 @@ en:
     modals:
       delete_button: "Delete"
       cancel_button: "Cancel"
-      delete_message: "Do you want to dleete this %{resource}?"
+      delete_message: "Do you want to delete this %{resource}?"
+    forms:
+      cancel_button: "Cancel"
+      save_button: "Save"
+      edit_button: "Edit"
   search_placeholder: "Search %{resource}"
   new_resource: "New %{resource}"
   export: "Export"
@@ -104,8 +108,11 @@ en:
         cancel: "Cancel"
       new:
         breadcrumb: "New"
+        title: "New asset type"
       edit:
         breadcrumb: "Edit"
+        save: "Save"
+        cancel: "Cancel"
     manufacturers:
       index:
         breadcrumb: "Manufacturers"
