@@ -31,7 +31,7 @@ plants.each do |plant|
   3.times do |i|
     Organization::Area.create!(
       code: "AR0#{i + 1}",
-      name: Faker::Commerce.department,
+      name: Faker::Industry.area_name,
       description: Faker::Lorem.paragraph(sentence_count: 2),
       organization_plant_id: plant.id,
       status: Organization::Area::STATUSES.sample
@@ -45,7 +45,7 @@ areas.each do |area|
   3.times do |i|
     Organization::ProductionLine.create!(
       code: "LI0#{i + 1}",
-      name: "Línea de #{Faker::Company.unique.industry}",
+      name: Faker::Industry.production_line,
       description: Faker::Lorem.paragraph(sentence_count: 2),
       organization_area_id: area.id,
       status: Organization::ProductionLine::STATUSES.sample
@@ -57,7 +57,7 @@ puts 'Creating manufacturers...'
 10.times do |i|
   Maintenance::Manufacturer.create!(
     code: Faker::Alphanumeric.alpha(number: 3).upcase,
-    name: Faker::Company.unique.name,
+    name: Faker::Industry.manufacturer,
     website: Faker::Internet.url,
     support_phone: Faker::PhoneNumber.phone_number,
     suport_email: Faker::Internet.email,
@@ -70,7 +70,7 @@ puts 'Creating asset types...'
 7.times do
   Maintenance::AssetType.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 5).upcase,
-    name: Faker::Appliance.equipment,
+    name: Faker::Industry.asset_type,
     description: Faker::Lorem.sentence,
     status: Maintenance::AssetType::STATUSES.sample
   )
@@ -83,7 +83,7 @@ manufacturers = Maintenance::Manufacturer.all
 35.times do
   Maintenance::Asset.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 3).upcase,
-    name: Faker::Appliance.equipment,
+    name: Faker::Industry.asset_name,
     maintenance_asset_type_id: asset_types.sample.id,
     organization_production_line_id: production_lines.sample.id,
     maintenance_manufacturer_id: manufacturers.sample.id,
