@@ -71,7 +71,9 @@ function themeToggle() {
 
 function toggleSidebarMobile(sidebar, sidebarBackdrop, toggleSidebarMobileHamburger, toggleSidebarMobileClose) {
     sidebar.classList.toggle('hidden');
-    sidebarBackdrop.classList.toggle('hidden');
+    if (sidebarBackdrop) {
+        sidebarBackdrop.classList.toggle('hidden');
+    }
     toggleSidebarMobileHamburger.classList.toggle('hidden');
     toggleSidebarMobileClose.classList.toggle('hidden');
 }
@@ -94,8 +96,10 @@ function showSidebar() {
             toggleSidebarMobile(sidebar, sidebarBackdrop, toggleSidebarMobileHamburger, toggleSidebarMobileClose);
         });
 
-        sidebarBackdrop.addEventListener('click', () => {
-            toggleSidebarMobile(sidebar, sidebarBackdrop, toggleSidebarMobileHamburger, toggleSidebarMobileClose);
-        });
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', () => {
+                toggleSidebarMobile(sidebar, sidebarBackdrop, toggleSidebarMobileHamburger, toggleSidebarMobileClose);
+            });
+        }
     }
 }
