@@ -5,36 +5,8 @@ export default class extends Controller {
     static targets = ["availability", "costs", "distribution"]
 
     connect() {
-        this.initAvailabilityChart()
         this.initCostsChart()
         this.initDistributionChart()
-    }
-
-    initAvailabilityChart() {
-        const options = {
-            series: [{
-                name: 'Disponibilidad',
-                data: [98.2, 97.8, 98.5, 98.1, 97.9, 98.3]
-            }],
-            chart: {
-                type: 'line',
-                height: 250,
-                toolbar: {show: false}
-            },
-            stroke: {curve: 'smooth', width: 2},
-            colors: ['#3B82F6'],
-            xaxis: {
-                categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun']
-            },
-            yaxis: {
-                labels: {
-                    formatter: (value) => `${value}%`
-                }
-            }
-        }
-
-        const chart = new ApexCharts(this.availabilityTarget, options)
-        chart.render()
     }
 
     initCostsChart() {

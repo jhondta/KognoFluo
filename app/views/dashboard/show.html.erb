@@ -1,237 +1,138 @@
 <% breadcrumb :root %>
 <% content_for :title, full_title %>
 
-<div class="p-4 bg-gray-50 min-h-screen dark:bg-gray-800" data-controller="charts">
+<div class="p-6 mx-auto" data-controller="charts">
   <!-- Header -->
-  <div class="mb-4">
-    <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
+  <div class="mb-6">
+    <h1 class="text-2xl font-semibold mb-2 dark:text-gray-200">
       Dashboard de Mantenimiento
     </h1>
     <p class="text-gray-600 dark:text-gray-400">
-      Vista general del sistema de mantenimiento
+      Vista general del estado de mantenimiento
     </p>
   </div>
 
-  <!-- KPIs Row -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 rounded-full bg-green-100 dark:bg-green-900">
-          <svg class="w-6 h-6 text-green-600 dark:text-green-400"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
-            Disponibilidad
-          </p>
-          <p class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            98.5%
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-          <svg class="w-6 h-6 text-blue-600 dark:text-blue-400"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
-            MTTR
-          </p>
-          <p class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            2.5 hrs
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
-          <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012
-                     2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0
-                     01-2-2z"></path>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
-            OEE
-          </p>
-          <p class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            85.3%
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <div class="flex items-center">
-        <div class="p-3 rounded-full bg-red-100 dark:bg-red-900">
-          <svg class="w-6 h-6 text-red-600 dark:text-red-400"
-               fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0
-                     1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <div class="ml-4">
-          <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
-            Costos MTD
-          </p>
-          <p class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            $45,250
-          </p>
-        </div>
-      </div>
+  <!-- Alerts Section -->
+  <div class="mb-6">
+    <div class="flex items-center p-4 mb-4 text-amber-800 bg-amber-50 border border-amber-200 rounded-lg dark:bg-amber-900 dark:text-amber-100">
+      <svg class="w-5 h-5 mr-2 text-amber-600 dark:text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M5.636 18.364A9 9 0 1118.364 5.636a9 9 0 01-12.728 12.728z"/>
+      </svg>
+      <span>3 equipos críticos requieren mantenimiento esta semana</span>
+      <button class="ml-auto text-sm underline dark:text-amber-200">
+        Ver detalles
+      </button>
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-    <!-- Órdenes de Trabajo -->
-    <div class="bg-white rounded-lg shadow p-4 lg:col-span-2 dark:bg-gray-700">
-      <h2 class="text-lg font-semibold text-gray-800 mb-4 dark:text-gray-200">
-        Órdenes de Trabajo
-      </h2>
-      <div class="overflow-x-auto">
-        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-800">
-          <thead class="bg-gray-50 dark:bg-gray-800">
-          <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
-              ID
-            </th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
-              Equipo
-            </th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
-              Tipo
-            </th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">
-              Estado
-            </th>
-          </tr>
-          </thead>
-          <tbody class="bg-white divide-y divide-gray-200 dark:divide-gray-800 dark:bg-gray-700">
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-              #1234
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-              Bomba P-101
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-              Preventivo
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800
-                             dark:bg-green-900 dark:text-green-100">
-                  En Proceso
-                </span>
-            </td>
-          </tr>
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-              #1235
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-              Motor M-203
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-200">
-              Correctivo
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800
-                             dark:bg-red-900 dark:text-red-100">
-                  Pendiente
-                </span>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- Alertas -->
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <h2 class="text-lg font-semibold text-gray-800 mb-4 dark:text-gray-200">
-        Alertas Activas
-      </h2>
-      <div class="space-y-4">
-        <div class="flex items-center p-3 bg-red-50 rounded-lg dark:bg-red-900 dark:text-red-100">
-          <div class="flex-shrink-0">
-            <svg class="h-5 w-5 text-red-600 dark:text-red-400"
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464
-                       0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-            </svg>
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <% kpi_data = [
+      { title: 'MTTR', value: '2.5h', subtitle: 'Tiempo medio de reparación', color: 'blue' },
+      { title: 'MTBF', value: '45d', subtitle: 'Tiempo medio entre fallas', color: 'green' },
+      { title: 'Cumplimiento', value: '87%', subtitle: 'Plan preventivo', color: 'blue' },
+      { title: 'Disponibilidad', value: '95.5%', subtitle: 'Equipos críticos', color: 'blue' }
+    ] %>
+    <% kpi_data.each do |kpi| %>
+      <div class="relative overflow-hidden bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="p-4">
+          <div class="flex justify-between items-start">
+            <div>
+              <p class="text-sm text-gray-600 dark:text-gray-400"><%= kpi[:title] %></p>
+              <h3 class="text-2xl font-semibold mt-1 dark:text-gray-200"><%= kpi[:value] %></h3>
+              <p class="text-sm text-gray-500 mt-1 dark:text-gray-400"><%= kpi[:subtitle] %></p>
+            </div>
+            <div class="p-2 rounded-lg bg-<%= kpi[:color] %>-50 dark:bg-<%= kpi[:color] %>-900">
+              <svg class="w-5 h-5 text-<%= kpi[:color] %>-600 dark:text-<%= kpi[:color] %>-400"
+                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- Add an icon here -->
+              </svg>
+            </div>
           </div>
-          <div class="ml-3">
-            <h3 class="text-sm font-medium text-red-800 dark:text-red-200">
-              Stock Crítico
-            </h3>
-            <p class="text-sm text-red-700 dark:text-red-300">
-              Rodamientos SKF-2310 bajo mínimo
-            </p>
-          </div>
-        </div>
-
-        <div class="flex items-center p-3 bg-yellow-50 rounded-lg dark:bg-yellow-900 dark:text-yellow-100">
-          <div class="flex-shrink-0">
-            <svg class="h-5 w-5 text-yellow-600 dark:text-yellow-400"
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <div class="ml-3">
-            <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-200">
-              Mantenimiento Próximo</h3>
-            <p class="text-sm text-yellow-700 dark:text-yellow-300">
-              Compresor C-101 en 2 días
-            </p>
+          <div class="absolute bottom-0 left-0 w-full h-1 bg-<%= kpi[:color] %>-100 dark:bg-<%= kpi[:color] %>-700">
+            <div class="h-full bg-<%= kpi[:color] %>-500" style="width: 70%;"></div>
           </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <!-- Charts Row -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-4">
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <h2 class="text-lg font-semibold text-gray-800 mb-4 dark:text-gray-200">
-        Distribución de Mantenimientos
-      </h2>
-      <div data-charts-target="availability"
-           data-availability="<%= @availability_data.to_json %>"
-      class="h-[300]">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+    <!-- Monthly Maintenance -->
+    <div class="bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="border-b bg-gray-50 p-4 dark:bg-gray-700">
+        <h3 class="font-medium dark:text-gray-200">Mantenimientos por Mes</h3>
       </div>
-    </div>
-
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <h2 class="text-lg font-semibold text-gray-800 mb-4 dark:text-gray-200">
-        Costos Mensuales
-      </h2>
       <div data-charts-target="costs">
       </div>
     </div>
 
-    <div class="bg-white rounded-lg shadow p-4 dark:bg-gray-700">
-      <h2 class="text-lg font-semibold text-gray-800 mb-4 dark:text-gray-200">
-        Tendencia de Costos
-      </h2>
+    <!-- Equipment Distribution -->
+    <div class="bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="border-b bg-gray-50 p-4 dark:bg-gray-700">
+        <h3 class="font-medium dark:text-gray-200">Distribución de Equipos</h3>
+      </div>
       <div data-charts-target="distribution"></div>
     </div>
   </div>
+
+  <!-- Bottom Cards -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Pending Work Orders -->
+    <div class="bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="border-b bg-gray-50 p-4 dark:bg-gray-700">
+        <h3 class="font-medium dark:text-gray-200">Órdenes de Trabajo
+          Pendientes</h3>
+      </div>
+      <div class="p-4">
+        <% ots = [
+          { id: 'OT-2024-001', asset: 'PLC Rockwell', priority: 'Alta', date: '15/11/2024' },
+          { id: 'OT-2024-002', asset: 'Motor Principal', priority: 'Media', date: '16/11/2024' },
+          { id: 'OT-2024-003', asset: 'Sensor Nivel', priority: 'Baja', date: '17/11/2024' }
+        ] %>
+        <% ots.each do |ot| %>
+          <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg mb-3 dark:bg-gray-700">
+            <div>
+              <p class="font-medium text-gray-800 dark:text-gray-200"><%= ot[:id] %></p>
+              <p class="text-sm text-gray-600 mt-1 dark:text-gray-400"><%= ot[:asset] %></p>
+            </div>
+            <div class="text-right">
+              <span class="inline-block px-2 py-1 text-xs rounded-full
+                <%= ot[:priority] == 'Alta' ? 'bg-red-100 text-red-800' :
+                                                 ot[:priority] == 'Media' ? 'bg-yellow-100 text-yellow-800' :
+                                                   'bg-blue-100 text-blue-800' %>">
+                <%= ot[:priority] %>
+              </span>
+              <p class="text-sm text-gray-600 mt-1 dark:text-gray-400"><%= ot[:date] %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Next Scheduled -->
+    <div class="bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="border-b bg-gray-50 p-4 dark:bg-gray-700">
+        <h3 class="font-medium dark:text-gray-200">Próximos Mantenimientos</h3>
+      </div>
+      <div class="p-4">
+        <!-- Add scheduled tasks -->
+      </div>
+    </div>
+
+    <!-- Equipment Status -->
+    <div class="bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div class="border-b bg-gray-50 p-4 dark:bg-gray-700">
+        <h3 class="font-medium dark:text-gray-200">Estado de Equipos
+          Críticos</h3>
+      </div>
+      <div class="p-4">
+        <!-- Add equipment status -->
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
