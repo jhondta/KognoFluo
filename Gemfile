@@ -49,7 +49,7 @@ gem 'devise-argon2'
 # Use Rails i18n for internationalization [https://guides.rubyonrails.org/i18n.html]
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n'
 # Use I18n Tasks for i18n tasks [https://github.com/alexdotdev/i18n-tasks]
-gem 'i18n-tasks'
+# gem 'i18n-tasks'
 # Use http_accept_language to detect the user's preferred language
 gem 'http_accept_language'
 # Use Pagy for pagination [https://ddnexus.github.io/pagy/]
@@ -58,12 +58,14 @@ gem 'pagy'
 gem 'gretel'
 # Use PaperTrail for tracking changes
 gem 'paper_trail'
+# Export data to CSV, Excel, PDF, etc.
+gem 'csv'
+gem 'caxlsx_rails'
+# gem 'prawn'
 
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
-  # Use CSV for seed data
-  gem 'csv'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
   # Use FactoryBot for seeding data
