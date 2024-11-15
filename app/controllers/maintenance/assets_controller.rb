@@ -19,8 +19,16 @@ class Maintenance::AssetsController < ApplicationController
 
   # GET /maintenance/assets or /maintenance/assets.json
   def index
-    options = [ :type, :manufacturer, production_line: { area: :plant } ]
-    @pagy, @records = pagy(Maintenance::Asset.includes(options).all)
+    options = [ :type, :manufacturer, :rich_text_notes, production_line: { area: :plant } ]
+
+    respond_to do |format|
+      format.html do
+        @pagy, @records = pagy(Maintenance::Asset.includes(options).all)
+      end
+      format.json do
+        @maintenance_assets = Maintenance::Asset.includes(options).all
+      end
+    end
   end
 
   # GET /maintenance/assets/1 or /maintenance/assets/1.json

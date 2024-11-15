@@ -32,6 +32,12 @@ en:
       cancel_button: "Cancel"
       save_button: "Save"
       edit_button: "Edit"
+    table:
+      export: "Export"
+      export_csv: "CSV"
+      export_pdf: "PDF"
+      export_xls: "XLSX"
+      export_json: "JSON"
   search_placeholder: "Search %{resource}"
   new_resource: "New %{resource}"
   export: "Export"

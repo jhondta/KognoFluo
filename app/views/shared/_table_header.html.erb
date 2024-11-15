@@ -66,7 +66,7 @@
       </svg>
       <%= t("new_resource", resource: t("#{resource_key}.one")) %>
     <% end %>
-    <button type="button"
+    <button type="button" id="export-dropdown" data-dropdown-toggle="dropdownTop" data-dropdown-placement="top"
             class="flex items-center justify-center flex-shrink-0 px-3 py-2 text-sm font-medium text-gray-900 
                          bg-white border border-gray-200 rounded-lg focus:outline-none hover:bg-gray-100 
                          hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 
@@ -79,7 +79,36 @@
               d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12
                      3v13.5"/>
       </svg>
-      <%= t("export") %>
+      <%= t('shared.table.export') %>
     </button>
+    <!-- Dropdown menu -->
+    <div id="dropdownTop" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="export-dropdown">
+        <li>
+          <%= link_to polymorphic_path(resource_class, format: :csv, _target: '_blank', rel: 'noopener noreferrer'),
+                      class: 'block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' do %>
+            <%= t('shared.table.export_csv') %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to polymorphic_path(resource_class, format: :xls, _target: '_blank', rel: 'noopener noreferrer'),
+                      class: 'block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' do %>
+            <%= t('shared.table.export_xls') %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to polymorphic_path(resource_class, format: :json, _target: '_blank', rel: 'noopener noreferrer'),
+                      class: 'block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' do %>
+            <%= t('shared.table.export_json') %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to polymorphic_path(resource_class, format: :pdf, _target: '_blank', rel: 'noopener noreferrer'),
+                      class: 'block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white' do %>
+            <%= t('shared.table.export_pdf') %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

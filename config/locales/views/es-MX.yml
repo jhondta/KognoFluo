@@ -32,6 +32,12 @@ es-MX:
       cancel_button: "Cancelar"
       save_button: "Guardar"
       edit_button: "Editar"
+    table:
+      export: "Exportar"
+      export_csv: "CSV"
+      export_pdf: "PDF"
+      export_xls: "XLSX"
+      export_json: "JSON"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"
