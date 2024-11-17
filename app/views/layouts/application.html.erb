@@ -24,12 +24,11 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
-<body class="antialiased bg-gray-50 dark:bg-gray-800">
+<body class="antialiased bg-gray-50 dark:bg-gray-900">
 <%= render 'shared/navbar' %>
-<div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
+<div class="flex pt-16 overflow-hidden">
   <%= render 'shared/sidebar' if current_user %>
-  <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 dark:bg-gray-900
-                                <%= 'lg:ml-64' if current_user %>">
+  <div id="main-content" class="relative w-full h-full overflow-y-auto <%= 'lg:ml-64' if current_user %>">
     <main>
       <%= render 'shared/flash' %>
       <%= yield %>
