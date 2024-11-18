@@ -142,6 +142,16 @@ es-MX:
     plants:
       index:
         breadcrumb: "Plantas"
+    plans:
+      index:
+        breadcrumb: "Planes de mantenimiento"
+        all_plans: "Todos los planes: %{count}"
+      sections:
+        index:
+          tabs:
+            calendar: "Calendario"
+            scheduling: "Programación"
+            templates: "Plantillas"
   organization:
     areas:
       area_select:
@@ -173,3 +183,7 @@ es-MX:
     sections:
       catalogs:
         maintenance: "Mantenimiento"
+  simple_calendar:
+    previous: "<<"
+    today: "Hoy"
+    next: ">>"

@@ -1,0 +1,63 @@
+<div class="simple-calendar p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm">
+  <div class="calendar-heading flex items-center justify-between mb-8">
+    <div class="flex items-center gap-3">
+      <%= link_to calendar.url_for_previous_view,
+                  class: "p-2.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      <% end %>
+
+      <h2 class="text-xl font-semibold text-gray-800 dark:text-white">
+        <%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
+      </h2>
+
+      <%= link_to calendar.url_for_next_view,
+                  class: "p-2.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      <% end %>
+    </div>
+
+    <div class="flex gap-2 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
+      <%= link_to "Mes", "#", class: "px-4 py-2 bg-white dark:bg-gray-600 rounded-md font-medium text-gray-800 dark:text-white shadow-sm transition-colors" %>
+      <%= link_to "Semana", "#", class: "px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-500 rounded-md text-gray-600 dark:text-gray-300 transition-colors" %>
+      <%= link_to "Día", "#", class: "px-4 py-2 hover:bg-gray-50 dark:hover:bg-gray-500 rounded-md text-gray-600 dark:text-gray-300 transition-colors" %>
+    </div>
+  </div>
+
+  <table class="w-full border-separate border-spacing-0">
+    <thead>
+    <tr>
+      <% date_range.slice(0, 7).each do |day| %>
+        <th class="pb-6 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <%= t('date.abbr_day_names')[day.wday] %>
+        </th>
+      <% end %>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% date_range.each_slice(7) do |week| %>
+      <tr>
+        <% week.each do |day| %>
+          <% today = (day == Date.today) ? "bg-blue-50/50 dark:bg-blue-900/20" : "" %>
+          <% different_month = (day.month != start_date.month) ? "text-gray-400 dark:text-gray-600" : "text-gray-900 dark:text-gray-100" %>
+
+          <td class="relative p-1 border border-gray-200 dark:border-gray-700 h-40 align-top group hover:bg-gray-50/50 dark:hover:bg-gray-700/30 transition-colors">
+            <div class="flex flex-col h-full">
+                <span class="inline-block px-3 py-2 text-sm font-medium <%= different_month %> <%= today %> rounded-lg">
+                  <%= day.day %>
+                </span>
+              <div class="flex-1 p-1.5 overflow-y-auto max-h-[120px] scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600">
+                <% passed_block.call(day, calendar.sorted_events_for(day)) %>
+              </div>
+            </div>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

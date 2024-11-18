@@ -63,6 +63,9 @@ gem 'csv'
 gem 'caxlsx_rails'
 # gem 'prawn'
 
+# Use Simple calendar for calendar views
+gem 'simple_calendar'
+
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
