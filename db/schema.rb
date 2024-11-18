@@ -238,7 +238,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.integer "frequency_value"
     t.integer "estimated_duration"
     t.boolean "requires_shutdown"
-    t.integer "criticality"
+    t.integer "criticality_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_maintenance_plan_templates_on_code", unique: true

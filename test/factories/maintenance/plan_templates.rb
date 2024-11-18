@@ -10,7 +10,7 @@ FactoryBot.define do
     frequency_value { 1 }
     estimated_duration { 1 }
     requires_shutdown { false }
-    criticality { 1 }
+    criticality_level { 1 }
     safety_requirements { nil }
   end
 end

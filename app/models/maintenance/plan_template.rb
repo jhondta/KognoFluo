@@ -20,7 +20,7 @@ class Maintenance::PlanTemplate < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
   has_enum_state :status
-  has_enum_state :criticality_level, values: CRITICALITy_LEVELS,
+  has_enum_state :criticality_level, values: CRITICALITY_LEVELS,
                  colors: CRITICALITY_COLORS, default: :low
 
   # -- -------------------------------------------------------------------------

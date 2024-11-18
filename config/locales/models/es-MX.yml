@@ -199,7 +199,7 @@ es-MX:
         frequency_value: "Valor de frecuencia"
         estimated_duration: "Duración estimada"
         requires_shutdown: "Requiere apagado"
-        criticality: "Importancia"
+        criticality_level: "Nivel de criticidad"
       maintenance/plan_type:
         code: "Código"
         name: "Nombre"
@@ -327,7 +327,7 @@ es-MX:
         status:
           inactive: "Inactivo"
           active: "Activo"
-        criticality:
+        criticality_level:
           low: "Bajo"
           medium: "Medio"
           high: "Alto"

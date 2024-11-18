@@ -10,8 +10,8 @@ class CreateMaintenancePlanTemplates < ActiveRecord::Migration[8.0]
       t.references :maintenance_frequency_type, null: false, foreign_key: true
       t.integer :frequency_value
       t.integer :estimated_duration
-      t.boolean :requires_shutdown
-      t.integer :criticality
+      t.boolean :requires_shutdown, default: false
+      t.integer :criticality_level, default: 0
 
       t.timestamps
     end
