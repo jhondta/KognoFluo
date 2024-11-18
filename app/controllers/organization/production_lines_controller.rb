@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 class Organization::ProductionLinesController < ApplicationController
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Extensions --------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ---------------------------------------------------------------
   before_action :set_organization_production_line, only: %i[ show edit update destroy ]
+
+  # -- -------------------------------------------------------------------------
+  # -- Helper methods ----------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Actions -----------------------------------------------------------------
 
   # GET /organization/production_lines or /organization/production_lines.json
   def index
@@ -59,7 +76,16 @@ class Organization::ProductionLinesController < ApplicationController
     end
   end
 
+  # -- -------------------------------------------------------------------------
+  # -- Protected Methods -------------------------------------------------------
+
+  protected
+
+  # -- -------------------------------------------------------------------------
+  # -- Private Methods ---------------------------------------------------------
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_organization_production_line
       @organization_production_line = Organization::ProductionLine.find(params.expect(:id))

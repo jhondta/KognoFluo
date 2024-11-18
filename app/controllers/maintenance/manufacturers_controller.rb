@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 class Maintenance::ManufacturersController < ApplicationController
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Extensions --------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ---------------------------------------------------------------
   before_action :set_maintenance_manufacturer, only: %i[ show edit update destroy ]
+
+  # -- -------------------------------------------------------------------------
+  # -- Helper methods ----------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Actions -----------------------------------------------------------------
 
   # GET /maintenance/manufacturers or /maintenance/manufacturers.json
   def index
@@ -59,7 +76,16 @@ class Maintenance::ManufacturersController < ApplicationController
     end
   end
 
+  # -- -------------------------------------------------------------------------
+  # -- Protected Methods -------------------------------------------------------
+
+  protected
+
+  # -- -------------------------------------------------------------------------
+  # -- Private Methods ---------------------------------------------------------
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_manufacturer
       @maintenance_manufacturer = Maintenance::Manufacturer.find(params.expect(:id))

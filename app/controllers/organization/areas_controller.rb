@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 class Organization::AreasController < ApplicationController
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Extensions --------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ------------------------------------------------
   before_action :set_organization_area, only: %i[ show edit update destroy production_lines ]
+
+  # -- -------------------------------------------------------------------------
+  # -- Helper methods ----------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Actions -----------------------------------------------------------------
 
   # GET /organization/areas or /organization/areas.json
   def index
@@ -60,13 +77,21 @@ class Organization::AreasController < ApplicationController
   end
 
   def production_lines
-    @organization_production_lines = Organization::Area.find(params[:id]).production_lines
+    production_lines = Organization::Area.find(params[:id]).production_lines
     render turbo_stream: turbo_stream.replace(
       'production_lines_select',
       partial: 'organization/production_lines/production_line_select',
-      locals: { production_lines: @organization_production_lines }
+      locals: { production_lines: production_lines }
     )
   end
+
+  # -- -------------------------------------------------------------------------
+  # -- Protected Methods -------------------------------------------------------
+
+  protected
+
+  # -- -------------------------------------------------------------------------
+  # -- Private Methods ---------------------------------------------------------
 
   private
 

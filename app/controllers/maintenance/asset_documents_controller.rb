@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 class Maintenance::AssetDocumentsController < ApplicationController
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Extensions --------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ---------------------------------------------------------------
   before_action :set_maintenance_asset_document, only: %i[ show edit update destroy ]
+
+  # -- -------------------------------------------------------------------------
+  # -- Helper methods ----------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Actions -----------------------------------------------------------------
 
   # GET /maintenance/asset_documents or /maintenance/asset_documents.json
   def index
@@ -59,7 +76,16 @@ class Maintenance::AssetDocumentsController < ApplicationController
     end
   end
 
+  # -- -------------------------------------------------------------------------
+  # -- Protected Methods -------------------------------------------------------
+
+  protected
+
+  # -- -------------------------------------------------------------------------
+  # -- Private Methods ---------------------------------------------------------
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_asset_document
       @maintenance_asset_document = Maintenance::AssetDocument.find(params[:id])

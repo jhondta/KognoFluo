@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 class Maintenance::AssetAssigneesController < ApplicationController
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Extensions --------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ------------------------------------------------
   before_action :set_maintenance_asset_assignee, only: %i[ show edit update destroy ]
+
+  # -- -------------------------------------------------------------------------
+  # -- Helper methods ----------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Actions -----------------------------------------------------------------
 
   # GET /maintenance/asset_assignees or /maintenance/asset_assignees.json
   def index
@@ -59,7 +76,16 @@ class Maintenance::AssetAssigneesController < ApplicationController
     end
   end
 
+  # -- -------------------------------------------------------------------------
+  # -- Protected Methods -------------------------------------------------------
+
+  protected
+
+  # -- -------------------------------------------------------------------------
+  # -- Private Methods ---------------------------------------------------------
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_asset_assignee
       @maintenance_asset_assignee = Maintenance::AssetAssignee.find(params[:id])

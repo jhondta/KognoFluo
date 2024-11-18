@@ -1,7 +1,24 @@
 # frozen_string_literal: true
 
 class Organization::PlantsController < ApplicationController
+  # -- -------------------------------------------------------------------------
+  # -- Constants ---------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Concerns ----------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Extensions --------------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Callbacks ------------------------------------------------
   before_action :set_organization_plant, only: %i[ show edit update destroy areas ]
+
+  # -- -------------------------------------------------------------------------
+  # -- Helper methods ----------------------------------------------------------
+
+  # -- -------------------------------------------------------------------------
+  # -- Actions -----------------------------------------------------------------
 
   # GET /organization/plants or /organization/plants.json
   def index
@@ -60,13 +77,21 @@ class Organization::PlantsController < ApplicationController
   end
 
   def areas
-    @organization_areas = Organization::Plant.find(params[:id]).areas
+    areas = Organization::Plant.find(params[:id]).areas
     render turbo_stream: turbo_stream.replace(
       'areas_select',
       partial: 'organization/areas/area_select',
-      locals: { areas: @organization_areas }
+      locals: { areas: areas }
     )
   end
+
+  # -- -------------------------------------------------------------------------
+  # -- Protected Methods -------------------------------------------------------
+
+  protected
+
+  # -- -------------------------------------------------------------------------
+  # -- Private Methods ---------------------------------------------------------
 
   private
 
