@@ -3,7 +3,7 @@
 class Maintenance::PlanTemplate < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
-  CRITICALITIES = %i[low medium high critical].freeze
+  CRITICALITY_LEVELS = %i[low medium high critical].freeze
   CRITICALITY_COLORS = { low: 'green', medium: 'yellow', high: 'orange',
                          critical: 'red' }.freeze
 
@@ -19,8 +19,8 @@ class Maintenance::PlanTemplate < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status, values: STATUSES
-  has_enum_state :criticality, values: CRITICALITIES,
+  has_enum_state :status
+  has_enum_state :criticality_level, values: CRITICALITy_LEVELS,
                  colors: CRITICALITY_COLORS, default: :low
 
   # -- -------------------------------------------------------------------------
