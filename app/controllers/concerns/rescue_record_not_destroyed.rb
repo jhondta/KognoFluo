@@ -31,7 +31,7 @@ module RescueRecordNotDestroyed
     #
     # @example HTML response
     #   # Redirects back or to root_path with flash error
-    #   redirect_back_or_to root_path, 
+    #   redirect_back_or_to root_path,
     #                       error: "Cannot delete post: Has dependent comments",
     #                       status: :see_other
     #
