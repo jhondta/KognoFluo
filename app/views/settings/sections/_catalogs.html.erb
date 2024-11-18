@@ -1,0 +1,36 @@
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="p-2 bg-blue-100 rounded-lg dark:bg-blue-900">
+        <svg class="w-6 h-6 text-blue-600 dark:text-blue-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="m20.9532 11.7634-2.0523-2.05225-2.0523 2.05225 2.0523 2.0523 2.0523-2.0523Zm-1.3681-2.73651-4.1046-4.10457L12.06 8.3428l4.1046 4.1046 3.4205-3.42051Zm-4.1047 2.73651-2.7363-2.73638-8.20919 8.20918 2.73639 2.7364 8.2091-8.2092Z"/>
+          <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="m12.9306 3.74083 1.8658 1.86571-2.0523 2.05229-1.5548-1.55476c-.995-.99505-3.23389-.49753-3.91799.18657l2.73639-2.73639c.6841-.68409 1.9901-.74628 2.9229.18658Z"/>
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+        <%= t('.maintenance') %>
+      </h3>
+    </div>
+
+    <ul class="space-y-1">
+      <% menu_items = [
+        { path: maintenance_asset_types_path, label: t('activerecord.models.maintenance/asset_type.other') },
+        { path: maintenance_manufacturers_path, label: t('activerecord.models.maintenance/manufacturer.other') },
+        { path: maintenance_technicians_path, label: t('activerecord.models.maintenance/technician.other') },
+        { path: organization_production_lines_path, label: t('activerecord.models.organization/production_line.other') }
+      ] %>
+
+      <% menu_items.each do |item| %>
+        <li>
+          <%= link_to item[:path],
+                      class: "flex items-center p-3 text-gray-700 rounded-lg hover:bg-gray-100 group dark:text-white dark:hover:bg-gray-700" do %>
+            <span class="flex-1"><%= item[:label] %></span>
+            <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

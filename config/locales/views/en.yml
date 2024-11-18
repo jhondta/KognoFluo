@@ -162,3 +162,14 @@ en:
   breadcrumbs:
     new: "New"
     edit: "Edit"
+  settings:
+    general:
+      index:
+        modules: "Modules"
+        general: "General"
+        users: "Users"
+        system: "System"
+        breadcrumb: "Settings"
+    sections:
+      catalogs:
+        maintenance: "Mantenimiento"

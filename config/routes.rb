@@ -79,4 +79,8 @@ Rails.application.routes.draw do
                 only: %i[ index create destroy ]
     end
   end
+
+  namespace :settings do
+    root 'general#index'
+  end
 end

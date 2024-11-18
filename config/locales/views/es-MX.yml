@@ -162,3 +162,14 @@ es-MX:
   breadcrumbs:
     new: "Nuevo"
     edit: "Editar"
+  settings:
+    general:
+      index:
+        modules: "Módulos"
+        general: "General"
+        users: "Usuarios"
+        system: "Sistema"
+        breadcrumb: "Configuración"
+    sections:
+      catalogs:
+        maintenance: "Mantenimiento"

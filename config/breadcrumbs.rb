@@ -10,6 +10,11 @@ crumb :root do
   link t('home'), root_path
 end
 
+crumb :settings_general do
+  link t('settings.general.index.breadcrumb'), settings_root_path
+  parent :root
+end
+
 # -- ---------------------------------------------------------------------------
 # -- Maintenance Assets --------------------------------------------------------
 crumb :maintenance_assets do
@@ -36,7 +41,7 @@ end
 # -- Maintenance Asset Types ---------------------------------------------------
 crumb :maintenance_asset_types do
   link t('maintenance.asset_types.index.breadcrumb'), maintenance_asset_types_path
-  parent :root
+  parent :settings_general
 end
 
 crumb :maintenance_asset_type do |asset_type|
@@ -58,7 +63,7 @@ end
 # -- Maintenance Manufacturers -------------------------------------------------
 crumb :maintenance_manufacturers do
   link t('maintenance.manufacturers.index.breadcrumb'), maintenance_manufacturers_path
-  parent :root
+  parent :settings_general
 end
 
 crumb :maintenance_manufacturer do |manufacturer|
@@ -80,7 +85,7 @@ end
 # -- Technicians ---------------------------------------------------------------
 crumb :maintenance_technicians do
   link t('maintenance.technicians.index.breadcrumb'), maintenance_technicians_path
-  parent :root
+  parent :settings_general
 end
 
 crumb :maintenance_technician do |technician|
@@ -102,7 +107,7 @@ end
 # -- Organization Plants --------------------------------------------------------
 crumb :organization_plants do
   link t('organization.plants.index.breadcrumb'), organization_plants_path
-  parent :root
+  parent :settings_general
 end
 
 crumb :organization_plant do |plant|
@@ -124,7 +129,7 @@ end
 # -- Organization Areas --------------------------------------------------------
 crumb :organization_areas do
   link t('organization.areas.index.breadcrumb'), organization_areas_path
-  parent :root
+  parent :settings_general
 end
 
 crumb :organization_area do |area|
@@ -146,7 +151,7 @@ end
 # -- Organization Production Lines ---------------------------------------------
 crumb :organization_production_lines do
   link t('organization.production_lines.index.breadcrumb'), organization_production_lines_path
-  parent :root
+  parent :settings_general
 end
 
 crumb :organization_production_line do |production_line|
