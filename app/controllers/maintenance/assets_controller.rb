@@ -32,7 +32,7 @@ class Maintenance::AssetsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @pagy, @records = pagy(Maintenance::Asset.includes(options).all)
+        @pagy, @maintenance_assets = pagy(Maintenance::Asset.includes(options).all)
       end
       format.json do
         @maintenance_assets = Maintenance::Asset.includes(options).all
@@ -42,24 +42,17 @@ class Maintenance::AssetsController < ApplicationController
 
   # GET /maintenance/assets/1 or /maintenance/assets/1.json
   def show
-    @area = @maintenance_asset.area
-    @plant = @maintenance_asset.plant
   end
 
   # GET /maintenance/assets/new
   def new
     @maintenance_asset = Maintenance::Asset.new
-    @organization_areas = []
-    @organization_production_lines = []
   end
 
   # GET /maintenance/assets/1/edit
   def edit
-    @plant = @maintenance_asset.plant
-    @area = @maintenance_asset.area
-
-    @organization_areas = @plant.areas
-    @organization_production_lines = @area.production_lines
+    @areas = @maintenance_asset.plant.areas
+    @production_lines = @maintenance_asset.area.production_lines
   end
 
   # POST /maintenance/assets or /maintenance/assets.json
@@ -116,14 +109,17 @@ class Maintenance::AssetsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_asset
-      @maintenance_asset = Maintenance::Asset.find(params.expect(:id))
+      options = [ :type, :manufacturer, :rich_text_notes,
+                  production_line: { area: :plant } ]
+      @maintenance_asset = Maintenance::Asset.includes(options)
+                                             .find(params[:id])
     end
 
     # Load collections for new and edit actions
     def load_collections
-      @maintenance_asset_types = Maintenance::AssetType.all
-      @maintenance_manufacturers = Maintenance::Manufacturer.all
-      @organization_plants = Organization::Plant.all
+      @asset_types = Maintenance::AssetType.all
+      @manufacturers = Maintenance::Manufacturer.all
+      @plants = Organization::Plant.all
     end
 
     # Only allow a list of trusted parameters through.
