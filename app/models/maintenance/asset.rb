@@ -22,7 +22,8 @@ class Maintenance::Asset < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status, values: STATUSES, colors: STATUS_COLORS, default: :active
+  has_enum_state :status, values: STATUSES, colors: STATUS_COLORS,
+                 default: :active
   has_enum_state :criticality_level, values: CRITICALITY_LEVELS,
                  colors: CRITICALITY_COLORS, default: :low
 

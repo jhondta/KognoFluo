@@ -19,7 +19,8 @@ class Common::MeasureUnitType < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
   has_many :measure_units, class_name: 'Common::MeasureUnit',
-           foreign_key: 'measure_unit_type_id', dependent: :restrict_with_error
+           foreign_key: :common_measure_unit_type_id,
+           dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------

@@ -28,9 +28,6 @@ class Maintenance::Technician < ApplicationRecord
   has_many :assets, through: :asset_assignees, class_name: 'Maintenance::Asset',
            foreign_key: :maintenance_asset_id,
            dependent: :restrict_with_error
-  has_many :schedule_assignments, class_name: 'Maintenance::ScheduleAssignment',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------

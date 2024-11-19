@@ -21,11 +21,6 @@ class Common::MeasureUnit < ApplicationRecord
   belongs_to :measure_unit_type, class_name: 'Common::MeasureUnitType',
              foreign_key: :common_measure_unit_type_id
 
-  has_many :frequency_types, class_name: 'Maintenance::FrequencyType',
-           foreign_key: :common_measure_unit_id
-  has_many :measurement_types, class_name: 'Maintenance::MeasurementType',
-           foreign_key: :common_measure_unit_id
-
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
   validates :name, presence: true, length: { maximum: 100 }, uniqueness: true
