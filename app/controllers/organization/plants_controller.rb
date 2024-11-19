@@ -77,7 +77,7 @@ class Organization::PlantsController < ApplicationController
   end
 
   def areas
-    areas = Organization::Plant.find(params[:id]).areas
+    areas = @organization_plant.areas
     render turbo_stream: turbo_stream.replace(
       'areas_select',
       partial: 'organization/areas/area_select',
