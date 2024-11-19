@@ -19,8 +19,8 @@ export default class extends Controller {
         // Marca el ítem de menú activo
         this.menuItemTargets.forEach(item => {
             if (item.getAttribute('href') === currentPath) {
-                item.classList.add('bg-blue-600', 'text-white')
-                item.classList.remove('text-gray-700', 'hover:bg-gray-50')
+                item.classList.add('bg-blue-600', 'text-white', 'hover:bg-blue-700')
+                item.classList.remove('text-gray-900', 'hover:bg-gray-100')
             }
         })
     }
