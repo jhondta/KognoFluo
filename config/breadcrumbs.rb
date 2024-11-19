@@ -168,3 +168,25 @@ crumb :edit_organization_production_line do |production_line|
   link t('breadcrumbs.edit'), edit_organization_production_line_path(production_line)
   parent :organization_production_line, production_line
 end
+
+# -- ---------------------------------------------------------------------------
+# -- Maintenance Plans ---------------------------------------------------------
+crumb :maintenance_plans do
+  link t('maintenance.plans.index.breadcrumb'), maintenance_plans_path
+  parent :root
+end
+
+crumb :maintenance_plan do |plan|
+  link plan.code, maintenance_plan_path(plan)
+  parent :maintenance_plans
+end
+
+crumb :new_maintenance_plan do
+  link t('breadcrumbs.new'), new_maintenance_plan_path
+  parent :maintenance_plans
+end
+
+crumb :edit_maintenance_plan do |plan|
+  link t('breadcrumbs.edit'), edit_maintenance_plan_path(plan)
+  parent :maintenance_plan, plan
+end

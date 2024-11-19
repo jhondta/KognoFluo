@@ -28,6 +28,7 @@ es-MX:
       delete_button: "Eliminar"
       cancel_button: "Cancelar"
       delete_message: "¿Quieres eliminar este %{resource}?"
+      confirm_button: "Confirmar"
     forms:
       cancel_button: "Cancelar"
       save_button: "Guardar"
@@ -38,6 +39,8 @@ es-MX:
       export_pdf: "PDF"
       export_xls: "XLSX"
       export_json: "JSON"
+    modal:
+      delete_message: "¿Desea eliminar este registro?"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"

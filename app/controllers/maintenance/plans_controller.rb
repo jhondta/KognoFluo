@@ -22,7 +22,7 @@ class Maintenance::PlansController < ApplicationController
 
   # GET /maintenance/plans or /maintenance/plans.json
   def index
-    @maintenance_plans = Maintenance::Plan.all
+    @pagy, @maintenance_plans = pagy(Maintenance::Plan.all)
   end
 
   # GET /maintenance/plans/1 or /maintenance/plans/1.json

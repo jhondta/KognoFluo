@@ -1,6 +1,6 @@
 <% resource_key = "activerecord.models.#{resource_class.model_name.i18n_key}" %>
 <div class="sm:flex">
-  <div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+  <!-- div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
     <form class="lg:pr-3" action="#" method="GET">
       <label for="resource-search" class="sr-only">Search</label>
       <div class="relative mt-1 lg:w-64 xl:w-96">
@@ -12,7 +12,7 @@
                placeholder="<%= t("search_placeholder", resource: t("#{resource_key}.other")) %>">
       </div>
     </form>
-    <!-- div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
+    <div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
       <a href="#" class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900
                              hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -52,8 +52,8 @@
           </path>
         </svg>
       </a>
-    </div -->
-  </div>
+    </div >
+  </div-->
   <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
     <%= link_to new_polymorphic_path(resource_class),
                 class: 'inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center

@@ -1,21 +1,28 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <% content_for :title, "Plans" %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Plans</h1>
-    <%= link_to "New plan", new_maintenance_plan_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="maintenance_plans" class="min-w-full">
-    <% @maintenance_plans.each do |maintenance_plan| %>
-      <%= render maintenance_plan %>
-      <p>
-        <%= link_to "Show this plan", maintenance_plan, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+<% breadcrumb :maintenance_plans %>
+<% resource_class = Maintenance::Plan %>
+<% resource_key = "activerecord.models.#{resource_class.model_name.i18n_key}" %>
+<% content_for :title, full_title(t("#{resource_key}.other")) %>
+<div class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800
+            dark:border-gray-700">
+  <div class="w-full">
+    <%= render 'shared/breadcrumb' %>
+    <div class="sm:flex justify-between">
+      <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+        <%= t('.all_plans', count: @pagy.count) %>
+      </h1>
+      <%= render partial: 'shared/table/header', locals: { resource_class: resource_class } %>
+    </div>
   </div>
 </div>
+<div class="flex flex-col">
+  <div class="overflow-x-auto">
+    <div class="inline-block min-w-full align-middle">
+      <div class="overflow-hidden shadow">
+        <%= render partial: 'shared/table/body', locals: { resource_class: resource_class,
+                                                           records: @maintenance_plans,
+                                                           columns: %w[last_execution_date next_execution_date status ] } %>
+      </div>
+    </div>
+  </div>
+</div>
+<%= render partial: 'shared/pagination', locals: { pagy: @pagy } %>
