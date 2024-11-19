@@ -28,7 +28,6 @@ class User < ApplicationRecord
           dependent: :destroy
   has_one :technician, class_name: 'Maintenance::Technician',
           foreign_key: :user_id, dependent: :restrict_with_error
-  has_one :avatar, through: :profile
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
@@ -42,6 +41,7 @@ class User < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
   delegate :full_name, to: :profile
+  delegate :avatar, to: :profile, allow_nil: true
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------
