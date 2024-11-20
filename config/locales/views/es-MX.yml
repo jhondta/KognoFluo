@@ -41,6 +41,9 @@ es-MX:
       export_json: "JSON"
     modal:
       delete_message: "¿Desea eliminar este registro?"
+    header:
+      cancel: "Cancelar"
+      edit: "Editar"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"

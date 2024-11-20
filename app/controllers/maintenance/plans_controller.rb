@@ -3,6 +3,10 @@
 class Maintenance::PlansController < ApplicationController
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  PERMITTED_ATTRIBUTES =
+    %i[ code name description plan_type status criticality frequency_type
+        frequency_value estimated_duration requires_shutdown
+        maintenance_asset_id maintenance_asset_component_id start_date ].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
@@ -45,10 +49,12 @@ class Maintenance::PlansController < ApplicationController
     respond_to do |format|
       if @maintenance_plan.save
         format.html { redirect_to @maintenance_plan, notice: t('.notice') }
-        format.json { render :show, status: :created, location: @maintenance_plan }
+        format.json { render :show, status: :created,
+                             location: @maintenance_plan }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @maintenance_plan.errors, status: :unprocessable_entity }
+        format.json { render json: @maintenance_plan.errors,
+                             status: :unprocessable_entity }
       end
     end
   end
@@ -61,7 +67,8 @@ class Maintenance::PlansController < ApplicationController
         format.json { render :show, status: :ok, location: @maintenance_plan }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @maintenance_plan.errors, status: :unprocessable_entity }
+        format.json { render json: @maintenance_plan.errors,
+                             status: :unprocessable_entity }
       end
     end
   end
@@ -71,7 +78,8 @@ class Maintenance::PlansController < ApplicationController
     @maintenance_plan.destroy!
 
     respond_to do |format|
-      format.html { redirect_to maintenance_plans_path, status: :see_other, notice: t('.notice') }
+      format.html { redirect_to maintenance_plans_path, status: :see_other,
+                                notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -88,11 +96,12 @@ class Maintenance::PlansController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_plan
-      @maintenance_plan = Maintenance::Plan.find(params.expect(:id))
+      options = { include: %i[ asset component ] }
+      @maintenance_plan = Maintenance::Plan.find(params[:id], options)
     end
 
     # Only allow a list of trusted parameters through.
     def maintenance_plan_params
-      params.expect(maintenance_plan: %i[maintenance_plan_template_id maintenance_asset_id maintenance_asset_component_id status start_date last_execution_date next_execution_date notes])
+      params.expect(maintenance_plan: PERMITTED_ATTRIBUTES)
     end
 end

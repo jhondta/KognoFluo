@@ -31,57 +31,15 @@ es-MX:
       maintenance/asset:
         one: "Activo"
         other: "Activos"
-      maintenance/frequency_type:
-        one: "Tipo de frecuencia"
-        other: "Tipos de frecuencia"
       maintenance/manufacturer:
         one: "Fabricante"
         other: "Fabricantes"
-      maintenance/measurement_type:
-        one: "Tipo de medida"
-        other: "Tipos de medida"
-      maintenance/plan_template_task:
-        one: "Tarea"
-        other: "Tareas"
-      maintenance/plan_template:
-        one: "Plantilla"
-        other: "Plantillas"
-      maintenance/plan_type:
-        one: "Tipo de plan"
-        other: "Tipos de plan"
       maintenance/plan:
         one: "Plan"
         other: "Planes"
-      maintenance/scheduled_assignment:
-        one: "Asignación programada"
-        other: "Asignaciones programadas"
-      maintenance/schedule:
-        one: "Horario"
-        other: "Horarios"
-      maintenance/specialty:
-        one: "Especialidad"
-        other: "Especialidades"
-      maintenance/standard_task_measurement:
-        one: "Medida estandard"
-        other: "Medidas estandard"
-      maintenance/standard_task_step:
-        one: "Paso estandard"
-        other: "Pasos estandard"
-      maintenance/standard_task_tool:
-        one: "Herramienta estandard"
-        other: "Herramientas estandard"
-      maintenance/standard_task:
-        one: "Tarea estandard"
-        other: "Tareas estandard"
-      maintenance/task_category:
-        one: "Categoria de tarea"
-        other: "Categorias de tarea"
       maintenance/technician:
         one: "Técnico"
         other: "Técnicos"
-      maintenance/tool:
-        one: "Herramienta"
-        other: "Herramientas"
       organization/area:
         one: "Area"
         other: "Areas"
@@ -169,10 +127,6 @@ es-MX:
         technical_specs: "Especificaciones técnicas"
         physical_location: "Ubicación física"
         notes: "Notas"
-      maintenance/frequency_type:
-        code: "Código"
-        name: "Nombre"
-        common_measure_unit_id: "Unidad de medida"
       maintenance/manufacturer:
         code: "Código"
         name: "Nombre"
@@ -181,90 +135,26 @@ es-MX:
         support_phone: "Teléfono de soporte"
         support_email: "Correo de soporte"
         notes: "Notas"
-      maintenance/measurement_type:
+      maintenance/plan:
         code: "Código"
         name: "Nombre"
-        common_measure_unit_id: "Unidad de medida"
-      maintenance/plan_template_task:
-        maintenance_plan_template_id: "Plan de mantenimiento"
-        maintenance_standard_task_id: "Tarea estandard"
-        sequence_number: "Secuencia"
-        custom_duration: "Duración personalizada"
-        custom_description: "Descripción personalizada"
-      maintenance/plan_template:
-        code: "Código"
-        name: "Nombre"
-        maintenance_plan_type_id: "Tipo de plan"
-        maintenance_frequency_type_id: "Tipo de frecuencia"
+        description: "Descripción"
+        plan_type: "Tipo de plan"
+        status: "Estado"
+        criticality: "Criticidad"
+        frequency_type: "Tipo de frecuencia"
         frequency_value: "Valor de frecuencia"
         estimated_duration: "Duración estimada"
         requires_shutdown: "Requiere apagado"
-        criticality_level: "Nivel de criticidad"
-      maintenance/plan_type:
-        code: "Código"
-        name: "Nombre"
-      maintenance/plan:
-        maintenance_plan_template_id: "Plan de mantenimiento"
         maintenance_asset_id: "Activo"
         maintenance_asset_component_id: "Componente"
-        status: "Estado"
         start_date: "Fecha de inicio"
-        last_execution_date: "Fecha de ejecución"
-        next_execution_date: "Fecha de proxima ejecución"
-      maintenance/scheduled_assignment:
-        maintenance_schedule_id: "Programado"
-        maintenance_technician_id: "Técnico"
-        maintenance_specialty_id: "Especialidad"
-        assigned_hours: "Horas asignadas"
-        status: "Estado"
-      maintenance/schedule:
-        maintenance_plan_id: "Plan de mantenimiento"
-        planned_date: "Fecha programada"
-        estimated_duration: "Duración estimada"
-        status: "Estado"
-        priority: "Prioridad"
-      maintenance/specialty:
-        code: "Código"
-        name: "Nombre"
-        description: "Descripción"
-      maintenance/standard_task_measurement:
-        maintenance_standard_task_id: "Tarea estandard"
-        maintenance_measurement_type_id: "Tipo de medida"
-        min_value: "Valor minimo"
-        max_value: "Valor maximo"
-        nominal_value: "Valor nominal"
-        tolerance_percentage: "Porcentaje de tolerancia"
-        is_critical: "Es crítico"
-      maintenance/standard_task_step:
-        maintenance_standard_task_id: "Tarea estandard"
-        sequence_number: "Secuencia"
-        estimated_duration: "Duración estimada"
-      maintenance/standard_task_tool:
-        maintenance_standard_task_id: "Tarea estandard"
-        maintenance_tool_id: "Herramienta"
-        quantity: "Cantidad"
-      maintenance/standard_task:
-        code: "Código"
-        name: "Nombre"
-        description: "Descripción"
-        maintenance_task_category_id: "Categoria de tarea"
-        estimated_duration: "Duración estimada"
-        requires_shutdown: "Requiere apagado"
-      maintenance/task_category:
-        code: "Código"
-        name: "Nombre"
-        description: "Descripción"
       maintenance/technician:
         user_id: "Usuario"
         specialty: "Especialidad"
         full_name: "Nombre"
         certificcation_level: "Nivel de certificación"
         status: "Estado"
-      maintenance/tool:
-        code: "Código"
-        name: "Nombre"
-        description: "Descripción"
-        calibration_required: "Requiere calibración"
       organization/area:
         code: "Código"
         name: "Nombre"
@@ -320,26 +210,27 @@ es-MX:
           inactive: "Inactivo"
           active: "Activo"
       maintenance/plan:
-        status:
-          inactive: "Inactivo"
-          active: "Activo"
-      maintenance/plan_template:
-        status:
-          inactive: "Inactivo"
-          active: "Activo"
-        criticality_level:
+        criticality:
           low: "Bajo"
           medium: "Medio"
           high: "Alto"
           critical: "Crítico"
-      maintenance/schedule:
+        frequency_type:
+          daily: "Diario"
+          weekly: "Semanal"
+          monthly: "Mensual"
+          quarterly: "Trimestral"
+          semiannually: "Semestral"
+          yearly: "Anual"
+        plan_type:
+          preventive: "Preventivo"
+          corrective: "Correctivo"
+          predictive: "Predictivo"
         status:
-          inactive: "Inactivo"
+          draft: "Borrador"
           active: "Activo"
-      maintenance/scheduled_assignment:
-        status:
-          inactive: "Inactivo"
-          active: "Activo"
+          completed: "Completado"
+          canceled: "Cancelado"
       maintenance/technician:
         status:
           inactive: "Inactivo"

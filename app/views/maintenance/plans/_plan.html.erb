@@ -1,17 +1,22 @@
 <div id="<%= dom_id plan %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Maintenance plan template:</strong>
-    <%= plan.maintenance_plan_template_id %>
+    <strong class="block font-medium mb-1">Code:</strong>
+    <%= plan.code %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Maintenance asset:</strong>
-    <%= plan.maintenance_asset_id %>
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= plan.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Component:</strong>
-    <%= plan.maintenance_asset_component_id %>
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= plan.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Plan type:</strong>
+    <%= plan.plan_type %>
   </p>
 
   <p class="my-5">
@@ -20,23 +25,43 @@
   </p>
 
   <p class="my-5">
+    <strong class="block font-medium mb-1">Criticality:</strong>
+    <%= plan.criticality %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Frequency type:</strong>
+    <%= plan.frequency_type %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Frequency value:</strong>
+    <%= plan.frequency_value %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Estimated duration:</strong>
+    <%= plan.estimated_duration %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Requires shutdown:</strong>
+    <%= plan.requires_shutdown %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Maintenance asset:</strong>
+    <%= plan.maintenance_asset_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Maintenance asset component:</strong>
+    <%= plan.maintenance_asset_component_id %>
+  </p>
+
+  <p class="my-5">
     <strong class="block font-medium mb-1">Start date:</strong>
     <%= plan.start_date %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Last execution date:</strong>
-    <%= plan.last_execution_date %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Next execution date:</strong>
-    <%= plan.next_execution_date %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Notes:</strong>
-    <%= plan.notes %>
   </p>
 
 </div>

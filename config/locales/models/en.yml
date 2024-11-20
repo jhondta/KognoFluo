@@ -31,57 +31,15 @@ en:
       maintenance/asset:
         one: "Asset"
         other: "Assets"
-      maintenance/frequency_type:
-        one: "Frequency type"
-        other: "Frequency types"
       maintenance/manufacturer:
         one: "Manufacturer"
         other: "Manufacturers"
-      maintenance/measurement_type:
-        one: "Measurement type"
-        other: "Measurement types"
-      maintenance/plan_template_task:
-        one: "Plan template task"
-        other: "Plan template tasks"
-      maintenance/plan_template:
-        one: "Plan template"
-        other: "Plan templates"
-      maintenance/plan_type:
-        one: "Plan type"
-        other: "Plan types"
       maintenance/plan:
         one: "Plan"
         other: "Plans"
-      maintenance/scheduled_assignment:
-        one: "Scheduled assignment"
-        other: "Scheduled assignments"
-      maintenance/schedule:
-        one: "Schedule"
-        other: "Schedules"
-      maintenance/specialty:
-        one: "Specialty"
-        other: "Specialties"
-      maintenance/standard_task_measurement:
-        one: "Standard task measurement"
-        other: "Standard task measurements"
-      maintenance/standard_task_step:
-        one: "Standard task step"
-        other: "Standard task steps"
-      maintenance/standard_task_tool:
-        one: "Standard task tool"
-        other: "Standard task tools"
-      maintenance/standard_task:
-        one: "Standard task"
-        other: "Standard tasks"
-      maintenance/task_category:
-        one: "Task category"
-        other: "Task categories"
       maintenance/technician:
         one: "Technician"
         other: "Technicians"
-      maintenance/tool:
-        one: "Tool"
-        other: "Tools"
       organization/area:
         one: "Area"
         other: "Areas"
@@ -169,10 +127,6 @@ en:
         technical_specs: "Technical specifications"
         physical_location: "Physical location"
         notes: "Notes"
-      maintenance/frequency_type:
-        code: "Code"
-        name: "Name"
-        common_measure_unit_id: "Measure unit"
       maintenance/manufacturer:
         code: "Code"
         name: "Name"
@@ -181,90 +135,26 @@ en:
         support_phone: "Support phone"
         support_email: "Support email"
         notes: "Notes"
-      maintenance/measurement_type:
+      maintenance/plan:
         code: "Code"
         name: "Name"
-        common_measure_unit_id: "Measure unit"
-      maintenance/plan_template_task:
-        maintenance_plan_template_id: "Plan template"
-        maintenance_standard_task_id: "Standard task"
-        sequence_number: "Sequence"
-        custom_duration: "Custom duration"
-        custom_description: "Custom description"
-      maintenance/plan_template:
-        code: "Code"
-        name: "Name"
-        maintenance_plan_type_id: "Plan type"
-        maintenance_frequency_type_id: "Frequency type"
+        description: "Description"
+        plan_type: "Plan type"
+        status: "Status"
+        criticality: "Criticality"
+        frequency_type: "Frequency type"
         frequency_value: "Frequency value"
         estimated_duration: "Estimated duration"
         requires_shutdown: "Requires shutdown"
-        criticality_level: "Criticality level"
-      maintenance/plan_type:
-        code: "Code"
-        name: "Name"
-      maintenance/plan:
-        maintenance_plan_template_id: "Plan template"
         maintenance_asset_id: "Asset"
         maintenance_asset_component_id: "Component"
-        status: "Status"
         start_date: "Start date"
-        last_execution_date: "Last execution date"
-        next_execution_date: "Next execution date"
-      maintenance/scheduled_assignment:
-        maintenance_schedule_id: "Schedule"
-        maintenance_technician_id: "Technician"
-        maintenance_specialty_id: "Specialty"
-        assigned_hours: "Assigned hours"
-        status: "Status"
-      maintenance/schedule:
-        maintenance_plan_id: "Plan"
-        planned_date: "Planned date"
-        estimated_duration: "Estimated duration"
-        status: "Status"
-        priority: "Priority"
-      maintenance/specialty:
-        code: "Code"
-        name: "Name"
-        description: "Description"
-      maintenance/standard_task_measurement:
-        maintenance_standard_task_id: "Standard task"
-        maintenance_measurement_type_id: "Measurement type"
-        min_value: "Min value"
-        max_value: "Max value"
-        nominal_value: "Nominal value"
-        tolerance_percentage: "Tolerance percentage"
-        is_critical: "Is critical"
-      maintenance/standard_task_step:
-        maintenance_standard_task_id: "Standard task"
-        sequence_number: "Sequence"
-        estimated_duration: "Estimated duration"
-      maintenance/standard_task_tool:
-        maintenance_standard_task_id: "Standard task"
-        maintenance_tool_id: "Tool"
-        quantity: "Quantity"
-      maintenance/standard_task:
-        code: "Code"
-        name: "Name"
-        description: "Description"
-        maintenance_task_category_id: "Task category"
-        estimated_duration: "Estimated duration"
-        requires_shutdown: "Requires shutdown"
-      maintenance/task_category:
-        code: "Code"
-        name: "Name"
-        description: "Description"
       maintenance/technician:
         user_id: "User"
         full_name: "Name"
         specialty: "Specialty"
         certificcation_level: "Certification level"
         status: "Status"
-      maintenance/tool:
-        code: "Code"
-        name: "Name"
-        description: "Description"
-        calibration_required: "Calibration required"
       organization/area:
         code: "Code"
         name: "Name"
@@ -320,26 +210,27 @@ en:
           inactive: "Inactive"
           active: "Active"
       maintenance/plan:
-        status:
-          inactive: "Inactive"
-          active: "Active"
-      maintenance/plan_template:
-        status:
-          inactive: "Inactive"
-          active: "Active"
-        criticality_level:
+        criticality:
           low: "Low"
-          medium: "Medio"
+          medium: "Medium"
           high: "High"
           critical: "Critical"
-      maintenance/schedule:
+        frequency_type:
+          daily: "Daily"
+          weekly: "Weekly"
+          monthly: "Monthly"
+          quarterly: "Quarterly"
+          semiannually: "Semiannually"
+          yearly: "Yearly"
+        plan_type:
+          preventive: "Preventive"
+          corrective: "Corrective"
+          predictive: "Predictive"
         status:
-          inactive: "Inactive"
+          draft: "Draft"
           active: "Active"
-      maintenance/scheduled_assignment:
-        status:
-          inactive: "Inactive"
-          active: "Active"
+          completed: "Completed"
+          canceled: "Canceled"
       maintenance/technician:
         status:
           inactive: "Inactive"

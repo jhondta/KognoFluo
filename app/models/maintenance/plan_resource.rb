@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-class Maintenance::Technician < ApplicationRecord
+class Maintenance::PlanResource < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  RESOURCE_TYPES = %i[tool specialty].freeze
+  SPECIALTY_TYPES = %i[electrical mechanical electronic instrumentation
+                       other].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
-  include HasEnumState
 
   # -- -------------------------------------------------------------------------
   # -- Attributes --------------------------------------------------------------
@@ -16,26 +18,19 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status
+  enum :resource_type, RESOURCE_TYPES, validate: true
+  enum :specialty_type, SPECIALTY_TYPES, validate: true
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :user
-
-  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
-  has_many :assets, through: :asset_assignees, class_name: 'Maintenance::Asset',
-           foreign_key: :maintenance_asset_id,
-           dependent: :restrict_with_error
-
-  has_many :assignments, class_name: 'Maintenance::Assignment',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
+  belongs_to :plan, class_name: 'Maintenance::Plan',
+             foreign_key: :maintenance_plan_id
+  belongs_to :tool, class_name: 'Maintenance::Tool',
+             foreign_key: :maintenance_tool_id
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :user_id, presence: true, uniqueness: true
+  validates :maintenance_plan_id, uniqueness: { scope: %i[maintenance_tool_id] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
@@ -45,8 +40,6 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :user
-  delegate :email, to: :user
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------

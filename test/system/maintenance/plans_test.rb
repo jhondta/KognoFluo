@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class Maintenance::PlansTest < ApplicationSystemTestCase
   setup do
-    @maintenance_plan = create(:maintenance_plan)
+    @maintenance_plan = maintenance_plans(:one)
   end
 
   test 'visiting the index' do
@@ -16,11 +16,17 @@ class Maintenance::PlansTest < ApplicationSystemTestCase
     visit maintenance_plans_url
     click_on 'New plan'
 
-    fill_in 'Component', with: @maintenance_plan.maintenance_asset_component_id
-    fill_in 'Last execution date', with: @maintenance_plan.last_execution_date
+    fill_in 'Code', with: @maintenance_plan.code
+    fill_in 'Criticality', with: @maintenance_plan.criticality
+    fill_in 'Description', with: @maintenance_plan.description
+    fill_in 'Estimated duration', with: @maintenance_plan.estimated_duration
+    fill_in 'Frequency type', with: @maintenance_plan.frequency_type
+    fill_in 'Frequency value', with: @maintenance_plan.frequency_value
+    fill_in 'Maintenance asset component', with: @maintenance_plan.maintenance_asset_component_id
     fill_in 'Maintenance asset', with: @maintenance_plan.maintenance_asset_id
-    fill_in 'Maintenance plan template', with: @maintenance_plan.maintenance_plan_template_id
-    fill_in 'Next execution date', with: @maintenance_plan.next_execution_date
+    fill_in 'Name', with: @maintenance_plan.name
+    fill_in 'Plan type', with: @maintenance_plan.plan_type
+    check 'Requires shutdown' if @maintenance_plan.requires_shutdown
     fill_in 'Start date', with: @maintenance_plan.start_date
     fill_in 'Status', with: @maintenance_plan.status
     click_on 'Create Plan'
@@ -33,12 +39,18 @@ class Maintenance::PlansTest < ApplicationSystemTestCase
     visit maintenance_plan_url(@maintenance_plan)
     click_on 'Edit this plan', match: :first
 
-    fill_in 'Component', with: @maintenance_plan.maintenance_asset_component_id
-    fill_in 'Last execution date', with: @maintenance_plan.last_execution_date
+    fill_in 'Code', with: @maintenance_plan.code
+    fill_in 'Criticality', with: @maintenance_plan.criticality
+    fill_in 'Description', with: @maintenance_plan.description
+    fill_in 'Estimated duration', with: @maintenance_plan.estimated_duration
+    fill_in 'Frequency type', with: @maintenance_plan.frequency_type
+    fill_in 'Frequency value', with: @maintenance_plan.frequency_value
+    fill_in 'Maintenance asset component', with: @maintenance_plan.maintenance_asset_component_id
     fill_in 'Maintenance asset', with: @maintenance_plan.maintenance_asset_id
-    fill_in 'Maintenance plan template', with: @maintenance_plan.maintenance_plan_template_id
-    fill_in 'Next execution date', with: @maintenance_plan.next_execution_date
-    fill_in 'Start date', with: @maintenance_plan.start_date
+    fill_in 'Name', with: @maintenance_plan.name
+    fill_in 'Plan type', with: @maintenance_plan.plan_type
+    check 'Requires shutdown' if @maintenance_plan.requires_shutdown
+    fill_in 'Start date', with: @maintenance_plan.start_date.to_s
     fill_in 'Status', with: @maintenance_plan.status
     click_on 'Update Plan'
 

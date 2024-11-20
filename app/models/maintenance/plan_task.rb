@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-class Maintenance::Technician < ApplicationRecord
+class Maintenance::PlanTask < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
-  # -- Concerns ----------------------------------------------------------------
-  include HasEnumState
+  # -- Concerns ---------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Attributes --------------------------------------------------------------
@@ -16,26 +15,19 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :user
+  belongs_to :plan, class_name: 'Maintenance::Plan',
+             foreign_key: :maintenance_plan_id
 
-  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
-  has_many :assets, through: :asset_assignees, class_name: 'Maintenance::Asset',
-           foreign_key: :maintenance_asset_id,
-           dependent: :restrict_with_error
-
-  has_many :assignments, class_name: 'Maintenance::Assignment',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
+  has_many :measurements, class_name: 'Maintenance::PlanTaskMeasurement',
+           foreign_key: :maintenance_plan_task_id, dependent: :destroy
+  has_many :steps, class_name: 'Maintenance::PlanTaskStep',
+           foreign_key: :maintenance_plan_task_id, dependent: :destroy
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :user_id, presence: true, uniqueness: true
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
@@ -45,8 +37,6 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :user
-  delegate :email, to: :user
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------

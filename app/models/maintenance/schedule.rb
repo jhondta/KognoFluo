@@ -1,8 +1,15 @@
 # frozen_string_literal: true
 
-class Maintenance::Technician < ApplicationRecord
+class Maintenance::Schedule < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  STATUSES = %i[scheduled in_progress completed canceled].freeze
+  STATUS_COLORS = {
+    scheduled: 'blue',
+    in_progress: 'yellow',
+    completed: 'green',
+    canceled: 'red'
+  }.freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
@@ -16,26 +23,19 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status
+  has_enum_state :status, values: STATUSES, colors: STATUS_COLORS,
+                 default: :scheduled
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :user
-
-  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
-  has_many :assets, through: :asset_assignees, class_name: 'Maintenance::Asset',
-           foreign_key: :maintenance_asset_id,
-           dependent: :restrict_with_error
+  belongs_to :plan, class_name: 'Maintenance::Plan',
+             foreign_key: :maintenance_plan_id
 
   has_many :assignments, class_name: 'Maintenance::Assignment',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
+           foreign_key: :maintenance_schedule_id, dependent: :destroy
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :user_id, presence: true, uniqueness: true
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
@@ -45,8 +45,6 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :user
-  delegate :email, to: :user
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------

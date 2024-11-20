@@ -18,11 +18,11 @@
     <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
       <% columns.each do |column| %>
         <td class="p-4 text-gray-500 whitespace-nowrap dark:text-gray-400">
-          <% if column == 'status' %>
-            <% color = record.status_color %>
+          <% if record.respond_to?("#{column}_color") %>
+            <% color = record.public_send("#{column}_color") %>
             <div class="flex items-center">
               <div class="h-2.5 w-2.5 rounded-full mr-2 bg-<%= color %>-400"></div>
-              <%= record.t_enum(:status) %>
+              <%= record.t_enum(column.to_sym) %>
             </div>
           <% else %>
             <%= record.public_send(column) %>

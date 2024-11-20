@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class Maintenance::Technician < ApplicationRecord
+class Maintenance::PlanTaskMeasurement < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  MEASUREMENT_TYPES = %i[voltage current resistance temperature pressure
+                         vibration].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
-  include HasEnumState
 
   # -- -------------------------------------------------------------------------
   # -- Attributes --------------------------------------------------------------
@@ -16,26 +17,15 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status
+  enum :measurement_type, MEASUREMENT_TYPES, validate: true
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :user
-
-  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
-  has_many :assets, through: :asset_assignees, class_name: 'Maintenance::Asset',
-           foreign_key: :maintenance_asset_id,
-           dependent: :restrict_with_error
-
-  has_many :assignments, class_name: 'Maintenance::Assignment',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
+  belongs_to :plan_task, class_name: 'Maintenance::PlanTask',
+             foreign_key: :maintenance_plan_task_id
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :user_id, presence: true, uniqueness: true
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
@@ -45,8 +35,6 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :user
-  delegate :email, to: :user
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------

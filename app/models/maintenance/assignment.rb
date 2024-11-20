@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
-class Maintenance::Technician < ApplicationRecord
+class Maintenance::Assignment < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
+  STATUSES = %i[pending accepted rejected completed].freeze
+  STATUS_COLORS = {
+    pending: 'yellow',
+    accepted: 'blue',
+    rejected: 'red',
+    completed: 'green'
+  }.freeze
 
   # -- -------------------------------------------------------------------------
-  # -- Concerns ----------------------------------------------------------------
-  include HasEnumState
+  # -- Concerns ---------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Attributes --------------------------------------------------------------
@@ -16,26 +22,20 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Enums -------------------------------------------------------------------
-  has_enum_state :status
+  has_enum_state :status, values: STATUSES, colors: STATUS_COLORS,
+                 default: :pending
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
-  belongs_to :user
-
-  has_many :asset_assignees, class_name: 'Maintenance::AssetAssignee',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
-  has_many :assets, through: :asset_assignees, class_name: 'Maintenance::Asset',
-           foreign_key: :maintenance_asset_id,
-           dependent: :restrict_with_error
-
-  has_many :assignments, class_name: 'Maintenance::Assignment',
-           foreign_key: :maintenance_technician_id,
-           dependent: :restrict_with_error
+  belongs_to :schedule, class_name: 'Maintenance::Schedule',
+             foreign_key: :maintenance_schedule_id
+  belongs_to :technician, class_name: 'Maintenance::Technician',
+             foreign_key: :maintenance_technician_id
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :user_id, presence: true, uniqueness: true
+  validates :maintenance_schedule_id,
+            uniqueness: { scope: %i[maintenance_technician_id] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
@@ -45,8 +45,6 @@ class Maintenance::Technician < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :user
-  delegate :email, to: :user
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------
