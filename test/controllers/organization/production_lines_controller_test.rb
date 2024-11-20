@@ -5,6 +5,7 @@ require 'test_helper'
 class Organization::ProductionLinesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization_production_line = create(:organization_production_line)
+    sign_in shared_user
   end
 
   test 'should get index' do

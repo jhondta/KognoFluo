@@ -5,6 +5,7 @@ require 'test_helper'
 class Common::MeasureUnitTypesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @common_measure_unit_type = create(:common_measure_unit_type)
+    sign_in shared_user
   end
 
   test 'should get index' do

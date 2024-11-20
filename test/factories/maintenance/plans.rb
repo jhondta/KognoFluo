@@ -2,9 +2,8 @@
 
 FactoryBot.define do
   factory :maintenance_plan, class: 'Maintenance::Plan' do
-    maintenance_plan_template { nil }
-    maintenance_asset { nil }
-    component { nil }
+    association :asset, factory: :maintenance_asset
+    association :component, factory: :maintenance_asset_component
     status { 1 }
     start_date { '2024-11-05' }
     last_execution_date { '2024-11-05' }

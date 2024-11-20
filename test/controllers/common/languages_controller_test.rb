@@ -5,6 +5,7 @@ require 'test_helper'
 class Common::LanguagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @common_language = create(:common_language)
+    sign_in shared_user
   end
 
   test 'should get index' do

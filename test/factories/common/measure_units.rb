@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :common_measure_unit, class: 'Common::MeasureUnit' do
-    name { 'MyString' }
-    abbreviation { 'MyString' }
-    common_measure_unit_type { nil }
+    name { 'Meter' }
+    abbreviation { 'm' }
+    association :measure_unit_type, factory: :common_measure_unit_type
   end
 end

@@ -5,6 +5,7 @@ require 'test_helper'
 class Common::CountriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @common_country = create(:common_country)
+    sign_in shared_user
   end
 
   test 'should get index' do

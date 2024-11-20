@@ -5,6 +5,7 @@ require 'test_helper'
 class UserProfilesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user_profile = create(:user_profile)
+    sign_in shared_user
   end
 
   test 'should get index' do

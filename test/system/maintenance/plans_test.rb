@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class Maintenance::PlansTest < ApplicationSystemTestCase
   setup do
-    @maintenance_plan = maintenance_plans(:one)
+    @maintenance_plan = create(:maintenance_plan)
   end
 
   test 'visiting the index' do

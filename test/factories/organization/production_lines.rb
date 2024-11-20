@@ -5,7 +5,7 @@ FactoryBot.define do
     code { 'MyString' }
     name { 'MyString' }
     description { 'MyText' }
-    configuration_area { nil }
+    association :area, factory: :organization_area
     status { 1 }
   end
 end

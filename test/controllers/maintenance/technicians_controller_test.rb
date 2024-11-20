@@ -4,7 +4,8 @@ require 'test_helper'
 
 class Maintenance::TechniciansControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @maintenance_technician = maintenance_technicians(:one)
+    @maintenance_technician = create(:maintenance_technician)
+    sign_in shared_user
   end
 
   test 'should get index' do

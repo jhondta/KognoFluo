@@ -5,6 +5,7 @@ require 'test_helper'
 class Maintenance::PlansControllerTest < ActionDispatch::IntegrationTest
   setup do
     @maintenance_plan = create(:maintenance_plan)
+    sign_in shared_user
   end
 
   test 'should get index' do

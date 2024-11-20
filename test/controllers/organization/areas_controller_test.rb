@@ -5,6 +5,7 @@ require 'test_helper'
 class Organization::AreasControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization_area = create(:organization_area)
+    sign_in shared_user
   end
 
   test 'should get index' do

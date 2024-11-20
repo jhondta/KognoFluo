@@ -5,6 +5,7 @@ require 'test_helper'
 class Common::TimezonesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @common_timezone = create(:common_timezone)
+    sign_in shared_user
   end
 
   test 'should get index' do

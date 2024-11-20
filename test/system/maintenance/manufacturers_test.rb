@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class Maintenance::ManufacturersTest < ApplicationSystemTestCase
   setup do
-    @maintenance_manufacturer = maintenance_manufacturers(:one)
+    @maintenance_manufacturer = create(:maintenance_manufacturer)
   end
 
   test 'visiting the index' do

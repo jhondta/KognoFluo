@@ -5,6 +5,7 @@ require 'test_helper'
 class Organization::PlantsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization_plant = create(:organization_plant)
+    sign_in shared_user
   end
 
   test 'should get index' do

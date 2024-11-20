@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class Maintenance::AssetAssigneesTest < ApplicationSystemTestCase
   setup do
-    @maintenance_asset_assignee = maintenance_asset_assignees(:one)
+    @maintenance_asset_assignee = create(:maintenance_asset_assignee)
   end
 
   test 'visiting the index' do

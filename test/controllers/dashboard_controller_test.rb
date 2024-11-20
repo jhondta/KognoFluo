@@ -6,7 +6,7 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   test 'should get show when authenticated' do
-    sign_in users(:one)
+    sign_in :user
     get authenticated_root_url
     assert_response :success
     assert_template :show

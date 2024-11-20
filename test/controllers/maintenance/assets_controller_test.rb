@@ -4,7 +4,8 @@ require 'test_helper'
 
 class Maintenance::AssetsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @maintenance_asset = maintenance_assets(:one)
+    @maintenance_asset = create(:maintenance_asset)
+    sign_in shared_user
   end
 
   test 'should get index' do

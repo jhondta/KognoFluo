@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class Maintenance::AssetsTest < ApplicationSystemTestCase
   setup do
-    @maintenance_asset = maintenance_assets(:one)
+    @maintenance_asset = create(:maintenance_asset)
   end
 
   test 'visiting the index' do

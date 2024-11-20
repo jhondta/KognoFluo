@@ -3,8 +3,8 @@
 FactoryBot.define do
   factory :common_currency, class: 'Common::Currency' do
     name { 'MyString' }
-    code_alpha { 'MyString' }
-    code_numeric { 'MyString' }
-    symbol { 'MyString' }
+    code_alpha { 'AAA' }
+    code_numeric { '111' }
+    symbol { '$' }
   end
 end

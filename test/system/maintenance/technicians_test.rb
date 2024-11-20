@@ -4,7 +4,7 @@ require 'application_system_test_case'
 
 class Maintenance::TechniciansTest < ApplicationSystemTestCase
   setup do
-    @maintenance_technician = maintenance_technicians(:one)
+    @maintenance_technician = create(:maintenance_technician)
   end
 
   test 'visiting the index' do

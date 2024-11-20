@@ -4,7 +4,8 @@ require 'test_helper'
 
 class Maintenance::ManufacturersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @maintenance_manufacturer = maintenance_manufacturers(:one)
+    @maintenance_manufacturer = create(:maintenance_manufacturer)
+    sign_in shared_user
   end
 
   test 'should get index' do

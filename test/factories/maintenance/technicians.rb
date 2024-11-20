@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :maintenance_technician, class: 'Maintenance::Technician' do
-    user { nil }
+    association :user, factory: :user
     specialty { 'MyString' }
     certification_level { 'MyString' }
     status { 1 }
