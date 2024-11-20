@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_06_023613) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -185,16 +185,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.index ["organization_production_line_id"], name: "index_maintenance_assets_on_organization_production_line_id"
   end
 
-  create_table "maintenance_frequency_types", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.integer "common_measure_unit_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_frequency_types_on_code", unique: true
-    t.index ["common_measure_unit_id"], name: "index_maintenance_frequency_types_on_common_measure_unit_id"
-  end
-
   create_table "maintenance_manufacturers", force: :cascade do |t|
     t.string "code", limit: 10, null: false
     t.string "name", limit: 100, null: false
@@ -205,53 +195,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["code"], name: "index_maintenance_manufacturers_on_code", unique: true
-  end
-
-  create_table "maintenance_measurement_types", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.integer "common_measure_unit_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_measurement_types_on_code", unique: true
-    t.index ["common_measure_unit_id"], name: "index_maintenance_measurement_types_on_common_measure_unit_id"
-  end
-
-  create_table "maintenance_plan_template_tasks", force: :cascade do |t|
-    t.integer "maintenance_plan_template_id", null: false
-    t.integer "maintenance_standard_task_id", null: false
-    t.integer "sequence_number", default: 1, null: false
-    t.integer "custom_duration"
-    t.text "custom_description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["maintenance_plan_template_id"], name: "idx_on_maintenance_plan_template_id_a145bc93c4"
-    t.index ["maintenance_standard_task_id"], name: "idx_on_maintenance_standard_task_id_8ee1d1a5ff"
-  end
-
-  create_table "maintenance_plan_templates", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.text "description"
-    t.integer "maintenance_plan_type_id", null: false
-    t.integer "maintenance_frequency_type_id", null: false
-    t.integer "frequency_value"
-    t.integer "estimated_duration"
-    t.boolean "requires_shutdown"
-    t.integer "criticality_level"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_plan_templates_on_code", unique: true
-    t.index ["maintenance_frequency_type_id"], name: "idx_on_maintenance_frequency_type_id_5bf441431a"
-    t.index ["maintenance_plan_type_id"], name: "index_maintenance_plan_templates_on_maintenance_plan_type_id"
-  end
-
-  create_table "maintenance_plan_types", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_plan_types_on_code", unique: true
   end
 
   create_table "maintenance_plans", force: :cascade do |t|
@@ -269,94 +212,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.index ["maintenance_plan_template_id"], name: "index_maintenance_plans_on_maintenance_plan_template_id"
   end
 
-  create_table "maintenance_schedule_assignments", force: :cascade do |t|
-    t.integer "maintenance_schedule_id", null: false
-    t.integer "maintenance_technician_id", null: false
-    t.integer "maintenance_specialty_id", null: false
-    t.decimal "assigned_hours"
-    t.integer "status", default: 1, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["maintenance_schedule_id"], name: "idx_on_maintenance_schedule_id_0c7712bb8a"
-    t.index ["maintenance_specialty_id"], name: "idx_on_maintenance_specialty_id_b81b60323e"
-    t.index ["maintenance_technician_id"], name: "idx_on_maintenance_technician_id_e0444bb508"
-  end
-
-  create_table "maintenance_schedules", force: :cascade do |t|
-    t.integer "maintenance_plan_id", null: false
-    t.datetime "planned_date", null: false
-    t.integer "estimated_duration"
-    t.integer "status", default: 1, null: false
-    t.string "priority"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["maintenance_plan_id"], name: "index_maintenance_schedules_on_maintenance_plan_id"
-  end
-
-  create_table "maintenance_specialties", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_specialties_on_code", unique: true
-  end
-
-  create_table "maintenance_standard_task_measurements", force: :cascade do |t|
-    t.integer "maintenance_standard_task_id", null: false
-    t.integer "maintenance_measurement_type_id", null: false
-    t.decimal "min_value"
-    t.decimal "max_value"
-    t.decimal "nominal_value"
-    t.decimal "tolerance_percentage"
-    t.boolean "is_critical"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["maintenance_measurement_type_id"], name: "idx_on_maintenance_measurement_type_id_7eb795657e"
-    t.index ["maintenance_standard_task_id"], name: "idx_on_maintenance_standard_task_id_4a2b240adb"
-  end
-
-  create_table "maintenance_standard_task_steps", force: :cascade do |t|
-    t.integer "maintenance_standard_task_id", null: false
-    t.integer "sequence_number", default: 1, null: false
-    t.integer "estimated_duration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["maintenance_standard_task_id"], name: "idx_on_maintenance_standard_task_id_b20f691c97"
-  end
-
-  create_table "maintenance_standard_task_tools", force: :cascade do |t|
-    t.integer "maintenance_standard_task_id", null: false
-    t.integer "maintenance_tool_id", null: false
-    t.integer "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["maintenance_standard_task_id"], name: "idx_on_maintenance_standard_task_id_88e039d89b"
-    t.index ["maintenance_tool_id"], name: "index_maintenance_standard_task_tools_on_maintenance_tool_id"
-  end
-
-  create_table "maintenance_standard_tasks", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.text "description"
-    t.integer "maintenance_task_category_id", null: false
-    t.integer "estimated_duration"
-    t.boolean "requires_shutdown"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_standard_tasks_on_code", unique: true
-    t.index ["maintenance_task_category_id"], name: "idx_on_maintenance_task_category_id_4d5d747afe"
-  end
-
-  create_table "maintenance_task_categories", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_task_categories_on_code", unique: true
-  end
-
   create_table "maintenance_technicians", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "specialty", limit: 100
@@ -365,16 +220,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_maintenance_technicians_on_user_id", unique: true
-  end
-
-  create_table "maintenance_tools", force: :cascade do |t|
-    t.string "code", limit: 10, null: false
-    t.string "name", limit: 100, null: false
-    t.text "description"
-    t.boolean "calibration_required", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["code"], name: "index_maintenance_tools_on_code", unique: true
   end
 
   create_table "organization_areas", force: :cascade do |t|
@@ -462,25 +307,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_06_023824) do
   add_foreign_key "maintenance_assets", "maintenance_asset_types"
   add_foreign_key "maintenance_assets", "maintenance_manufacturers"
   add_foreign_key "maintenance_assets", "organization_production_lines"
-  add_foreign_key "maintenance_frequency_types", "common_measure_units"
-  add_foreign_key "maintenance_measurement_types", "common_measure_units"
-  add_foreign_key "maintenance_plan_template_tasks", "maintenance_plan_templates"
-  add_foreign_key "maintenance_plan_template_tasks", "maintenance_standard_tasks"
-  add_foreign_key "maintenance_plan_templates", "maintenance_frequency_types"
-  add_foreign_key "maintenance_plan_templates", "maintenance_plan_types"
   add_foreign_key "maintenance_plans", "maintenance_asset_components"
   add_foreign_key "maintenance_plans", "maintenance_assets"
   add_foreign_key "maintenance_plans", "maintenance_plan_templates"
-  add_foreign_key "maintenance_schedule_assignments", "maintenance_schedules"
-  add_foreign_key "maintenance_schedule_assignments", "maintenance_specialties"
-  add_foreign_key "maintenance_schedule_assignments", "maintenance_technicians"
-  add_foreign_key "maintenance_schedules", "maintenance_plans"
-  add_foreign_key "maintenance_standard_task_measurements", "maintenance_measurement_types"
-  add_foreign_key "maintenance_standard_task_measurements", "maintenance_standard_tasks"
-  add_foreign_key "maintenance_standard_task_steps", "maintenance_standard_tasks"
-  add_foreign_key "maintenance_standard_task_tools", "maintenance_standard_tasks"
-  add_foreign_key "maintenance_standard_task_tools", "maintenance_tools"
-  add_foreign_key "maintenance_standard_tasks", "maintenance_task_categories"
   add_foreign_key "maintenance_technicians", "users"
   add_foreign_key "organization_areas", "organization_plants"
   add_foreign_key "organization_production_lines", "organization_areas"
