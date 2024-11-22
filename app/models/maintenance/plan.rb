@@ -40,7 +40,7 @@ class Maintenance::Plan < ApplicationRecord
   belongs_to :asset, class_name: 'Maintenance::Asset',
              foreign_key: :maintenance_asset_id
   belongs_to :component, class_name: 'Maintenance::AssetComponent',
-             foreign_key: :maintenance_asset_component_id
+             foreign_key: :maintenance_asset_component_id, optional: true
 
   has_many :resources, class_name: 'Maintenance::PlanResource',
            foreign_key: :maintenance_plan_id, dependent: :destroy

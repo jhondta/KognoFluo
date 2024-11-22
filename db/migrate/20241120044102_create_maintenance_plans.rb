@@ -14,7 +14,7 @@ class CreateMaintenancePlans < ActiveRecord::Migration[8.0]
       t.integer :estimated_duration
       t.boolean :requires_shutdown, default: false
       t.references :maintenance_asset, null: false, foreign_key: true
-      t.references :maintenance_asset_component, null: false, foreign_key: true
+      t.references :maintenance_asset_component, null: true, foreign_key: true
       t.datetime :start_date
 
       t.timestamps
