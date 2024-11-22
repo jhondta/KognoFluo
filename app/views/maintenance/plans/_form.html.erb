@@ -1,139 +1,178 @@
+<!-- Tabs -->
+<%= render 'maintenance/plans/sections/tabs' %>
 
-<ol class="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
-  <li class="flex items-center text-blue-600 dark:text-blue-500 space-x-2.5 rtl:space-x-reverse">
-        <span class="flex items-center justify-center w-8 h-8 border border-blue-600 rounded-full shrink-0 dark:border-blue-500">
-            1
-        </span>
-    <span>
-            <h3 class="font-medium leading-tight">Información General</h3>
-            <p class="text-sm">Step details here</p>
-        </span>
-  </li>
-  <li class="flex items-center text-gray-500 dark:text-gray-400 space-x-2.5 rtl:space-x-reverse">
-        <span class="flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
-            2
-        </span>
-    <span>
-            <h3 class="font-medium leading-tight">Company info</h3>
-            <p class="text-sm">Step details here</p>
-        </span>
-  </li>
-  <li class="flex items-center text-gray-500 dark:text-gray-400 space-x-2.5 rtl:space-x-reverse">
-        <span class="flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
-            3
-        </span>
-    <span>
-            <h3 class="font-medium leading-tight">Payment info</h3>
-            <p class="text-sm">Step details here</p>
-        </span>
-  </li>
-</ol>
+<!-- Tab Content -->
+<div id="tab-content" class="h-full">
+  <%= form_with(model: maintenance_plan, id: 'plan_form') do |form| %>
+    <%= render partial: 'shared/error_messages', locals: { resource: maintenance_plan } %>
+    <div class="hidden py-4 pt-6" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <div class="grid gap-6">
+        <!-- Información General -->
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <h3 class="text-lg font-medium mb-4">Información General</h3>
 
+          <div class="grid md:grid-cols-2 gap-4">
+            <!-- Primera columna -->
+            <div class="space-y-4">
+              <div>
+                <%= form.label :plan_type, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= form.select :plan_type,
+                                enum_options_for_select(maintenance_plan.class, :plan_type),
+                                {},
+                                class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                %>
+              </div>
 
-<form action="#">
-  <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Invoice details</h3>
-  <div class="grid gap-4 mb-4 sm:grid-cols-2">
-    <div>
-      <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-      <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="username.example" required="">
+              <div>
+                <%= form.label :code, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= form.text_field :code,
+                                    class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                %>
+              </div>
+
+              <div>
+                <%= form.label :criticality, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= form.select :criticality,
+                                enum_options_for_select(maintenance_plan.class, :criticality),
+                                {},
+                                class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                %>
+              </div>
+            </div>
+
+            <!-- Segunda columna -->
+            <div class="space-y-4">
+              <div>
+                <%= form.label :status, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= form.select :status,
+                                enum_options_for_select(maintenance_plan.class, :status),
+                                {},
+                                class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                %>
+              </div>
+
+              <div>
+                <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= form.text_field :name,
+                                    class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                %>
+              </div>
+
+              <!-- Campo de duración con horas y minutos -->
+              <div>
+                <%= form.label :estimated_duration, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <%= form.number_field :duration_hours,
+                                          class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+                                          placeholder: "Horas"
+                    %>
+                  </div>
+                  <div>
+                    <%= form.number_field :duration_minutes,
+                                          class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+                                          placeholder: "Minutos"
+                    %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Campos de ancho completo -->
+          <div class="mt-4">
+            <%= form.label :description, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+            <%= form.text_area :description,
+                               rows: 3,
+                               class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+            %>
+          </div>
+
+          <div class="mt-4">
+            <label class="relative inline-flex items-center cursor-pointer">
+              <%= form.check_box :requires_shutdown,
+                                 class: "sr-only peer",
+                                 data: { action: "change->form#toggleShutdown" }
+              %>
+              <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+              <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Requiere paro de equipo</span>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-      <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="">
+
+    <!-- Components -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="components" role="tabpanel"
+         aria-labelledby="components-tab">
+      <div class="grid gap-6">
+        <!-- Selección de Activo -->
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <h3 class="text-lg font-medium mb-4">Selección de Activo</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <%= form.label :maintenance_asset_id, "Activo",
+                             class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= form.collection_select :maintenance_asset_id,
+                                         Maintenance::Asset.active, :id, :name,
+                                         { prompt: "Seleccionar activo..." },
+                                         data: { action: "change->form#loadComponents" },
+                                         class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              %>
+            </div>
+
+            <div>
+              <%= form.label :maintenance_asset_component_id, "Componente (Opcional)",
+                             class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= form.collection_select :maintenance_asset_component_id,
+                                         @maintenance_plan.asset&.components || [],
+                                         :id, :name,
+                                         { prompt: "Seleccionar componente..." },
+                                         class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recursos Necesarios -->
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <h3 class="text-lg font-medium mb-4">Recursos Necesarios</h3>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Herramientas -->
+            <!-- div>
+     
+            </div -->
+
+            <!-- Especialidades -->
+            <!--div>
+
+            </div -->
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-      <input type="password" name="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required="">
-    </div>                        <div>
-    <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
-    <input type="password" name="confirm-password" id="confirm-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required="">
-  </div>
-  </div>
-  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-    Next Step: Payment Info
-  </button>
-</form>
 
+    <!-- Documents -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="documents" role="tabpanel"
+         aria-labelledby="documents-tab">
 
-<%= form_with(model: maintenance_plan, class: "contents") do |form| %>
-  <% if maintenance_plan.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(maintenance_plan.errors.count, "error") %> prohibited this maintenance_plan from being saved:</h2>
+    </div>
 
-      <ul>
-        <% maintenance_plan.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <!-- Assignees -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="assignees" role="tabpanel"
+         aria-labelledby="assignees-tab">
+
+    </div>
+
+    <!-- History -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="history" role="tabpanel"
+         aria-labelledby="history-tab">
+
     </div>
   <% end %>
-
-  <div class="my-5">
-    <%= form.label :code %>
-    <%= form.text_field :code, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.textarea :description, rows: 4, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :plan_type %>
-    <%= form.number_field :plan_type, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :status %>
-    <%= form.number_field :status, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :criticality %>
-    <%= form.number_field :criticality, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :frequency_type %>
-    <%= form.number_field :frequency_type, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :frequency_value %>
-    <%= form.number_field :frequency_value, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :estimated_duration %>
-    <%= form.number_field :estimated_duration, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :requires_shutdown %>
-    <%= form.checkbox :requires_shutdown, class: "block mt-2 h-5 w-5" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :maintenance_asset_id %>
-    <%= form.text_field :maintenance_asset_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :maintenance_asset_component_id %>
-    <%= form.text_field :maintenance_asset_component_id, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :start_date %>
-    <%= form.datetime_field :start_date, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>

@@ -44,6 +44,7 @@ es-MX:
     header:
       cancel: "Cancelar"
       edit: "Editar"
+      submit: "Guardar"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"
@@ -158,6 +159,12 @@ es-MX:
             calendar: "Calendario"
             scheduling: "Programación"
             templates: "Plantillas"
+      form:
+        general_information: "General"
+      new:
+        title: "Nuevo plan"
+      edit:
+        title: "Editar plan"
   organization:
     areas:
       area_select:

@@ -34,6 +34,7 @@ class Maintenance::Plan < ApplicationRecord
                  colors: CRITICALITY_COLORS, default: :low
   has_enum_state :plan_type, values: PLAN_TYPES, colors: PLAN_TYPE_COLORS,
                  default: :preventive
+  enum :frequency_type, FREQUENCY_TYPES, validate: true
 
   # -- -------------------------------------------------------------------------
   # -- Associations ------------------------------------------------------------
@@ -47,7 +48,7 @@ class Maintenance::Plan < ApplicationRecord
   has_many :tasks, class_name: 'Maintenance::PlanTask',
            foreign_key: :maintenance_plan_id, dependent: :destroy
   has_many :schedules, class_name: 'Maintenance::Schedule',
-            foreign_key: :maintenance_plan_id, dependent: :destroy
+           foreign_key: :maintenance_plan_id, dependent: :destroy
 
   has_rich_text :notes
 
@@ -70,6 +71,22 @@ class Maintenance::Plan < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Instance Methods --------------------------------------------------------
+  # En el modelo
+  def duration_hours
+    estimated_duration ? (estimated_duration / 60).floor : 0
+  end
+
+  def duration_minutes
+    estimated_duration ? (estimated_duration % 60) : 0
+  end
+
+  def duration_hours=(hours)
+    self.estimated_duration = (hours.to_i * 60) + duration_minutes
+  end
+
+  def duration_minutes=(minutes)
+    self.estimated_duration = (duration_hours * 60) + minutes.to_i
+  end
 
   # -- -------------------------------------------------------------------------
   # -- Private Methods ---------------------------------------------------------

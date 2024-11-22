@@ -44,6 +44,7 @@ en:
     header:
       cancel: "Cancel"
       edit: "Edit"
+      submit: "Save"
   search_placeholder: "Search %{resource}"
   new_resource: "New %{resource}"
   export: "Export"
@@ -158,6 +159,12 @@ en:
             calendar: "Calendar"
             scheduling: "Scheduling"
             templates: "Templates"
+      form:
+        general_information: "General"
+      new:
+        title: "New plan"
+      edit:
+        title: "Edit plan"
   organization:
     areas:
       area_select:
