@@ -96,8 +96,7 @@ class Maintenance::PlansController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_maintenance_plan
-      options = { include: %i[ asset component ] }
-      @maintenance_plan = Maintenance::Plan.find(params[:id], options)
+      @maintenance_plan = Maintenance::Plan.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
