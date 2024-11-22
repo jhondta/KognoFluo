@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 
 module.exports = {
     content: [
@@ -8,8 +9,17 @@ module.exports = {
         './app/views/**/*.{erb,haml,html,slim}',
         './app/assets/stylesheets/**/*.css',
     ],
+    safelist: [
+        {
+            pattern: /^bg-/,
+            variants: ['hover', 'focus'],
+        }
+    ],
     theme: {
         extend: {
+            colors: {
+                'orange': colors.orange,
+            },
             fontFamily: {
                 sans: ['Open Sans', ...defaultTheme.fontFamily.sans],
             },
