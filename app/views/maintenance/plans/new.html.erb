@@ -9,11 +9,11 @@
       </h1>
 
       <div class="flex items-center gap-2">
-        <%= link_to t('.cancel'), maintenance_assets_path,
+        <%= link_to t('shared.header.cancel'), maintenance_assets_path,
                     class: 'inline-flex items-center justify-center px-4 py-2 ml-2 text-sm font-medium text-center
                               text-white rounded-lg bg-gray-400 hover:bg-gray-500 focus:ring-4 focus:ring-gray-300
                               dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800' %>
-        <%= button_tag type: 'submit', form: 'asset_form',
+        <%= button_tag type: 'submit', form: 'plan_form',
                        class: 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center
                                  text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
                                  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' do %>
@@ -22,7 +22,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M5 11.917 9.724 16.5 19 7.5"/>
           </svg>
-          <%= t('.save') %>
+          <%= t('shared.header.submit') %>
         <% end %>
       </div>
     </div>
