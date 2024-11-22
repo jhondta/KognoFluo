@@ -230,7 +230,7 @@ en:
           draft: "Draft"
           active: "Active"
           completed: "Completed"
-          canceled: "Canceled"
+          cancelled: "Canceled"
       maintenance/technician:
         status:
           inactive: "Inactive"

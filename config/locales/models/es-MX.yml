@@ -230,7 +230,7 @@ es-MX:
           draft: "Borrador"
           active: "Activo"
           completed: "Completado"
-          canceled: "Cancelado"
+          cancelled: "Cancelado"
       maintenance/technician:
         status:
           inactive: "Inactivo"
