@@ -9,12 +9,7 @@ module.exports = {
         './app/views/**/*.{erb,haml,html,slim}',
         './app/assets/stylesheets/**/*.css',
     ],
-    safelist: [
-        {
-            pattern: /^bg-/,
-            variants: ['hover', 'focus'],
-        }
-    ],
+
     theme: {
         extend: {
             colors: {
