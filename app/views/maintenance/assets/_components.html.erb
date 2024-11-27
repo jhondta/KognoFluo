@@ -1,0 +1,4 @@
+<% if include_blank %>
+  <option value=""><%= prompt || "Seleccione una opción..." %></option>
+<% end %>
+<%= options_from_collection_for_select(components, :id, :name) %>

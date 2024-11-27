@@ -74,9 +74,12 @@ Rails.application.routes.draw do
 
     resources :assets do
       resources :asset_documents, path: 'documents', shallow: true
-      resources :asset_components, path: 'components', shallow: true
       resources :asset_assignees, path: 'assignees', shallow: true,
                 only: %i[ index create destroy ]
+
+      member do
+        get :components, defaults: { format: :turbo_stream }
+      end
     end
   end
 

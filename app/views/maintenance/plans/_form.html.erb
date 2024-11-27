@@ -64,14 +64,18 @@
                 <div class="grid grid-cols-2 gap-2">
                   <div>
                     <%= form.number_field :duration_hours,
-                                          class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white",
-                                          placeholder: "Horas"
+                                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                  dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                          placeholder: 'Horas'
                     %>
                   </div>
                   <div>
                     <%= form.number_field :duration_minutes,
-                                          class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white",
-                                          placeholder: "Minutos"
+                                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                  dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                          placeholder: 'Minutos'
                     %>
                   </div>
                 </div>
@@ -91,9 +95,7 @@
           <div class="mt-4">
             <label class="relative inline-flex items-center cursor-pointer">
               <%= form.check_box :requires_shutdown,
-                                 class: "sr-only peer",
-                                 data: { action: "change->form#toggleShutdown" }
-              %>
+                                 class: "sr-only peer" %>
               <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
               <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Requiere paro de equipo</span>
             </label>
@@ -109,31 +111,41 @@
         <!-- Selección de Activo -->
         <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <h3 class="text-lg font-medium mb-4">Selección de Activo</h3>
-          <div class="grid md:grid-cols-2 gap-4">
+          <div class="grid md:grid-cols-3 gap-4"
+               data-controller="select"
+               data-select-param-value="selected_id">
+
             <div>
               <%= form.label :maintenance_asset_id, "Activo",
                              class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
               <%= form.collection_select :maintenance_asset_id,
                                          Maintenance::Asset.active, :id, :name,
-                                         { prompt: "Seleccionar activo..." },
-                                         data: { action: "change->form#loadComponents" },
-                                         class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                                 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-              %>
+                                         { prompt: 'Seleccionar activo...',
+                                           selected: @maintenance_plan.asset&.id },
+                                         { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                           data: { select_target: 'select',
+                                                   select_child_id: 'component-select',
+                                                   action: 'change->select#update' } } %>
             </div>
 
             <div>
               <%= form.label :maintenance_asset_component_id, "Componente (Opcional)",
                              class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
               <%= form.collection_select :maintenance_asset_component_id,
-                                         @maintenance_plan.asset&.components || [],
-                                         :id, :name,
-                                         { prompt: "Seleccionar componente..." },
-                                         class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                                 focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                                 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-              %>
+                                         @maintenance_plan.asset&.components || [], :id, :name,
+                                         { prompt: 'Seleccionar componente...',
+                                           selected: @maintenance_plan.component&.id },
+                                         { id: 'component-select',
+                                           class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                           disabled: @maintenance_plan.asset.nil?,
+                                           data: { select_target: 'select',
+                                                   select_url: components_maintenance_asset_path(':parentId'),
+                                                   select_placeholder: 'Seleccionar componente...',
+                                                   select_keep_placeholder: true } } %>
             </div>
           </div>
         </div>

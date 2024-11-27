@@ -5,7 +5,7 @@ class Maintenance::PlansController < ApplicationController
   # -- Constants ---------------------------------------------------------------
   PERMITTED_ATTRIBUTES =
     %i[ code name description plan_type status criticality frequency_type
-        frequency_value estimated_duration requires_shutdown
+        frequency_value duration_hours duration_minutes requires_shutdown
         maintenance_asset_id maintenance_asset_component_id start_date ].freeze
 
   # -- -------------------------------------------------------------------------

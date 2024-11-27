@@ -17,7 +17,8 @@ class Maintenance::AssetsController < ApplicationController
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
-  before_action :set_maintenance_asset, only: %i[show edit update destroy]
+  before_action :set_maintenance_asset,
+                only: %i[show edit update destroy components]
   before_action :load_collections, only: %i[new edit create update]
 
   # -- -------------------------------------------------------------------------
@@ -94,6 +95,20 @@ class Maintenance::AssetsController < ApplicationController
       format.html { redirect_to maintenance_assets_path, status: :see_other,
                                 notice: t('.notice') }
       format.json { head :no_content }
+    end
+  end
+
+  def components
+    components = @maintenance_asset.components
+    target = params[:target]
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(target, partial: 'maintenance/assets/components',
+                                                 locals: { components: components,
+                                                           include_blank: params[:keep_placeholder],
+                                                           prompt: params[:prompt] })
+      end
     end
   end
 
