@@ -4,6 +4,7 @@ import "controllers"
 import "flowbite"
 import "trix"
 import "@rails/actiontext"
+import "@rails/request.js"
 
 window.document.addEventListener('turbo:render', (_event) => {
     window.initFlowbite();
