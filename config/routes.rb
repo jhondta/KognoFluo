@@ -39,7 +39,7 @@ Rails.application.routes.draw do
                            sign_up: 'signup' }
 
   # Defines the resources
-  resources :user_profiles
+  resources :profiles
 
   namespace :common do
     resources :measure_units

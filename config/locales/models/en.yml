@@ -49,7 +49,7 @@ en:
       organization/production_line:
         one: "Production line"
         other: "Production lines"
-      user_profile:
+      profile:
         one: "User profile"
         other: "User profiles"
       user:
@@ -172,7 +172,7 @@ en:
         description: "Description"
         organization_area_id: "Area"
         status: "Status"
-      user_profile:
+      profile:
         user_id: "User"
         first_name: "First name"
         last_name: "Last name"
@@ -231,6 +231,19 @@ en:
           active: "Active"
           completed: "Completed"
           cancelled: "Canceled"
+      maintenance/plan_resource:
+        resource_type:
+          tool: "Tool"
+          specialty: "Specialty"
+        specialty_type:
+          electrical: "Electrical"
+          mechanical: "Mechanical"
+          electronic: "Electronic"
+          instrumentation: "Instrumentation"
+          hydraulic: "Hydraulic"
+          pneumatic: "Pneumatic"
+          welding: "Welding"
+          other: "Other"
       maintenance/technician:
         status:
           inactive: "Inactive"

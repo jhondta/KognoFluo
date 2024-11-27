@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-class UserProfile < ApplicationRecord
+class Profile < ApplicationRecord
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
-  GENDERS = %i[prefer_not_to_say female male non_binary other].freeze
+  GENDERS = %i[ female male non_binary other ].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------

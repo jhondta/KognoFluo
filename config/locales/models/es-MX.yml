@@ -49,7 +49,7 @@ es-MX:
       organization/production_line:
         one: "Línea de producción"
         other: "Líneas de producción"
-      user_profile:
+      profile:
         one: "Perfil de usuario"
         other: "Perfiles de usuario"
       user:
@@ -172,7 +172,7 @@ es-MX:
         description: "Descripción"
         organization_area_id: "Area"
         status: "Estado"
-      user_profile:
+      profile:
         user_id: "Usuario"
         first_name: "Nombre"
         last_name: "Apellidos"
@@ -231,6 +231,19 @@ es-MX:
           active: "Activo"
           completed: "Completado"
           cancelled: "Cancelado"
+      maintenance/plan_resource:
+        resource_type:
+          tool: "Herramienta"
+          specialty: "Especialidad"
+        specialty_type:
+          electrical: "Eléctrico"
+          mechanical: "Mecánico"
+          electronic: "Electrónico"
+          instrumentation: "Instrumentación"
+          hydraulic: "Hidráulico"
+          pneumatic: "Neumático"
+          welding: "Soldadura"
+          other: "Otro"
       maintenance/technician:
         status:
           inactive: "Inactivo"

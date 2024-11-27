@@ -276,7 +276,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_123248) do
     t.integer "estimated_duration"
     t.boolean "requires_shutdown", default: false
     t.integer "maintenance_asset_id", null: false
-    t.integer "maintenance_asset_component_id", null: false
+    t.integer "maintenance_asset_component_id"
     t.datetime "start_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -349,7 +349,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_123248) do
     t.index ["organization_area_id"], name: "index_organization_production_lines_on_organization_area_id"
   end
 
-  create_table "user_profiles", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "first_name", limit: 255, null: false
     t.string "last_name", limit: 255, null: false
@@ -357,11 +357,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_123248) do
     t.integer "gender", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["birth_date"], name: "index_user_profiles_on_birth_date"
-    t.index ["first_name"], name: "index_user_profiles_on_first_name"
-    t.index ["gender"], name: "index_user_profiles_on_gender"
-    t.index ["last_name"], name: "index_user_profiles_on_last_name"
-    t.index ["user_id"], name: "index_user_profiles_on_user_id", unique: true
+    t.index ["birth_date"], name: "index_profiles_on_birth_date"
+    t.index ["first_name"], name: "index_profiles_on_first_name"
+    t.index ["gender"], name: "index_profiles_on_gender"
+    t.index ["last_name"], name: "index_profiles_on_last_name"
+    t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -413,5 +413,5 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_20_123248) do
   add_foreign_key "maintenance_technicians", "users"
   add_foreign_key "organization_areas", "organization_plants"
   add_foreign_key "organization_production_lines", "organization_areas"
-  add_foreign_key "user_profiles", "users"
+  add_foreign_key "profiles", "users"
 end

@@ -1,32 +1,32 @@
-<div id="<%= dom_id user_profile %>">
+<div id="<%= dom_id profile %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">User:</strong>
-    <%= user_profile.user_id %>
+    <%= profile.user_id %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">First name:</strong>
-    <%= user_profile.first_name %>
+    <%= profile.first_name %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Last name:</strong>
-    <%= user_profile.last_name %>
+    <%= profile.last_name %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Birth date:</strong>
-    <%= user_profile.birth_date %>
+    <%= profile.birth_date %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Gender:</strong>
-    <%= user_profile.gender %>
+    <%= profile.gender %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Avatar:</strong>
-    <%= link_to user_profile.avatar.filename, user_profile.avatar if user_profile.avatar.attached? %>
+    <%= link_to profile.avatar.filename, profile.avatar if profile.avatar.attached? %>
   </p>
 
 </div>

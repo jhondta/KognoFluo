@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserProfilesController < ApplicationController
+class ProfilesController < ApplicationController
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
 
@@ -12,7 +12,7 @@ class UserProfilesController < ApplicationController
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
-  before_action :set_user_profile, only: %i[ show edit update destroy ]
+  before_action :set_profile, only: %i[ show edit update destroy ]
 
   # -- -------------------------------------------------------------------------
   # -- Helper methods ----------------------------------------------------------
@@ -20,58 +20,58 @@ class UserProfilesController < ApplicationController
   # -- -------------------------------------------------------------------------
   # -- Actions -----------------------------------------------------------------
 
-  # GET /user_profiles or /user_profiles.json
+  # GET /profiles or /profiles.json
   def index
-    @user_profiles = UserProfile.all
+    @profiles = Profile.all
   end
 
-  # GET /user_profiles/1 or /user_profiles/1.json
+  # GET /profiles/1 or /profiles/1.json
   def show
   end
 
-  # GET /user_profiles/new
+  # GET /profiles/new
   def new
-    @user_profile = UserProfile.new
+    @profile = Profile.new
   end
 
-  # GET /user_profiles/1/edit
+  # GET /profiles/1/edit
   def edit
   end
 
-  # POST /user_profiles or /user_profiles.json
+  # POST /profiles or /profiles.json
   def create
-    @user_profile = UserProfile.new(user_profile_params)
+    @profile = Profile.new(profile_params)
 
     respond_to do |format|
-      if @user_profile.save
-        format.html { redirect_to @user_profile, notice: t('.notice') }
-        format.json { render :show, status: :created, location: @user_profile }
+      if @profile.save
+        format.html { redirect_to @profile, notice: t('.notice') }
+        format.json { render :show, status: :created, location: @profile }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user_profile.errors, status: :unprocessable_entity }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /user_profiles/1 or /user_profiles/1.json
+  # PATCH/PUT /profiles/1 or /profiles/1.json
   def update
     respond_to do |format|
-      if @user_profile.update(user_profile_params)
-        format.html { redirect_to @user_profile, notice: t('.notice') }
-        format.json { render :show, status: :ok, location: @user_profile }
+      if @profile.update(profile_params)
+        format.html { redirect_to @profile, notice: t('.notice') }
+        format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user_profile.errors, status: :unprocessable_entity }
+        format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /user_profiles/1 or /user_profiles/1.json
+  # DELETE /profiles/1 or /profiles/1.json
   def destroy
-    @user_profile.destroy!
+    @profile.destroy!
 
     respond_to do |format|
-      format.html { redirect_to user_profiles_path, status: :see_other, notice: t('.notice') }
+      format.html { redirect_to profiles_path, status: :see_other, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -87,12 +87,12 @@ class UserProfilesController < ApplicationController
   private
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_user_profile
-      @user_profile = UserProfile.find(params.expect(:id))
+    def set_profile
+      @profile = Profile.find(params.expect(:id))
     end
 
     # Only allow a list of trusted parameters through.
-    def user_profile_params
-      params.expect(user_profile: %i[user_id first_name last_name birth_date gender avatar])
+    def profile_params
+      params.expect(profile: %i[user_id first_name last_name birth_date gender avatar])
     end
 end

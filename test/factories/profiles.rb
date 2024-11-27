@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user_profile do
+  factory :profile do
     association :user, factory: :user
     first_name { 'MyString' }
     last_name { 'MyString' }

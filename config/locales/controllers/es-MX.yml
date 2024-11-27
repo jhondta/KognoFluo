@@ -121,7 +121,7 @@ es-MX:
         notice: "Linea de producción editada exitosamente."
       destroy:
         notice: "Linea de producción eliminada exitosamente."
-  user_profiles:
+  profiles:
     create:
       notice: "Perfil de usuario creado exitosamente."
     update:

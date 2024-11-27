@@ -121,7 +121,7 @@ en:
         notice: "Production line was successfully updated."
       destroy:
         notice: "Production line was successfully destroyed."
-  user_profiles:
+  profiles:
     create:
       notice: "User profile was successfully created."
     update:
