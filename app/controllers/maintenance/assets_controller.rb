@@ -104,10 +104,13 @@ class Maintenance::AssetsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(target, partial: 'maintenance/assets/components',
-                                                 locals: { components: components,
-                                                           include_blank: params[:keep_placeholder],
-                                                           prompt: params[:prompt] })
+        render turbo_stream: turbo_stream.update(
+          target,
+          partial: 'maintenance/assets/components',
+          locals: { components: components,
+                    include_blank: params[:keep_placeholder],
+                    prompt: params[:prompt] }
+        )
       end
     end
   end
