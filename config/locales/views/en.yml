@@ -108,11 +108,12 @@ en:
         edit: "Edit"
         cancel: "Back"
       sections:
-        general:
-          general_information: "General information"
-          location: "Location"
-          dates: "Dates"
-          technical_specifications: "Technical specification"
+        show:
+          general:
+            general_information: "General information"
+            location: "Location"
+            dates: "Dates"
+            technical_specifications: "Technical specification"
     asset_types:
       index:
         breadcrumb: "Asset types"

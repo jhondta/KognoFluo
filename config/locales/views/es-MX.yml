@@ -108,11 +108,12 @@ es-MX:
         edit: "Editar"
         cancel: "Volver"
       sections:
-        general:
-          general_information: "Información general"
-          location: "Ubicación"
-          dates: "Fechas"
-          technical_specifications: "Especificación técnica"
+        show:
+          general:
+            general_information: "Información general"
+            location: "Ubicación"
+            dates: "Fechas"
+            technical_specifications: "Especificación técnica"
     asset_types:
       index:
         breadcrumb: "Tipos de activo"
