@@ -5,7 +5,7 @@ class Maintenance::PlanResource < ApplicationRecord
   # -- Constants ---------------------------------------------------------------
   RESOURCE_TYPES = %i[tool specialty].freeze
   SPECIALTY_TYPES = %i[electrical mechanical electronic instrumentation
-                       other].freeze
+                       hydraulic pneumatic welding other].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
