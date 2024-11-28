@@ -59,6 +59,10 @@ class Maintenance::Asset < ApplicationRecord
   # -- Callbacks ---------------------------------------------------------------
   accepts_nested_attributes_for :components, allow_destroy: true,
                                 reject_if: :all_blank
+  accepts_nested_attributes_for :documents, allow_destroy: true,
+                                reject_if: :all_blank
+  accepts_nested_attributes_for :assignees, allow_destroy: true,
+                                reject_if: :all_blank
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------

@@ -38,6 +38,10 @@ class Maintenance::AssetAssignee < ApplicationRecord
   # -- Delegations -------------------------------------------------------------
   delegate :full_name, to: :technician
   delegate :email, to: :technician
+  delegate :profile, to: :technician
+  delegate :avatar, to: :technician
+  delegate :specialty, to: :technician
+  delegate :certification_level, to: :technician
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------

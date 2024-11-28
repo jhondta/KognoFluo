@@ -1,27 +1,49 @@
 <% if maintenance_asset.assignees.any? %>
-  <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+  <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
     <% maintenance_asset.assignees.each do |assignee| %>
-      <li class="pb-3 sm:pb-4">
+      <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <div class="flex items-center space-x-4 rtl:space-x-reverse">
           <div class="flex-shrink-0">
-            <svg class="w-8 h-8 rounded-full text-gray-400 bg-gray-100 dark:bg-gray-600 -left-1"
-                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clip-rule="evenodd"></path>
-            </svg>
+            <% if assignee.profile&.avatar.attached? %>
+              <%= image_tag assignee.profile.avatar, class: "w-12 h-12 rounded-full" %>
+            <% else %>
+              <div class="relative w-12 h-12 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <svg class="absolute w-14 h-14 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+            <% end %>
           </div>
+
           <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+            <h3 class="text-lg font-semibold text-gray-900 truncate dark:text-white">
               <%= assignee.full_name %>
-            </p>
+            </h3>
             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
               <%= assignee.email %>
             </p>
           </div>
         </div>
-      </li>
+
+        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Especialidad</p>
+              <p class="text-sm font-medium text-gray-900 dark:text-white">
+                <%= assignee.specialty || "No especificada" %>
+              </p>
+            </div>
+            <div>
+              <p class="text-xs text-gray-500 dark:text-gray-400">Certificación</p>
+              <p class="text-sm font-medium text-gray-900 dark:text-white">
+                <%= assignee.certification_level || "No especificada" %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
   <div class="flex items-center justify-center w-full">
     <div class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed

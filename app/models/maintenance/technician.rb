@@ -47,6 +47,8 @@ class Maintenance::Technician < ApplicationRecord
   # -- Delegations -------------------------------------------------------------
   delegate :full_name, to: :user
   delegate :email, to: :user
+  delegate :profile, to: :user
+  delegate :avatar, to: :user
 
   # -- -------------------------------------------------------------------------
   # -- Class Methods -----------------------------------------------------------
