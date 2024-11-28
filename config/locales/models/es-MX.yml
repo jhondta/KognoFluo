@@ -127,6 +127,8 @@ es-MX:
         technical_specs: "Especificaciones técnicas"
         physical_location: "Ubicación física"
         notes: "Notas"
+        full_code: "Código"
+        type: "Tipo"
       maintenance/manufacturer:
         code: "Código"
         name: "Nombre"
@@ -181,6 +183,11 @@ es-MX:
       user:
         name: "Nombre"
         email: "Correo electrónico"
+        first_name: "Nombre"
+        last_name: "Apellidos"
+        birth_date: "Fecha de nacimiento"
+        gender: "Genero"
+        biography: "Biografía"
     enums:
       maintenance/asset_component:
         status:
@@ -248,6 +255,12 @@ es-MX:
         status:
           inactive: "Inactivo"
           active: "Activo"
+      profile:
+        gender:
+          male: "Masculino"
+          female: "Femenino"
+          non_binary: "No binario"
+          other: "Otro"
     errors:
       template:
         header:

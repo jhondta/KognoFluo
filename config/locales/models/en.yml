@@ -127,6 +127,8 @@ en:
         technical_specs: "Technical specifications"
         physical_location: "Physical location"
         notes: "Notes"
+        full_code: "Code"
+        type: "Type"
       maintenance/manufacturer:
         code: "Code"
         name: "Name"
@@ -181,6 +183,11 @@ en:
       user:
         name: "Name"
         email: "Email"
+        first_name: "First name"
+        last_name: "Last name"
+        birth_date: "Birth date"
+        gender: "Gender"
+        biography: "Biography"
     enums:
       maintenance/asset_component:
         status:
@@ -248,6 +255,12 @@ en:
         status:
           inactive: "Inactive"
           active: "Active"
+      profile:
+        gender:
+          male: "Male"
+          female: "Female"
+          non_binary: "Non-binary"
+          other: "Other"
     errors:
       template:
         header:
