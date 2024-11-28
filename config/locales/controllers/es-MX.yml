@@ -125,6 +125,6 @@ es-MX:
     create:
       notice: "Perfil de usuario creado exitosamente."
     update:
-      notice: "Perfil de usuario ediado exitosamente."
+      notice: "Perfil de usuario editado exitosamente."
     destroy:
       notice: "Perfil de usuario eliminado exitosamente."
