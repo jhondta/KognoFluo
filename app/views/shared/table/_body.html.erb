@@ -18,12 +18,15 @@
     <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
       <% columns.each do |column| %>
         <td class="p-4 text-gray-500 whitespace-nowrap dark:text-gray-400">
+          <% next unless record.respond_to?(column) %>
           <% if record.respond_to?("#{column}_color") %>
             <% color = record.public_send("#{column}_color") %>
             <div class="flex items-center">
               <div class="h-2.5 w-2.5 rounded-full mr-2 bg-<%= color %>-400"></div>
               <%= record.t_enum(column.to_sym) %>
             </div>
+          <% elsif record.public_send(column).is_a?(ActiveRecord::Base) %>
+            <%= record.public_send(column).name %>
           <% else %>
             <%= record.public_send(column) %>
           <% end %>
