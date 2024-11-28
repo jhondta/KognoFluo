@@ -36,10 +36,8 @@ Rails.application.routes.draw do
              path: '',
              path_names: { sign_in: 'login',
                            sign_out: 'logout',
-                           sign_up: 'signup' }
-
-  # Defines the resources
-  resources :profiles
+                           sign_up: 'signup',
+                           edit: 'profile' }
 
   namespace :common do
     resources :measure_units

@@ -31,16 +31,22 @@ class User < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  accepts_nested_attributes_for :profile
 
   # -- -------------------------------------------------------------------------
-  # -- Validations -------------------------------------------------------------
+  # -- Callbacks ---------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Scopes ------------------------------------------------------------------
 
   # -- -------------------------------------------------------------------------
   # -- Delegations -------------------------------------------------------------
-  delegate :full_name, to: :profile
+  delegate :first_name, to: :profile, allow_nil: true
+  delegate :last_name, to: :profile, allow_nil: true
+  delegate :birth_date, to: :profile, allow_nil: true
+  delegate :gender, to: :profile, allow_nil: true
+  delegate :biography, to: :profile, allow_nil: true
+  delegate :full_name, to: :profile, allow_nil: true
   delegate :avatar, to: :profile, allow_nil: true
 
   # -- -------------------------------------------------------------------------

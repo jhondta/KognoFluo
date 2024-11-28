@@ -1,0 +1,58 @@
+<div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm 2xl:col-span-2 dark:border-gray-700
+                  sm:p-6 dark:bg-gray-800">
+  <h3 class="mb-4 text-xl font-semibold dark:text-white">
+    Información general
+  </h3>
+  <div class="grid grid-cols-6 gap-6">
+    <%= f.fields_for :profile do |pf| %>
+      <div class="col-span-6 sm:col-span-3">
+        <%= pf.label :first_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+        <%= pf.text_field :first_name, autofocus: true, autocomplete: "first_name",
+                          class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                        dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
+      <div class="col-span-6 sm:col-span-3">
+        <%= pf.label :last_name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+        <%= pf.text_field :last_name, autofocus: true, autocomplete: "last_name",
+                          class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm
+                                          rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                          dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                          dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
+      <div class="col-span-6 sm:col-span-3">
+        <%= f.label :email, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                          class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                          focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                          dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                          dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
+      <div class="col-span-6 sm:col-span-3">
+        <%= pf.label :birth_date, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+        <%= pf.date_field :birth_date, autofocus: true, autocomplete: "birth_date",
+                          class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                     dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                     dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
+      <div class="col-span-6 sm:col-span-3">
+        <%= pf.label :gender, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+        <%= pf.select :gender, enum_options_for_select(Profile, :gender), {},
+                      class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                     dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                     dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
+      <div class="col-span-6 sm:col-full">
+        <%= pf.label :biography, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+        <%= pf.rich_text_area :biography, autofocus: true, autocomplete: "biography",
+                              class: 'shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg
+                                         focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                                         dark:focus:ring-blue-500 dark:focus:border-blue-500' %>
+      </div>
+    <% end %>
+  </div>
+</div>

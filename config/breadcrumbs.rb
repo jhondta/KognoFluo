@@ -15,6 +15,11 @@ crumb :settings_general do
   parent :root
 end
 
+crumb :profile do |user|
+  link user.full_name || user.email, edit_registration_path(current_user)
+  parent :root
+end
+
 # -- ---------------------------------------------------------------------------
 # -- Maintenance Assets --------------------------------------------------------
 crumb :maintenance_assets do
