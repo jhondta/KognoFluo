@@ -43,6 +43,22 @@ module Faker
       def status
         [ 'Operativo', 'En Mantenimiento', 'Detenido', 'En Reparación', 'Fuera de Servicio' ].sample
       end
+      
+      def plan_name_prefix
+        [ 'Plan', 'Programa', 'Procedimiento', 'Instrucción', 'Guía', 'Manual' ].sample
+      end
+
+      def task_name
+        [ 'Inspección', 'Lubricación', 'Ajuste', 'Reemplazo', 'Calibración', 'Limpieza', 'Reparación' ].sample
+      end
+
+      def measurement_type
+        [ 'Temperatura', 'Presión', 'Flujo', 'Nivel', 'Vibración', 'Corriente', 'Voltaje', 'Potencia' ].sample
+      end
+      
+      def tool
+        [ 'Llave', 'Destornillador', 'Pinza', 'Martillo', 'Sierra', 'Taladro', 'Pulidora', 'Prensa' ].sample
+      end
     end
   end
 end

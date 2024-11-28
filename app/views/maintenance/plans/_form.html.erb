@@ -8,28 +8,28 @@
     <!-- General -->
     <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="general" role="tabpanel"
          aria-labelledby="general-tab">
-      <%= render partial: '/maintenance/plans/form/general',
+      <%= render partial: '/maintenance/plans/sections/form/general',
                  locals: { form: form, maintenance_plan: maintenance_plan } %>
     </div>
 
     <!-- Resources -->
     <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="resources" role="tabpanel"
          aria-labelledby="resources-tab">
-      <%= render partial: '/maintenance/plans/form/resources',
+      <%= render partial: '/maintenance/plans/sections/form/resources',
                  locals: { form: form, maintenance_plan: maintenance_plan } %>
     </div>
 
     <!-- Tasks -->
     <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="tasks" role="tabpanel"
          aria-labelledby="tasks-tab">
-      <%= render partial: '/maintenance/plans/form/tasks',
+      <%= render partial: '/maintenance/plans/sections/form/tasks',
                  locals: { form: form, maintenance_plan: maintenance_plan } %>
     </div>
 
     <!-- Schedule -->
     <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="schedule" role="tabpanel"
          aria-labelledby="schedule-tab">
-      <%= render partial: '/maintenance/plans/form/schedule',
+      <%= render partial: '/maintenance/plans/sections/form/schedule',
                  locals: { form: form, maintenance_plan: maintenance_plan } %>
     </div>
   <% end %>

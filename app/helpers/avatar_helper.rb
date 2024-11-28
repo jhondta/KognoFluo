@@ -2,7 +2,7 @@
 
 module AvatarHelper
   def user_avatar(user, options = {})
-    if user.profile.avatar&.attached?
+    if user.profile&.avatar&.attached?
       variant = options.delete(:variant)
       avatar_image = variant ? user.profile.avatar.variant(variant) :
                        user.profile.avatar

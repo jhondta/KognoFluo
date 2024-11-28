@@ -1,0 +1,218 @@
+<div class="grid gap-6">
+  <!-- Selección de Activo -->
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h3 class="text-lg font-medium mb-4 dark:text-white">
+      Selección de Activo
+    </h3>
+    <div class="grid md:grid-cols-3 gap-4"
+         data-controller="select"
+         data-select-param-value="selected_id">
+
+      <div>
+        <%= form.label :maintenance_asset_id, "Activo",
+                       class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.collection_select :maintenance_asset_id,
+                                   Maintenance::Asset.active, :id, :name,
+                                   { prompt: 'Seleccionar activo...',
+                                     selected: @maintenance_plan.asset&.id },
+                                   { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                     data: { select_target: 'select',
+                                             select_child_id: 'component-select',
+                                             action: 'change->select#update' } } %>
+      </div>
+
+      <div>
+        <%= form.label :maintenance_asset_component_id, "Componente (Opcional)",
+                       class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.collection_select :maintenance_asset_component_id,
+                                   @maintenance_plan.asset&.components || [], :id, :name,
+                                   { prompt: 'Seleccionar componente...',
+                                     selected: @maintenance_plan.component&.id },
+                                   { id: 'component-select',
+                                     class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                     disabled: @maintenance_plan.asset.nil?,
+                                     data: { select_target: 'select',
+                                             select_url: components_maintenance_asset_path(':parentId'),
+                                             select_placeholder: 'Seleccionar componente...',
+                                             select_keep_placeholder: true } } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recursos Necesarios -->
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h3 class="text-lg font-medium mb-4 dark:text-white">
+      Recursos Necesarios
+    </h3>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- Herramientas -->
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <h4 class="text-base font-medium dark:text-white">
+            Herramientas
+          </h4>
+          <button type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-1.5
+                       focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700"
+                  data-controller="resource"
+                  data-action="click->resource#addTool">
+            Agregar Herramienta
+          </button>
+        </div>
+
+        <%= form.fields_for :maintenance_plan_resources do |resource_form| %>
+          <% if resource_form.object&.resource_type == 'tool' %>
+            <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600">
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <%= resource_form.collection_select :maintenance_tool_id,
+                                                      Maintenance::Tool.all, :id, :name,
+                                                      { prompt: "Seleccionar..." },
+                                                      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                        dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
+                </div>
+                <div class="flex gap-2">
+                  <%= resource_form.number_field :quantity,
+                                                 class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+                                                 min: 1,
+                                                 placeholder: "Cantidad" %>
+                  <button type="button"
+                          class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
+                               rounded-lg text-sm px-3 text-center"
+                          data-action="resource#remove">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- Especialidades -->
+      <div>
+        <div class="flex justify-between items-center mb-3">
+          <h4 class="text-base font-medium dark:text-white">
+            Especialidades
+          </h4>
+          <button type="button"
+                  class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-1.5
+                       focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700"
+                  data-controller="resource"
+                  data-action="click->resource#addSpecialty">
+            Agregar Especialidad
+          </button>
+        </div>
+
+        <%= form.fields_for :maintenance_plan_resources do |resource_form| %>
+          <% if resource_form.object&.resource_type == 'specialty' %>
+            <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600">
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <%= resource_form.select :specialty_type,
+                                           enum_options_for_select(Maintenance::PlanResource, :specialty_type),
+                                           { prompt: "Seleccionar..." },
+                                           class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                             dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
+                </div>
+                <div class="flex gap-2">
+                  <%= resource_form.number_field :hours_required,
+                                                 class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+                                                 step: 0.5,
+                                                 min: 0.5,
+                                                 placeholder: "Horas" %>
+                  <button type="button"
+                          class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
+                               rounded-lg text-sm px-3 text-center"
+                          data-action="resource#remove">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :templates do %>
+  <!-- Template para nueva herramienta -->
+  <template data-resource-target="toolTemplate">
+    <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600 resource-item" data-new-record="true">
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <select name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][maintenance_tool_id]"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <option value="">Seleccionar...</option>
+            <%= options_from_collection_for_select(Maintenance::Tool.all, :id, :name) %>
+          </select>
+        </div>
+        <div class="flex gap-2">
+          <input type="number"
+                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][quantity]"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                 min="1"
+                 placeholder="Cantidad">
+          <input type="hidden"
+                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][resource_type]"
+                 value="tool">
+          <button type="button"
+                  class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
+                         rounded-lg text-sm px-3 text-center"
+                  data-action="resource#remove">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template para nueva especialidad -->
+  <template data-resource-target="specialtyTemplate">
+    <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600 resource-item" data-new-record="true">
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <select name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][specialty_type]"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <option value="">Seleccionar...</option>
+            <%= options_for_select(enum_options_for_select(Maintenance::PlanResource, :specialty_type)) %>
+          </select>
+        </div>
+        <div class="flex gap-2">
+          <input type="number"
+                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][hours_required]"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                 step="0.5"
+                 min="0.5"
+                 placeholder="Horas">
+          <input type="hidden"
+                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][resource_type]"
+                 value="specialty">
+          <button type="button"
+                  class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
+                         rounded-lg text-sm px-3 text-center"
+                  data-action="resource#remove">
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+<% end %>

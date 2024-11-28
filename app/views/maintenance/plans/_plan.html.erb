@@ -1,67 +1,35 @@
 <div id="<%= dom_id plan %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Code:</strong>
-    <%= plan.code %>
-  </p>
+  <!-- Tabs -->
+  <%= render 'maintenance/plans/sections/tabs' %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= plan.name %>
-  </p>
+  <!-- Tab Content -->
+  <div id="tab-content" class="h-full">
+    <!-- General Information -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="general" role="tabpanel"
+         aria-labelledby="general-tab">
+      <%= render partial: 'maintenance/plans/sections/show/general',
+                 locals: { maintenance_plan: @maintenance_plan } %>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= plan.description %>
-  </p>
+    <!-- Resources -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="components" role="tabpanel"
+         aria-labelledby="components-tab">
+      <%= render partial: 'maintenance/plans/sections/show/resources',
+                 locals: { maintenance_plan: @maintenance_plan } %>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Plan type:</strong>
-    <%= plan.plan_type %>
-  </p>
+    <!-- Tasks -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="documents" role="tabpanel"
+         aria-labelledby="documents-tab">
+      <%= render partial: 'maintenance/plans/sections/show/tasks',
+                 locals: { maintenance_plan: @maintenance_plan } %>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Status:</strong>
-    <%= plan.status %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Criticality:</strong>
-    <%= plan.criticality %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Frequency type:</strong>
-    <%= plan.frequency_type %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Frequency value:</strong>
-    <%= plan.frequency_value %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Estimated duration:</strong>
-    <%= plan.estimated_duration %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Requires shutdown:</strong>
-    <%= plan.requires_shutdown %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Maintenance asset:</strong>
-    <%= plan.maintenance_asset_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Maintenance asset component:</strong>
-    <%= plan.maintenance_asset_component_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Start date:</strong>
-    <%= plan.start_date %>
-  </p>
-
+    <!-- Schedule -->
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="assignees" role="tabpanel"
+         aria-labelledby="assignees-tab">
+      <%= render partial: 'maintenance/plans/sections/show/schedule',
+                 locals: { maintenance_plan: @maintenance_plan } %>
+    </div>
+  </div>
 </div>

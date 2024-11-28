@@ -131,4 +131,102 @@ assets.each do |asset|
   end
 end
 
+puts 'Creating maintenance tools...'
+20.times do
+  Maintenance::Tool.create!(
+    code: Faker::Alphanumeric.unique.alpha(number: 3).upcase,
+    name: Faker::Industry.tool,
+    description: Faker::Lorem.sentence,
+    calibration_required: Faker::Boolean.boolean
+  )
+end
+
+puts 'Creating maintenance plans...'
+35.times do
+  asset = assets.sample
+  Maintenance::Plan.create!(
+    code: Faker::Alphanumeric.unique.alpha(number: 5).upcase,
+    name: "#{Faker::Industry.plan_name_prefix} #{Faker::Industry.maintenance_type} #{asset.name}",
+    description: Faker::Lorem.sentence,
+    plan_type: Maintenance::Plan::PLAN_TYPES.sample,
+    status: Maintenance::Plan::STATUSES.sample,
+    criticality: Maintenance::Plan::CRITICALITIES.sample,
+    frequency_type: Maintenance::Plan::FREQUENCY_TYPES.sample,
+    frequency_value: rand(1..12),
+    estimated_duration: rand(30..240),
+    requires_shutdown: Faker::Boolean.boolean,
+    asset: asset,
+    component: asset.components.sample,
+    start_date: Faker::Date.between(from: '2021-01-01', to: '2023-12-31')
+  )
+end
+
+puts 'Creating maintenance resources...'
+plans = Maintenance::Plan.all
+tools = Maintenance::Tool.all
+technicians = Maintenance::Technician.all
+plans.each do |plan|
+  3.times do
+    plan.resources.create(
+      resource_type: Maintenance::PlanResource::RESOURCE_TYPES.sample,
+      tool: tools.sample,
+      specialty_type: Maintenance::PlanResource::SPECIALTY_TYPES.sample,
+      quantity: rand(1..5),
+      hours_required: rand(1..8)
+    )
+  end
+end
+
+puts 'Creating plan tasks...'
+plans.each do |plan|
+  5.times do |i|
+    plan.tasks.create(
+      sequence_number: i + 1,
+      name: Faker::Industry.task_name,
+      description: Faker::Lorem.sentence,
+      estimated_duration: rand(30..240),
+      requires_shutdown: Faker::Boolean.boolean
+    )
+  end
+end
+
+puts 'Creating task steps...'
+tasks = Maintenance::PlanTask.all
+tasks.each do |task|
+  (2..5).to_a.sample.times do |i|
+    task.steps.create(
+      sequence_number: i + 1,
+      description: Faker::Lorem.sentence
+    )
+  end
+end
+
+puts 'Creating task measurements...'
+tasks.each do |task|
+  (2..4).to_a.sample.times do |i|
+    task.measurements.create(
+      name: "Medicion de: #{Faker::Industry.measurement_type}",
+      measurement_type: Faker::Industry.measurement_type,
+      nominal_value: rand(1..100),
+      min_value: rand(1..100),
+      max_value: rand(1..100),
+      tolerance_percentage: rand(1..10),
+      is_critical: Faker::Boolean.boolean
+    )
+  end
+end
+
+puts 'Creating maintenance schedules...'
+plans.each do |plan|
+  3.times do
+    plan.schedules.create(
+      scheduled_date: Faker::Date.between(from: '2021-01-01', to: '2023-12-31'),
+      status: Maintenance::Schedule::STATUSES.sample
+    )
+  end
+end
+
+puts 'Creating maintenance assignments...'
+schedules = Maintenance::Schedule.all
+
 puts 'Maintenance seed completed.'
