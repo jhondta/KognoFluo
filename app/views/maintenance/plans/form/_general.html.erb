@@ -1,0 +1,108 @@
+<div class="grid gap-6">
+  <!-- Información General -->
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h3 class="text-lg font-medium mb-4 dark:text-white">
+      <%= t('.general_information') %>
+    </h3>
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <!-- First column -->
+      <div class="space-y-4">
+        <div>
+          <%= form.label :plan_type, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= form.select :plan_type,
+                          enum_options_for_select(maintenance_plan.class, :plan_type), {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                  dark:text-white' %>
+        </div>
+
+        <div>
+          <%= form.label :code, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= form.text_field :code,
+                              class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                      dark:border-gray-600 dark:text-white' %>
+        </div>
+
+        <div>
+          <%= form.label :criticality, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= form.select :criticality,
+                          enum_options_for_select(maintenance_plan.class, :criticality), {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                  dark:text-white' %>
+        </div>
+      </div>
+
+      <!-- Second column -->
+      <div class="space-y-4">
+        <div>
+          <%= form.label :status, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= form.select :status,
+                          enum_options_for_select(maintenance_plan.class, :status), {},
+                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                  dark:text-white' %>
+        </div>
+
+        <div>
+          <%= form.label :name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= form.text_field :name,
+                              class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
+                                      dark:border-gray-600 dark:text-white' %>
+        </div>
+
+        <!-- Estimated duration -->
+        <div>
+          <%= form.label :estimated_duration,
+                         class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <%= form.number_field :duration_hours,
+                                    class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                            dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                    placeholder: 'Horas' %>
+            </div>
+            <div>
+              <%= form.number_field :duration_minutes,
+                                    class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                            dark:bg-gray-700 dark:border-gray-600 dark:text-white',
+                                    placeholder: 'Minutos' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mt-4">
+      <%= form.label :description, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+      <%= form.text_area :description,
+                         rows: 3,
+                         class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                                 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                                 dark:text-white' %>
+    </div>
+
+    <div class="mt-4">
+      <label class="relative inline-flex items-center cursor-pointer">
+        <%= form.check_box :requires_shutdown,
+                           class: 'sr-only peer' %>
+        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300
+                          dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700
+                          peer-checked:after:translate-x-full peer-checked:after:border-white after:content-['']
+                          after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300
+                          after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600
+                          peer-checked:bg-blue-600">
+        </div>
+        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+          Requiere paro de equipo
+        </span>
+      </label>
+    </div>
+  </div>
+</div>
