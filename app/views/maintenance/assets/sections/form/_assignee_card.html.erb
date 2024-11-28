@@ -1,0 +1,56 @@
+<% technician = assignee_form.object.technician %>
+<% profile = technician.user.profile %>
+
+<div class="flex items-start gap-4">
+  <div class="flex-shrink-0">
+    <% if profile.avatar.attached? %>
+      <%= image_tag profile.avatar, class: "w-12 h-12 rounded-full" %>
+    <% else %>
+      <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+        </svg>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="flex-grow">
+    <div class="flex items-center justify-between">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+          <%= "#{profile.first_name} #{profile.last_name}" %>
+        </h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+          <%= technician.user.email %>
+        </p>
+      </div>
+
+      <%= button_tag type: 'button',
+                     data: { action: 'assignee-form#remove' },
+                     class: 'text-red-600 hover:text-red-800 focus:outline-none' do %>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+        </svg>
+      <% end %>
+    </div>
+
+    <div class="mt-4 grid grid-cols-2 gap-4">
+      <div>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Especialidad</p>
+        <p class="text-sm font-medium text-gray-900 dark:text-white">
+          <%= technician.specialty %>
+        </p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Certificación</p>
+        <p class="text-sm font-medium text-gray-900 dark:text-white">
+          <%= technician.certification_level %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%= assignee_form.hidden_field :_destroy %>
+  <%= assignee_form.hidden_field :maintenance_technician_id %>
+</div>

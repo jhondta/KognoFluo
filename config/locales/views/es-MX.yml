@@ -114,6 +114,20 @@ es-MX:
             location: "Ubicación"
             dates: "Fechas"
             technical_specifications: "Especificación técnica"
+        form:
+          general:
+            general_information: "Información general"
+            location: "Ubicación"
+            dates: "Fechas"
+            technical_specifications: "Especificación técnica"
+            select_plant: "Seleccione una planta"
+            select_area: "Seleccione un área"
+            select_production_line: "Seleccione una línea de producción"
+            technical_specification: "Especificación técnica"
+            add_specification: "Agregar especificación"
+            notes: "Notas"
+          components:
+            add_component: "Agregar componente"
     asset_types:
       index:
         breadcrumb: "Tipos de activo"

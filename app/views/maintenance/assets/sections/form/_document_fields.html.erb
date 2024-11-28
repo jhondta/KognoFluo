@@ -1,0 +1,83 @@
+<div class="space-y-6" data-controller="nested-form asset-document">
+  <!-- Card para agregar nuevo documento -->
+  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <h3 class="text-lg font-semibold mb-4">Agregar documento</h3>
+
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+      <div>
+        <%= form.label :name, "Nombre", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                         focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+      </div>
+
+      <div>
+        <%= form.label :document_type, "Tipo", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.select :document_type,
+                        ['Manual', 'Ficha Técnica', 'Certificado', 'Garantía', 'Otro'],
+                        { include_blank: 'Seleccionar tipo' },
+                        { class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 
+                     focus:border-primary-600 block w-full p-2.5" } %>
+      </div>
+
+      <div class="md:col-span-2">
+        <%= form.label :description, "Descripción", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.text_area :description, rows: 3, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg 
+                                                border border-gray-300 focus:ring-primary-600 focus:border-primary-600" %>
+      </div>
+
+      <div>
+        <%= form.label :version, "Versión", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.text_field :version, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                            focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+      </div>
+
+      <div>
+        <%= form.label :expiration_date, "Fecha de vencimiento",
+                       class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= form.date_field :expiration_date, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                                    focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+      </div>
+    </div>
+
+    <button type="button" data-action="nested-form#add" class="text-white bg-primary-700 hover:bg-primary-800 
+            focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+      Agregar documento
+    </button>
+  </div>
+
+  <!-- Listado de documentos -->
+  <div data-nested-form-target="items">
+    <%= form.fields_for :documents do |doc_form| %>
+      <div class="document-card p-6 mb-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex items-center justify-between mb-4">
+          <%= doc_form.hidden_field :_destroy, data: { nested_form_target: "destroy" } %>
+
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+            <%= doc_form.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                                 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
+          </h3>
+
+          <div class="flex items-center gap-2">
+            <%= doc_form.select :status,
+                                { "Activo" => 1, "Inactivo" => 0 },
+                                {},
+                                { class: "text-sm rounded-lg block p-2.5" } %>
+
+            <button type="button" data-action="nested-form#remove"
+                    class="text-red-600 hover:text-red-800 focus:outline-none">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Resto de campos similares al formulario de agregar -->
+        <div class="grid gap-6 md:grid-cols-2">
+          <!-- Campos del documento -->
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
