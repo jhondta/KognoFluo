@@ -151,6 +151,7 @@ en:
         maintenance_asset_id: "Asset"
         maintenance_asset_component_id: "Component"
         start_date: "Start date"
+        asset: "Asset"
       maintenance/technician:
         user_id: "User"
         full_name: "Name"

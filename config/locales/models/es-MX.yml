@@ -151,6 +151,7 @@ es-MX:
         maintenance_asset_id: "Activo"
         maintenance_asset_component_id: "Componente"
         start_date: "Fecha de inicio"
+        asset: "Activo"
       maintenance/technician:
         user_id: "Usuario"
         specialty: "Especialidad"

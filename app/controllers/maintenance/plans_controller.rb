@@ -26,7 +26,16 @@ class Maintenance::PlansController < ApplicationController
 
   # GET /maintenance/plans or /maintenance/plans.json
   def index
-    @pagy, @maintenance_plans = pagy(Maintenance::Plan.all)
+    options = [ :asset ]
+
+    respond_to do |format|
+      format.html do
+        @pagy, @maintenance_plans = pagy(Maintenance::Plan.includes(options).all)
+      end
+      format.json do
+        @maintenance_plans = Maintenance::Plan.includes(options).all
+      end
+    end
   end
 
   # GET /maintenance/plans/1 or /maintenance/plans/1.json
