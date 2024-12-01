@@ -81,10 +81,11 @@ asset_types = Maintenance::AssetType.all
 production_lines = Organization::ProductionLine.includes(area: :plant)
 manufacturers = Maintenance::Manufacturer.all
 35.times do
+  asset_type = asset_types.sample
   Maintenance::Asset.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 3).upcase,
-    name: Faker::Industry.asset_name,
-    maintenance_asset_type_id: asset_types.sample.id,
+    name: Faker::Industry.asset_name(asset_type),
+    maintenance_asset_type_id: asset_type.id,
     organization_production_line_id: production_lines.sample.id,
     maintenance_manufacturer_id: manufacturers.sample.id,
     model: Faker::Alphanumeric.alpha(number: 8).upcase,
@@ -144,11 +145,13 @@ end
 puts 'Creating maintenance plans...'
 35.times do
   asset = assets.sample
+  plan_type = Maintenance::Plan::PLAN_TYPES.sample
+  translated_plan_type = Maintenance::Plan.new(plan_type: plan_type).t_enum(:plan_type)
   Maintenance::Plan.create!(
     code: Faker::Alphanumeric.unique.alpha(number: 5).upcase,
-    name: "#{Faker::Industry.plan_name_prefix} #{Faker::Industry.maintenance_type} #{asset.name}",
+    name: "#{Faker::Industry.plan_name_prefix} #{translated_plan_type} #{asset.name}",
     description: Faker::Lorem.sentence,
-    plan_type: Maintenance::Plan::PLAN_TYPES.sample,
+    plan_type: plan_type,
     status: Maintenance::Plan::STATUSES.sample,
     criticality: Maintenance::Plan::CRITICALITIES.sample,
     frequency_type: Maintenance::Plan::FREQUENCY_TYPES.sample,

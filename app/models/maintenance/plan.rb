@@ -13,7 +13,7 @@ class Maintenance::Plan < ApplicationRecord
                          critical: 'red' }.freeze
   PLAN_TYPE_COLORS = { preventive: 'blue', corrective: 'orange',
                        predictive: 'green' }.freeze
-  STATUS_COLORS = { draft: 'gray', active: 'blue', completed: 'green',
+  STATUS_COLORS = { draft: 'gray', active: 'green', completed: 'blue',
                     cancelled: 'red' }.freeze
 
   # -- -------------------------------------------------------------------------
