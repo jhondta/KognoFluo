@@ -28,6 +28,9 @@
 #       enabled: "ON"
 
 en:
+  boolean:
+    true: "Yes"
+    false: "No"
   hello: "Hello world"
   date:
     abbr_day_names:

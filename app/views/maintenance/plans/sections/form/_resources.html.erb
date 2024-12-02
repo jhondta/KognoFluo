@@ -65,7 +65,7 @@
           </button>
         </div>
 
-        <%= form.fields_for :maintenance_plan_resources do |resource_form| %>
+        <%= form.fields_for :resources, maintenance_plan.resources.build do |resource_form| %>
           <% if resource_form.object&.resource_type == 'tool' %>
             <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600">
               <div class="grid grid-cols-2 gap-3">
@@ -96,6 +96,16 @@
           <% end %>
         <% end %>
       </div>
+
+      <%= form.fields_for :resources do |resource_form| %>
+        <% if resource_form.object&.persisted? %>
+          <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <!-- Similar al diseño que mostraste en la imagen -->
+            <%= render partial: 'maintenance/plans/sections/form/resource_card',
+                       locals: { form: resource_form } %>
+          </div>
+        <% end %>
+      <% end %>
 
       <!-- Especialidades -->
       <div>

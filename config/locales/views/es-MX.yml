@@ -175,6 +175,12 @@ es-MX:
             calendar: "Calendario"
             scheduling: "Programación"
             templates: "Plantillas"
+        show:
+          general:
+            general_information: "Información general"
+        form:
+          general:
+            general_information: "Información general"
       form:
         general_information: "General"
         general:

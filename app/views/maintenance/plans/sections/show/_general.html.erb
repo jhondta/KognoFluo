@@ -1,108 +1,97 @@
 <div class="grid gap-6">
   <!-- Información General -->
   <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <h3 class="text-lg font-medium mb-4 dark:text-white">
+    <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+      </svg>
       <%= t('.general_information') %>
     </h3>
 
-    <div class="grid md:grid-cols-2 gap-4">
-      <!-- First column -->
-      <div class="space-y-4">
+    <dl>
+      <!-- Primer par: Tipo de plan y Estado -->
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
         <div>
-          <%= form.label :plan_type, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-          <%= form.select :plan_type,
-                          enum_options_for_select(maintenance_plan.class, :plan_type), {},
-                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                                  dark:text-white' %>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.attributes.maintenance/plan.plan_type') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= maintenance_plan.t_enum(:plan_type) %>
+          </dd>
         </div>
 
         <div>
-          <%= form.label :code, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-          <%= form.text_field :code,
-                              class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                      dark:border-gray-600 dark:text-white' %>
-        </div>
-
-        <div>
-          <%= form.label :criticality, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-          <%= form.select :criticality,
-                          enum_options_for_select(maintenance_plan.class, :criticality), {},
-                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                                  dark:text-white' %>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.attributes.maintenance/plan.status') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= maintenance_plan.t_enum(:status) %>
+          </dd>
         </div>
       </div>
 
-      <!-- Second column -->
-      <div class="space-y-4">
+      <!-- Segundo par: Código y Nombre -->
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
         <div>
-          <%= form.label :status, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-          <%= form.select :status,
-                          enum_options_for_select(maintenance_plan.class, :status), {},
-                          class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                  focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                                  dark:text-white' %>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.attributes.maintenance/plan.code') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= maintenance_plan.code %>
+          </dd>
         </div>
 
         <div>
-          <%= form.label :name, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-          <%= form.text_field :name,
-                              class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700
-                                      dark:border-gray-600 dark:text-white' %>
-        </div>
-
-        <!-- Estimated duration -->
-        <div>
-          <%= form.label :estimated_duration,
-                         class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <%= form.number_field :duration_hours,
-                                    class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                            dark:bg-gray-700 dark:border-gray-600 dark:text-white',
-                                    placeholder: 'Horas' %>
-            </div>
-            <div>
-              <%= form.number_field :duration_minutes,
-                                    class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                            dark:bg-gray-700 dark:border-gray-600 dark:text-white',
-                                    placeholder: 'Minutos' %>
-            </div>
-          </div>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.attributes.maintenance/plan.name') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= maintenance_plan.name %>
+          </dd>
         </div>
       </div>
-    </div>
 
-    <!-- Description -->
-    <div class="mt-4">
-      <%= form.label :description, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
-      <%= form.text_area :description,
-                         rows: 3,
-                         class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
-                                 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
-                                 dark:text-white' %>
-    </div>
-
-    <div class="mt-4">
-      <label class="relative inline-flex items-center cursor-pointer">
-        <%= form.check_box :requires_shutdown,
-                           class: 'sr-only peer' %>
-        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300
-                          dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700
-                          peer-checked:after:translate-x-full peer-checked:after:border-white after:content-['']
-                          after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300
-                          after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600
-                          peer-checked:bg-blue-600">
+      <!-- Tercer par: Criticidad y Duración estimada -->
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.attributes.maintenance/plan.criticality') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= maintenance_plan.t_enum(:criticality) %>
+          </dd>
         </div>
-        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-          Requiere paro de equipo
-        </span>
-      </label>
-    </div>
+
+        <div>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.attributes.maintenance/plan.estimated_duration') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= format_duration(maintenance_plan.estimated_duration) %>
+          </dd>
+        </div>
+      </div>
+
+      <!-- Descripción (ancho completo) -->
+      <div class="mb-4">
+        <dt class="text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/plan.description') %>
+        </dt>
+        <dd class="text-gray-900 dark:text-white">
+          <%= maintenance_plan.description.presence || '-' %>
+        </dd>
+      </div>
+
+      <!-- Requiere paro (ancho completo) -->
+      <div>
+        <dt class="text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/plan.requires_shutdown') %>
+        </dt>
+        <dd class="text-gray-900 dark:text-white">
+          <%= t("boolean.#{maintenance_plan.requires_shutdown}") %>
+        </dd>
+      </div>
+    </dl>
   </div>
 </div>

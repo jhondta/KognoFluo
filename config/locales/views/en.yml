@@ -175,6 +175,12 @@ en:
             calendar: "Calendar"
             scheduling: "Scheduling"
             templates: "Templates"
+        show:
+          general:
+            general_information: "Generl information"
+        form:
+          general:
+            general_information: "General information"
       form:
         general_information: "General"
         general:

@@ -12,22 +12,22 @@
     </div>
 
     <!-- Resources -->
-    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="components" role="tabpanel"
-         aria-labelledby="components-tab">
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="resources" role="tabpanel"
+         aria-labelledby="resources-tab">
       <%= render partial: 'maintenance/plans/sections/show/resources',
                  locals: { maintenance_plan: @maintenance_plan } %>
     </div>
 
     <!-- Tasks -->
-    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="documents" role="tabpanel"
-         aria-labelledby="documents-tab">
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="tasks" role="tabpanel"
+         aria-labelledby="tasks-tab">
       <%= render partial: 'maintenance/plans/sections/show/tasks',
                  locals: { maintenance_plan: @maintenance_plan } %>
     </div>
 
     <!-- Schedule -->
-    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="assignees" role="tabpanel"
-         aria-labelledby="assignees-tab">
+    <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="schedule" role="tabpanel"
+         aria-labelledby="schedule-tab">
       <%= render partial: 'maintenance/plans/sections/show/schedule',
                  locals: { maintenance_plan: @maintenance_plan } %>
     </div>

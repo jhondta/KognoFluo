@@ -6,6 +6,9 @@ es-MX:
         restrict_dependent_destroy:
           has_one: "El registro no puede ser eliminado pues existe un %{record} dependiente"
           has_many: "El registro no puede ser eliminado pues existen %{record} dependientes"
+  boolean:
+    true: "Sí"
+    false: "No"
   date:
     abbr_day_names:
       - "dom"
