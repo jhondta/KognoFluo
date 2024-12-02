@@ -12,7 +12,7 @@
         <%= form.label :maintenance_asset_id, "Activo",
                        class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
         <%= form.collection_select :maintenance_asset_id,
-                                   Maintenance::Asset.active, :id, :name,
+                                   Maintenance::Asset.all, :id, :name,
                                    { prompt: 'Seleccionar activo...',
                                      selected: @maintenance_plan.asset&.id },
                                    { class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg

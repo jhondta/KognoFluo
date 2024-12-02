@@ -30,7 +30,7 @@ class Maintenance::PlanResource < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
-  validates :maintenance_plan_id, uniqueness: { scope: %i[maintenance_tool_id] }
+  validates :maintenance_tool_id, uniqueness: { scope: %i[maintenance_plan_id] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------

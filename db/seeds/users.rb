@@ -22,11 +22,6 @@ module Seeds
           birth_date: Faker::Date.birthday(min_age: 18, max_age: 65),
           gender: Profile::GENDERS.sample
         )
-        if profile.persisted?
-          puts "Perfil creado exitosamente"
-        else
-          puts "Error creando perfil: #{profile.errors.full_messages}"
-        end
       end
     end
   end

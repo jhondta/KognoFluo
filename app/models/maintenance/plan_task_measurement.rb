@@ -26,6 +26,8 @@ class Maintenance::PlanTaskMeasurement < ApplicationRecord
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------
+  validates :name, presence: true, length: { maximum: 100 },
+            uniqueness: { scope: %i[maintenance_plan_task_id] }
 
   # -- -------------------------------------------------------------------------
   # -- Callbacks ---------------------------------------------------------------
