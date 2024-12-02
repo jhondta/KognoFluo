@@ -3,7 +3,7 @@
 
 <!-- Tab Content -->
 <div id="tab-content" class="h-full">
-  <%= form_with(model: maintenance_asset, id: 'asset_form', data: { turbo: false }) do |form| %>
+  <%= form_with(model: maintenance_asset, id: 'asset_form') do |form| %>
     <%= render partial: 'shared/error_messages', locals: { resource: maintenance_asset } %>
     <!-- General Information -->
     <div class="hidden py-4 pt-6 bg-white rounded-lg dark:bg-gray-800" id="general" role="tabpanel"

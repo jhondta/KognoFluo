@@ -4,10 +4,13 @@ class Maintenance::AssetsController < ApplicationController
   # -- -------------------------------------------------------------------------
   # -- Constants ---------------------------------------------------------------
   PERMITTED_ATTRIBUTES =
-    %i[ code name maintenance_asset_type_id organization_production_line_id
-        maintenance_manufacturer_id model serial_number manufacturing_date
-        purchase_date warranty_expiration status criticality_level
-        physical_location notes technical_specs: {} ].freeze
+    [ :code, :name, :maintenance_asset_type_id,
+      :organization_production_line_id, :maintenance_manufacturer_id, :model,
+      :serial_number, :manufacturing_date, :purchase_date, :warranty_expiration,
+      :status, :criticality_level, :physical_location, :notes,
+      technical_specs: {},
+      components_attributes: [ %i[id name description quantity specifications
+                                  replacement_period status] ] ].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
@@ -52,6 +55,7 @@ class Maintenance::AssetsController < ApplicationController
 
   # GET /maintenance/assets/1/edit
   def edit
+    @maintenance_asset.components.build if @maintenance_asset.components.empty?
     @areas = @maintenance_asset.plant.areas
     @production_lines = @maintenance_asset.area.production_lines
   end
