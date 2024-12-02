@@ -1,4 +1,7 @@
 es-MX:
+  application:
+    error:
+      no_profile: "Debes llenar tu perfil antes de continuar."
   common:
     countries:
       create:

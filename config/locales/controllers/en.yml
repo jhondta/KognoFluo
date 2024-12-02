@@ -1,4 +1,7 @@
 en:
+  application:
+    error:
+      no_profile: "You must fill your profile before continuing."
   common:
     countries:
       create:
