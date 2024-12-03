@@ -370,10 +370,10 @@ class MaintenanceSeeder
 
       def create_plan_tasks(plan)
         task_count = case plan.plan_type
-                     when 'preventivo' then rand(4..8)
-                     when 'predictivo' then rand(2..4)
-                     else rand(3..6)
-                     end
+        when 'preventivo' then rand(4..8)
+        when 'predictivo' then rand(2..4)
+        else rand(3..6)
+        end
 
         task_count.times do |i|
           task = plan.tasks.create!(
@@ -535,7 +535,7 @@ class MaintenanceSeeder
 
       def generate_component_specs(subsystem, component)
         base_specs = case subsystem
-                     when :mecanicos
+        when :mecanicos
                        {
                          material: [ 'Acero Inoxidable', 'Aluminio', 'Bronce', 'Hierro Fundido' ].sample,
                          dimensiones: "#{rand(10..100)}x#{rand(10..100)}x#{rand(10..100)}cm",
@@ -543,7 +543,7 @@ class MaintenanceSeeder
                          torque_instalacion: "#{rand(20..200)}Nm",
                          clase_precision: "#{[ 'A', 'B', 'C' ].sample}"
                        }
-                     when :electricos, :hardware
+        when :electricos, :hardware
                        {
                          voltaje: "#{[ 12, 24, 110, 220, 440 ].sample}V",
                          potencia: "#{rand(0.5..50.0).round(1)}kW",
@@ -552,7 +552,7 @@ class MaintenanceSeeder
                          grado_proteccion: "IP#{[ 54, 55, 65, 67 ].sample}",
                          factor_potencia: "#{rand(0.8..0.95).round(2)}"
                        }
-                     when :hidraulicos
+        when :hidraulicos
                        {
                          presion_maxima: "#{rand(1..100)}bar",
                          caudal_nominal: "#{rand(1..1000)}L/min",
@@ -561,7 +561,7 @@ class MaintenanceSeeder
                          material_sellos: [ "NBR", "EPDM", "Viton", "PTFE" ].sample,
                          conexiones: "#{rand(1..4)} pulgadas #{[ 'NPT', 'BSP', 'ANSI' ].sample}"
                        }
-                     when :control
+        when :control
                        {
                          rango_medicion: "#{rand(0..100)} a #{rand(101..1000)} #{[ 'bar', '°C', 'L/min' ].sample}",
                          precision: "±#{rand(0.1..1.0).round(2)}%",
@@ -570,7 +570,7 @@ class MaintenanceSeeder
                          certificacion: [ 'ATEX', 'IECEx', 'CSA', 'UL' ].sample,
                          repetibilidad: "±#{rand(0.05..0.5).round(3)}%"
                        }
-                     when :combustion
+        when :combustion
                        {
                          potencia_termica: "#{rand(50..500)}kW",
                          tipo_combustible: [ 'Gas Natural', 'GLP', 'Diesel' ].sample,
@@ -578,81 +578,81 @@ class MaintenanceSeeder
                          nox_emisiones: "#{rand(30..100)}mg/Nm³",
                          ratio_modulacion: "1:#{rand(3..10)}"
                        }
-                     when :refrigeracion
+        when :refrigeracion
                        {
                          capacidad_refrigeracion: "#{rand(5..100)}kW",
                          tipo_refrigerante: [ 'R134a', 'R410A', 'R407C' ].sample,
                          caudal_aire: "#{rand(1000..10000)}m³/h",
                          nivel_ruido: "#{rand(65..85)}dB(A)"
                        }
-                     when :transmision
+        when :transmision
                        {
                          relacion_reduccion: "1:#{rand(5..50)}",
                          potencia_maxima: "#{rand(1..100)}kW",
                          velocidad_entrada: "#{rand(750..3600)}RPM",
                          tipo_lubricacion: [ 'Baño Aceite', 'Grasa', 'Forzada' ].sample
                        }
-                     when :filtracion
+        when :filtracion
                        {
                          grado_filtracion: "#{rand(1..100)}µm",
                          caudal_max: "#{rand(10..1000)}L/min",
                          presion_diferencial: "#{rand(0.1..2.0).round(1)}bar",
                          area_filtrante: "#{rand(0.1..10.0).round(1)}m²"
                        }
-                     else
+        else
                        {}
-                     end
+        end
 
         # Agregar especificaciones específicas del componente
         component_specific_specs = case component
-                                   when /Motor/
+        when /Motor/
                                      {
                                        velocidad_nominal: "#{rand(750..3600)}RPM",
                                        eficiencia: "IE#{rand(2..4)}"
                                      }
-                                   when /Bomba/
+        when /Bomba/
                                      {
                                        npsh_requerido: "#{rand(1..10).round(1)}m",
                                        eficiencia_hidraulica: "#{rand(60..90)}%"
                                      }
-                                   when /Válvula/
+        when /Válvula/
                                      {
                                        cv: "#{rand(0.1..100.0).round(1)}",
                                        tipo_actuacion: [ 'Manual', 'Neumática', 'Eléctrica' ].sample
                                      }
-                                   when /Sensor/
+        when /Sensor/
                                      {
                                        tipo_sensor: [ 'RTD', 'Termocupla', 'Capacitivo', 'Inductivo' ].sample,
                                        salida: [ '4-20mA', '0-10V', 'Digital' ].sample
                                      }
-                                   else
+        else
                                      {}
-                                   end
+        end
 
         base_specs.merge(component_specific_specs)
       end
 
       def calculate_replacement_period(subsystem)
         base_period = case subsystem
-                      when :mecanicos
+        when :mecanicos
                         rand(12..60) # 1 a 5 años
-                      when :electricos, :hardware
+        when :electricos, :hardware
                         rand(24..96) # 2 a 8 años
-                      when :hidraulicos
+        when :hidraulicos
                         rand(6..24) # 6 meses a 2 años
-                      when :control
+        when :control
                         rand(36..120) # 3 a 10 años
-                      when :combustion
+        when :combustion
                         rand(12..48) # 1 a 4 años
-                      when :refrigeracion
+        when :refrigeracion
                         rand(18..72) # 1.5 a 6 años
-                      when :transmision
+        when :transmision
                         rand(24..84) # 2 a 7 años
-                      when :filtracion
+        when :filtracion
                         rand(3..12) # 3 meses a 1 año
-                      else
+        else
                         rand(12..36) # 1 a 3 años
-                      end
+        end
 
         # Ajustar según criticidad del equipo (si está disponible)
         base_period
@@ -660,41 +660,41 @@ class MaintenanceSeeder
 
       def generate_component_description(subsystem)
         technical_details = case subsystem
-                            when :mecanicos
+        when :mecanicos
                               [ "diseñado para alta resistencia mecánica",
                                 "fabricado según normas ISO",
                                 "con tratamiento superficial anticorrosivo" ].sample
-                            when :electricos
+        when :electricos
                               [ "conforme a normativa IEC",
                                 "con protección contra sobrecarga",
                                 "diseñado para ambiente industrial" ].sample
-                            when :hidraulicos
+        when :hidraulicos
                               [ "para operación con fluidos industriales",
                                 "con sellos de alta durabilidad",
                                 "diseñado para alta presión" ].sample
-                            when :control
+        when :control
                               [ "con certificación para áreas clasificadas",
                                 "compatible con sistemas DCS/SCADA",
                                 "con autodiagnóstico integrado" ].sample
-                            when :combustion
+        when :combustion
                               [ "con sistema de seguridad de llama",
                                 "de bajo nivel de emisiones",
                                 "con control automático de combustión" ].sample
-                            when :refrigeracion
+        when :refrigeracion
                               [ "con recuperación de calor",
                                 "de alta eficiencia energética",
                                 "con control de capacidad variable" ].sample
-                            when :transmision
+        when :transmision
                               [ "con rodamientos de alta precisión",
                                 "diseñado para servicio continuo",
                                 "con sistema de lubricación integrado" ].sample
-                            when :filtracion
+        when :filtracion
                               [ "con indicador de saturación",
                                 "de fácil mantenimiento",
                                 "con elementos filtrantes intercambiables" ].sample
-                            else
+        else
                               "con especificaciones estándar industriales"
-                            end
+        end
 
         "Componente #{subsystem.to_s.humanize.downcase} #{technical_details}. #{Faker::Lorem.sentence}"
       end

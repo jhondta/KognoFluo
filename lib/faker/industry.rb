@@ -234,7 +234,7 @@ module Faker
       ],
       'Eléctricas' => [
         'Megóhmetro', 'Probador de Rigidez Dieléctrica',
-        'Analizador de Redes', 'Cámara Termográfica', 'Localizador de Fallas',
+        'Analizador de Redes', 'Cámara Termográfica', 'Localizador de Fallas'
       ],
       'Especiales' => [
         'Detector de Fugas Ultrasónico', 'Balanceadora Dinámica',

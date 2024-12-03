@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
     def redirect_to_profile
       return if !user_signed_in? ||
         current_user.profile.present? ||
-        (controller_path == 'users/registrations' && ['edit', 'update'].include?(action_name)) ||
+        (controller_path == 'users/registrations' && %w[edit update].include?(action_name)) ||
         (controller_path == 'users/sessions' && action_name == 'destroy')
 
       flash[:error] = t('application.error.no_profile')

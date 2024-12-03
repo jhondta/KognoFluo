@@ -13,7 +13,7 @@ class Maintenance::AssetsController < ApplicationController
                                   replacement_period status] ],
       documents_attributes: [ %i[id document_type name description version
                                  expiration_date status] ],
-      assignees_attributes: [ %i[id maintenance_technician_id] ]].freeze
+      assignees_attributes: [ %i[id maintenance_technician_id] ] ].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
@@ -35,7 +35,7 @@ class Maintenance::AssetsController < ApplicationController
 
   # GET /maintenance/assets or /maintenance/assets.json
   def index
-    options = [:type, :manufacturer, :rich_text_notes, production_line: { area: :plant }]
+    options = [ :type, :manufacturer, :rich_text_notes, production_line: { area: :plant } ]
 
     respond_to do |format|
       format.html do
@@ -134,8 +134,8 @@ class Maintenance::AssetsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_maintenance_asset
-    options = [:type, :manufacturer, :rich_text_notes,
-               production_line: { area: :plant }]
+    options = [ :type, :manufacturer, :rich_text_notes,
+               production_line: { area: :plant } ]
     @maintenance_asset = Maintenance::Asset.includes(options)
                                            .find(params[:id])
   end
