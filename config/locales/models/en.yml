@@ -95,7 +95,7 @@ en:
         specifications: "Specifications"
         replacement_period: "Replacement period"
         status: "Status"
-      maintenance_asset_document:
+      maintenance/asset_document:
         maintenance_asset_id: "Asset"
         document_type: "Document type"
         name: "Name"

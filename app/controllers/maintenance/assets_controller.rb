@@ -10,7 +10,10 @@ class Maintenance::AssetsController < ApplicationController
       :status, :criticality_level, :physical_location, :notes,
       technical_specs: {},
       components_attributes: [ %i[id name description quantity specifications
-                                  replacement_period status] ] ].freeze
+                                  replacement_period status] ],
+      documents_attributes: [ %i[id document_type name description version
+                                 expiration_date status] ],
+      assignees_attributes: [ %i[id maintenance_technician_id] ]].freeze
 
   # -- -------------------------------------------------------------------------
   # -- Concerns ----------------------------------------------------------------
@@ -32,7 +35,7 @@ class Maintenance::AssetsController < ApplicationController
 
   # GET /maintenance/assets or /maintenance/assets.json
   def index
-    options = [ :type, :manufacturer, :rich_text_notes, production_line: { area: :plant } ]
+    options = [:type, :manufacturer, :rich_text_notes, production_line: { area: :plant }]
 
     respond_to do |format|
       format.html do
@@ -129,23 +132,23 @@ class Maintenance::AssetsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_maintenance_asset
-      options = [ :type, :manufacturer, :rich_text_notes,
-                  production_line: { area: :plant } ]
-      @maintenance_asset = Maintenance::Asset.includes(options)
-                                             .find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_maintenance_asset
+    options = [:type, :manufacturer, :rich_text_notes,
+               production_line: { area: :plant }]
+    @maintenance_asset = Maintenance::Asset.includes(options)
+                                           .find(params[:id])
+  end
 
-    # Load collections for new and edit actions
-    def load_collections
-      @asset_types = Maintenance::AssetType.all
-      @manufacturers = Maintenance::Manufacturer.all
-      @plants = Organization::Plant.all
-    end
+  # Load collections for new and edit actions
+  def load_collections
+    @asset_types = Maintenance::AssetType.all
+    @manufacturers = Maintenance::Manufacturer.all
+    @plants = Organization::Plant.all
+  end
 
-    # Only allow a list of trusted parameters through.
-    def maintenance_asset_params
-      params.expect(maintenance_asset: PERMITTED_ATTRIBUTES)
-    end
+  # Only allow a list of trusted parameters through.
+  def maintenance_asset_params
+    params.expect(maintenance_asset: PERMITTED_ATTRIBUTES)
+  end
 end

@@ -95,7 +95,7 @@ es-MX:
         specifications: "Especificaciones"
         replacement_period: "Período de reemplazo"
         status: "Estado"
-      maintenance_asset_document:
+      maintenance/asset_document:
         maintenance_asset_id: "Activo"
         document_type: "Tipo de documento"
         name: "Nombre"
