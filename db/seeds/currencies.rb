@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Seeds
   class Currencies
     # Load the currencies from the TSV file 'currencies.tsv' in the db/seeds/data folder

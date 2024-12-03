@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Seeds
   class Timezones
     # Load the Timezones from the TSV file 'timezones.tsv' in the db/seed_data folder

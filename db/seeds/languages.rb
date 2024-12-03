@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'csv'
+
 module Seeds
   class Languages
     # Load the languages from the TSV file 'languages.tsv' in the db/seeds/data folder
