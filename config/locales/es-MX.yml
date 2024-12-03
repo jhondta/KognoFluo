@@ -130,6 +130,7 @@ es-MX:
       not_an_integer: "debe ser un entero"
       odd: "debe ser un número non"
       other_than: "debe ser diferente a %{count}"
+      password_too_long: "es demasiado largo"
       present: "debe estar en blanco"
       required: "debe existir"
       taken: "ya ha sido tomado"
@@ -159,6 +160,7 @@ es-MX:
       format:
         delimiter: ","
         format: "%u%n"
+        negative_format: "-%u%n"
         precision: 2
         separator: "."
         significant: "false"
@@ -202,6 +204,7 @@ es-MX:
           mb: "MB"
           pb: "PB"
           tb: "TB"
+          zb: "ZB"
     percentage:
       format:
         delimiter: ","

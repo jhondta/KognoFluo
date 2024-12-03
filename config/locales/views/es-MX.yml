@@ -130,6 +130,10 @@ es-MX:
             add_component: "Agregar componente"
           component_card:
             remove_component: "Eliminar componente"
+          assignees:
+            add_assignee: "Agregar responsable"
+          documents:
+            add_document: "Agregar documento"
     asset_types:
       index:
         breadcrumb: "Tipos de activo"
@@ -183,6 +187,11 @@ es-MX:
         form:
           general:
             general_information: "Información general"
+          resource_card:
+            remove_component: "Eliminar componente"
+          resource_item:
+            hours: "Horas"
+            remove: "Eliminar"
       form:
         general_information: "General"
         general:
@@ -226,3 +235,4 @@ es-MX:
     previous: "<<"
     today: "Hoy"
     next: ">>"
+    week: "Semana"

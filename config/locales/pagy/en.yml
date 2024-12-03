@@ -1,0 +1,31 @@
+# :one_other pluralization (see https://github.com/ddnexus/pagy/blob/master/gem/lib/pagy/i18n.rb)
+en:
+  pagy:
+    aria_label:
+      nav:
+        one: "Page"
+        other: "Pages"
+      prev: "Previous"
+      next: "Next"
+    prev: '<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0
+                       010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>'
+    next: '<svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1
+                     1 0 01-1.414 0z" clip-rule="evenodd"></path>
+            </svg>'
+    gap: "&hellip;"
+    item_name:
+      one: "ítem"
+      other: "ítems"
+    info:
+      no_items: "No records found"
+      single_page: "Showing %{count} %{item_name}"
+      multiple_pages: "Showing %{from}-%{to} of %{count}"
+    combo_nav_js: "Page %{page_input} of %{pages}"
+    limit_selector_js: "Show %{limit_input} %{item_name} per page"

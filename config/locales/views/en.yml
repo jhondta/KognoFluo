@@ -130,6 +130,10 @@ en:
             add_component: "Add component"
           component_card:
             remove_component: "Remove component"
+          assignees:
+            add_assignee: "Add assignee"
+          documents:
+            add_document: "Add document"
     asset_types:
       index:
         breadcrumb: "Asset types"
@@ -183,6 +187,11 @@ en:
         form:
           general:
             general_information: "General information"
+          resource_card:
+            remove_component: "Remove component"
+          resource_item:
+            hours: "Hours"
+            remove: "Remove"
       form:
         general_information: "General"
         general:
@@ -226,3 +235,4 @@ en:
     previous: "<<"
     today: "Today"
     next: ">>"
+    week: "Week"
