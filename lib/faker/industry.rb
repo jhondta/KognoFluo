@@ -282,7 +282,7 @@ module Faker
       end
 
       def asset_name(type)
-        "#{manufacturer} #{type.name}-#{rand(1000..9999)}"
+        "#{type.name}-#{rand(1000..9999)}"
       end
 
       def component(category = nil)

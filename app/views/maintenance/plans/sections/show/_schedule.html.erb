@@ -1,2 +1,74 @@
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <!-- Información de Frecuencia -->
+  <div class="mb-8">
+    <h4 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">
+      <%= t('.schedule_settings') %>
+    </h4>
+    <dl class="grid md:grid-cols-2 gap-4">
+      <div>
+        <dt class="text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/plan.frequency_type') %>
+        </dt>
+        <dd class="text-gray-900 dark:text-white">
+          <%= maintenance_plan.t_enum(:frequency_type) %>
+        </dd>
+      </div>
+      <div>
+        <dt class="text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.attributes.maintenance/plan.frequency_value') %>
+        </dt>
+        <dd class="text-gray-900 dark:text-white">
+          <%= maintenance_plan.frequency_value %>
+        </dd>
+      </div>
+    </dl>
+  </div>
+
+  <!-- Tabla de Programaciones -->
+  <div>
+    <h4 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">
+      <%= t('.scheduled_dates') %>
+    </h4>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3"><%= t('.scheduled_date') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('.status') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('.assigned_technicians') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('.assigned_hours') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% maintenance_plan.schedules.includes(:assignments, assignments: :technician)
+                           .order(scheduled_date: :desc).each do |schedule| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4">
+              <%= l(schedule.scheduled_date, format: :long) %>
+            </td>
+            <td class="px-6 py-4">
+                <span class="<%= schedule_status_badge_class(schedule.status) %>">
+                  <%= schedule.t_enum(:status) %>
+                </span>
+            </td>
+            <td class="px-6 py-4">
+              <div class="flex flex-wrap gap-1">
+                <% schedule.assignments.each do |assignment| %>
+                    <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded
+                                dark:bg-gray-700 dark:text-gray-300">
+                      <%= assignment.technician.user.full_name %>
+                      (<%= assignment.t_enum(:specialty_type) %>)
+                    </span>
+                <% end %>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <%= format_duration(schedule.assignments.sum(:assigned_hours)&.minutes) %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

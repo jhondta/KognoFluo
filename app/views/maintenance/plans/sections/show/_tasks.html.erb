@@ -1,2 +1,108 @@
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+<div class="space-y-6">
+  <!-- Encabezado -->
+  <div class="flex items-center justify-between">
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+        <%= t('.tasks_title') %>
+      </h3>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <%= t('.tasks_description') %>
+      </p>
+    </div>
+  </div>
+
+  <!-- Lista de Tareas -->
+  <div class="space-y-4">
+    <% maintenance_plan.tasks.includes(:steps, :measurements).order(:sequence_number).each do |task| %>
+      <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <!-- Encabezado de Tarea -->
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 
+                        text-blue-600 dark:bg-blue-900 dark:text-blue-300">
+              <%= task.sequence_number %>
+            </div>
+
+            <div class="flex-grow">
+              <h4 class="text-lg font-medium text-gray-900 dark:text-white">
+                <%= task.name %>
+              </h4>
+              <div class="mt-1 flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400">
+                <span><%= format_duration(task.estimated_duration) %></span>
+                <% if task.requires_shutdown %>
+                  <span class="flex items-center gap-1">
+                    <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 6a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 6zm0 9a1 1 0 100-2 1 1 0 000 2z" />
+                    </svg>
+                    <%= t('.requires_shutdown') %>
+                  </span>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pasos -->
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <h5 class="font-medium mb-3 text-gray-900 dark:text-white">
+            <%= t('.steps') %>
+          </h5>
+          <ol class="space-y-2">
+            <% task.steps.order(:sequence_number).each do |step| %>
+              <li class="flex items-start gap-2">
+                <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                  <%= step.sequence_number %>.
+                </span>
+                <span class="text-gray-900 dark:text-white"><%= step.description %></span>
+              </li>
+            <% end %>
+          </ol>
+        </div>
+
+        <!-- Mediciones -->
+        <% if task.measurements.any? %>
+          <div class="p-4">
+            <h5 class="font-medium mb-3 text-gray-900 dark:text-white">
+              <%= t('.measurements') %>
+            </h5>
+            <div class="overflow-x-auto relative">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300">
+                <tr>
+                  <th scope="col" class="px-4 py-3"><%= t('.measurement') %></th>
+                  <th scope="col" class="px-4 py-3"><%= t('.nominal') %></th>
+                  <th scope="col" class="px-4 py-3"><%= t('.min') %></th>
+                  <th scope="col" class="px-4 py-3"><%= t('.max') %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% task.measurements.each do |measurement| %>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center gap-2">
+                  <span class="font-medium text-gray-900 dark:text-white">
+                    <%= measurement.name %>
+                  </span>
+                        <% if measurement.is_critical %>
+                    <span class="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium 
+                               text-red-700 ring-1 ring-inset ring-red-600/20 dark:bg-red-900/30 dark:text-red-300 
+                               dark:ring-red-500/20">
+                      <%= t('.critical') %>
+                    </span>
+                        <% end %>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3"><%= measurement.nominal_value %></td>
+                    <td class="px-4 py-3"><%= measurement.min_value %></td>
+                    <td class="px-4 py-3"><%= measurement.max_value %></td>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

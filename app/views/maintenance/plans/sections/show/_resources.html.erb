@@ -1,7 +1,87 @@
-<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <h3 class="text-lg font-medium mb-4 dark:text-white">
-      Selección de Activo
-    </h3>
+<!-- Recursos del Plan -->
+<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12l4-4m-4 4 4 4"/>
+    </svg>
+    <%= t('.resources') %>
+  </h3>
+
+  <!-- Activo y Componente -->
+  <div class="mb-8">
+    <h4 class="font-medium mb-4 text-gray-900 dark:text-white"><%= t('.asset_info') %></h4>
+    <dl class="grid md:grid-cols-2 gap-4">
+      <div>
+        <dt class="text-gray-500 text-sm dark:text-gray-400">
+          <%= t('activerecord.models.maintenance/asset.one') %>
+        </dt>
+        <dd class="text-gray-900 dark:text-white">
+          <%= link_to maintenance_plan.asset.name,
+                      maintenance_asset_path(maintenance_plan.asset),
+                      class: "text-blue-600 hover:underline dark:text-blue-500" %>
+        </dd>
+      </div>
+
+      <% if maintenance_plan.component.present? %>
+        <div>
+          <dt class="text-gray-500 text-sm dark:text-gray-400">
+            <%= t('activerecord.models.maintenance/asset_component.one') %>
+          </dt>
+          <dd class="text-gray-900 dark:text-white">
+            <%= maintenance_plan.component.name %>
+          </dd>
+        </div>
+      <% end %>
+    </dl>
+  </div>
+
+  <!-- Herramientas -->
+  <div class="mb-8">
+    <h4 class="font-medium mb-4 text-gray-900 dark:text-white"><%= t('.tools') %></h4>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3"><%= t('activerecord.attributes.maintenance/tool.name') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('activerecord.attributes.maintenance/plan_resource.quantity') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('activerecord.attributes.maintenance/plan_resource.hours_required') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% maintenance_plan.resources.tools.each do |resource| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4"><%= resource.tool.name %></td>
+            <td class="px-6 py-4"><%= resource.quantity %></td>
+            <td class="px-6 py-4"><%= format_duration(resource.hours_required&.minutes) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Especialidades Requeridas -->
+  <div>
+    <h4 class="font-medium mb-4 text-gray-900 dark:text-white"><%= t('.specialties') %></h4>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="px-6 py-3"><%= t('activerecord.attributes.maintenance/plan_resource.specialty_type') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('activerecord.attributes.maintenance/plan_resource.quantity') %></th>
+          <th scope="col" class="px-6 py-3"><%= t('activerecord.attributes.maintenance/plan_resource.hours_required') %></th>
+        </tr>
+        </thead>
+        <tbody>
+        <% maintenance_plan.resources.specialties.each do |resource| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4"><%= resource.t_enum(:specialty_type) %></td>
+            <td class="px-6 py-4"><%= resource.quantity %></td>
+            <td class="px-6 py-4"><%= format_duration(resource.hours_required&.minutes) %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
