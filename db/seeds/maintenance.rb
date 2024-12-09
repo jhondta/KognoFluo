@@ -122,13 +122,13 @@ class MaintenanceSeeder
       def determine_asset_distribution
         puts 'Determining asset distribution...'
         {
-          'Equipos de Bombeo' => 15,
-          'Equipos de Compresión' => 10,
-          'Equipos de Proceso Térmico' => 8,
-          'Sistemas de Transporte' => 20,
-          'Sistemas Hidráulicos' => 15,
-          'Equipos de Control' => 25,
-          'Equipos Eléctricos' => 12
+          'Equipos de Bombeo' => 10,
+          'Equipos de Compresión' => 5,
+          'Equipos de Proceso Térmico' => 5,
+          'Sistemas de Transporte' => 10,
+          'Sistemas Hidráulicos' => 10,
+          'Equipos de Control' => 10,
+          'Equipos Eléctricos' => 7
         }
       end
 
@@ -215,11 +215,11 @@ class MaintenanceSeeder
         # Plan preventivo (siempre existe)
         create_maintenance_plan(asset, :preventive)
 
-        # Plan predictivo (70% de probabilidad)
-        create_maintenance_plan(asset, :predictive) if rand < 0.7
+        # Plan predictivo (50% de probabilidad)
+        create_maintenance_plan(asset, :predictive) if rand < 0.5
 
-        # Plan correctivo (50% de probabilidad)
-        create_maintenance_plan(asset, :corrective) if rand < 0.5
+        # Plan correctivo (30% de probabilidad)
+        create_maintenance_plan(asset, :corrective) if rand < 0.3
       end
 
       def create_maintenance_plan(asset, plan_type)
@@ -247,11 +247,11 @@ class MaintenanceSeeder
 
       def generate_plan_description(plan_type)
         case plan_type
-        when 'preventivo'
+        when :preventive
           'Plan de mantenimiento preventivo para asegurar la operación continua y confiable del equipo'
-        when 'predictivo'
+        when :predictive
           'Monitoreo y análisis de condiciones para predecir y prevenir fallas potenciales'
-        when 'correctivo'
+        when :corrective
           'Procedimientos para la reparación y restauración del equipo en caso de fallas'
         else
           ''
@@ -261,9 +261,9 @@ class MaintenanceSeeder
       def determine_frequency_type(plan_type)
         types = Maintenance::Plan::FREQUENCY_TYPES
         case plan_type
-        when 'preventivo'
+        when :preventive
           %i[monthly weekly ].sample
-        when 'predictivo'
+        when :predictive
           %i[monthly daily].sample
         else
           types.sample
@@ -272,9 +272,9 @@ class MaintenanceSeeder
 
       def determine_frequency_value(plan_type)
         case plan_type
-        when 'preventivo'
+        when :preventive
           [ 1, 3, 6, 12 ].sample
-        when 'predictivo'
+        when :predictive
           [ 1, 2, 4 ].sample
         else
           nil
@@ -283,7 +283,7 @@ class MaintenanceSeeder
 
       def create_schedules_and_assignments
         puts 'Creating schedules and assignments...'
-        Maintenance::Plan.where(plan_type: %w[preventivo predictivo]).find_each do |plan|
+        Maintenance::Plan.where(plan_type: %i[preventive predictive]).find_each do |plan|
           create_schedule_for_plan(plan)
         end
       end
@@ -331,7 +331,8 @@ class MaintenanceSeeder
         document_types = [ 'Manual de Operación', 'Manual de Mantenimiento',
                            'Ficha Técnica', 'Certificado de Garantía' ]
 
-        document_types.each do |doc_type|
+        quantity = rand(2..4) || document_types.size
+        document_types.take(quantity).each do |doc_type|
           asset.documents.create!(
             document_type: doc_type,
             name: "#{doc_type} - #{asset.name}",
@@ -370,8 +371,8 @@ class MaintenanceSeeder
 
       def create_plan_tasks(plan)
         task_count = case plan.plan_type
-        when 'preventivo' then rand(4..8)
-        when 'predictivo' then rand(2..4)
+        when :preventive then rand(4..8)
+        when :predictive then rand(2..4)
         else rand(3..6)
         end
 
@@ -391,9 +392,9 @@ class MaintenanceSeeder
 
       def generate_task_name(plan_type)
         case plan_type
-        when 'preventivo'
+        when :preventive
           "#{Faker::Industry.maintenance_task} de #{Faker::Industry.component}"
-        when 'predictivo'
+        when :predictive
           "Medición de #{Faker::Industry.measurement_type}"
         else
           "#{Faker::Industry.maintenance_task}"
@@ -402,9 +403,9 @@ class MaintenanceSeeder
 
       def generate_task_description(plan_type)
         case plan_type
-        when 'preventivo'
+        when :preventive
           "Tarea de mantenimiento preventivo para asegurar el funcionamiento óptimo"
-        when 'predictivo'
+        when :predictive
           "Monitoreo y análisis de parámetros para evaluar condición del equipo"
         else
           "Procedimiento de reparación y restauración del equipo"
@@ -484,21 +485,22 @@ class MaintenanceSeeder
         current_date = Date.today
         end_date = current_date + 1.year
 
-        current_date = plan.start_date while current_date <= end_date
-        schedule = plan.schedules.create!(
-          scheduled_date: current_date,
-          status: determine_schedule_status(current_date)
-        )
+        while current_date <= end_date
+          schedule = plan.schedules.create!(
+            scheduled_date: current_date,
+            status: determine_schedule_status(current_date)
+          )
 
-        assign_technicians_to_schedule(schedule)
-        current_date += calculate_next_date(plan)
+          assign_technicians_to_schedule(schedule)
+          current_date += calculate_next_date(plan)
+        end
       end
 
       def determine_schedule_status(date)
         if date < Date.today
           Maintenance::Schedule::STATUSES.sample
         else
-          'pendiente'
+          :scheduled
         end
       end
 
@@ -507,7 +509,7 @@ class MaintenanceSeeder
 
         technicians.each do |technician|
           schedule.assignments.create!(
-            maintenance_technician: technician,
+            technician: technician,
             specialty_type: technician.specialty.downcase,
             assigned_hours: rand(1..8),
             status: determine_assignment_status(schedule.status)
@@ -517,11 +519,11 @@ class MaintenanceSeeder
 
       def calculate_next_date(plan)
         case plan.frequency_type
-        when 'dias'
+        when :daily
           plan.frequency_value.days
-        when 'semanas'
+        when :weekly
           plan.frequency_value.weeks
-        when 'meses'
+        when :monthly
           plan.frequency_value.months
         else
           1.month
@@ -529,8 +531,7 @@ class MaintenanceSeeder
       end
 
       def determine_assignment_status(schedule_status)
-        return schedule_status if [ 'completado', 'cancelado' ].include?(schedule_status)
-        'pendiente'
+        Maintenance::Assignment::STATUSES.sample
       end
 
       def generate_component_specs(subsystem, component)
@@ -541,14 +542,14 @@ class MaintenanceSeeder
                          dimensiones: "#{rand(10..100)}x#{rand(10..100)}x#{rand(10..100)}cm",
                          peso: "#{rand(1..50)}kg",
                          torque_instalacion: "#{rand(20..200)}Nm",
-                         clase_precision: "#{[ 'A', 'B', 'C' ].sample}"
+                         clase_precision: "#{%w[A B C].sample}"
                        }
         when :electricos, :hardware
                        {
                          voltaje: "#{[ 12, 24, 110, 220, 440 ].sample}V",
                          potencia: "#{rand(0.5..50.0).round(1)}kW",
                          corriente_nominal: "#{rand(1..100)}A",
-                         clase_aislamiento: "#{[ 'F', 'H', 'B' ].sample}",
+                         clase_aislamiento: "#{%w[F H B].sample}",
                          grado_proteccion: "IP#{[ 54, 55, 65, 67 ].sample}",
                          factor_potencia: "#{rand(0.8..0.95).round(2)}"
                        }
@@ -558,16 +559,16 @@ class MaintenanceSeeder
                          caudal_nominal: "#{rand(1..1000)}L/min",
                          temperatura_operacion: "#{rand(0..120)}°C",
                          viscosidad_fluido: "#{rand(32..68)} ISO VG",
-                         material_sellos: [ "NBR", "EPDM", "Viton", "PTFE" ].sample,
-                         conexiones: "#{rand(1..4)} pulgadas #{[ 'NPT', 'BSP', 'ANSI' ].sample}"
+                         material_sellos: %w[NBR EPDM Viton PTFE].sample,
+                         conexiones: "#{rand(1..4)} pulgadas #{%w[NPT BSP ANSI].sample}"
                        }
         when :control
                        {
-                         rango_medicion: "#{rand(0..100)} a #{rand(101..1000)} #{[ 'bar', '°C', 'L/min' ].sample}",
+                         rango_medicion: "#{rand(0..100)} a #{rand(101..1000)} #{%w[bar °C L/min].sample}",
                          precision: "±#{rand(0.1..1.0).round(2)}%",
                          tiempo_respuesta: "#{rand(10..1000)}ms",
-                         protocolo_comunicacion: [ '4-20mA', 'HART', 'Modbus', 'Profibus' ].sample,
-                         certificacion: [ 'ATEX', 'IECEx', 'CSA', 'UL' ].sample,
+                         protocolo_comunicacion: %w[4-20mA HART Modbus Profibus].sample,
+                         certificacion: %w[ATEX IECEx CSA UL].sample,
                          repetibilidad: "±#{rand(0.05..0.5).round(3)}%"
                        }
         when :combustion
@@ -581,7 +582,7 @@ class MaintenanceSeeder
         when :refrigeracion
                        {
                          capacidad_refrigeracion: "#{rand(5..100)}kW",
-                         tipo_refrigerante: [ 'R134a', 'R410A', 'R407C' ].sample,
+                         tipo_refrigerante: %w[R134a R410A R407C].sample,
                          caudal_aire: "#{rand(1000..10000)}m³/h",
                          nivel_ruido: "#{rand(65..85)}dB(A)"
                        }
@@ -618,12 +619,12 @@ class MaintenanceSeeder
         when /Válvula/
                                      {
                                        cv: "#{rand(0.1..100.0).round(1)}",
-                                       tipo_actuacion: [ 'Manual', 'Neumática', 'Eléctrica' ].sample
+                                       tipo_actuacion: %w[Manual Neumática Eléctrica].sample
                                      }
         when /Sensor/
                                      {
-                                       tipo_sensor: [ 'RTD', 'Termocupla', 'Capacitivo', 'Inductivo' ].sample,
-                                       salida: [ '4-20mA', '0-10V', 'Digital' ].sample
+                                       tipo_sensor: %w[RTD Termocupla Capacitivo Inductivo].sample,
+                                       salida: %w[4-20mA 0-10V Digital].sample
                                      }
         else
                                      {}
@@ -633,7 +634,7 @@ class MaintenanceSeeder
       end
 
       def calculate_replacement_period(subsystem)
-        base_period = case subsystem
+        case subsystem
         when :mecanicos
                         rand(12..60) # 1 a 5 años
         when :electricos, :hardware
@@ -653,9 +654,6 @@ class MaintenanceSeeder
         else
                         rand(12..36) # 1 a 3 años
         end
-
-        # Ajustar según criticidad del equipo (si está disponible)
-        base_period
       end
 
       def generate_component_description(subsystem)
