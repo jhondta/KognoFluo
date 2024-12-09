@@ -26,7 +26,7 @@ class Maintenance::PlanResource < ApplicationRecord
   belongs_to :plan, class_name: 'Maintenance::Plan',
              foreign_key: :maintenance_plan_id
   belongs_to :tool, class_name: 'Maintenance::Tool',
-             foreign_key: :maintenance_tool_id
+             foreign_key: :maintenance_tool_id, optional: true
 
   # -- -------------------------------------------------------------------------
   # -- Validations -------------------------------------------------------------

@@ -5,7 +5,7 @@ class CreateMaintenancePlanResources < ActiveRecord::Migration[8.0]
     create_table :maintenance_plan_resources do |t|
       t.references :maintenance_plan, null: false, foreign_key: true
       t.integer :resource_type, null: false
-      t.references :maintenance_tool, null: false, foreign_key: true
+      t.references :maintenance_tool, null: true, foreign_key: true
       t.integer :specialty_type
       t.decimal :quantity
       t.decimal :hours_required
