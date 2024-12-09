@@ -1,0 +1,180 @@
+<%= form_with model: maintenance_plan, data: { controller: "tasks-form" } do |f| %>
+  <div class="space-y-6">
+    <!-- Lista de Tareas -->
+    <div data-tasks-form-target="tasksList" class="space-y-4">
+      <%= f.fields_for :tasks do |task_form| %>
+        <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <!-- Encabezado de Tarea -->
+          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="grid md:grid-cols-4 gap-4">
+              <%= task_form.hidden_field :sequence_number,
+                                         data: { tasks_form_target: "sequenceNumber" } %>
+
+              <div class="md:col-span-2">
+                <%= task_form.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= task_form.text_field :name,
+                                         class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
+              </div>
+
+              <div>
+                <%= task_form.label :estimated_duration,
+                                    class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= task_form.number_field :estimated_duration,
+                                           min: 1, placeholder: 'Minutos',
+                                           class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
+              </div>
+
+              <label class="inline-flex items-center cursor-pointer">
+                <%= task_form.check_box :requires_shutdown, class: 'sr-only peer' %>
+                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300
+                          dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700
+                          peer-checked:after:translate-x-full peer-checked:after:border-white after:content-['']
+                          after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300
+                          after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600
+                          peer-checked:bg-blue-600">
+                </div>
+                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                  Requiere paro de equipo
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Pasos -->
+          <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex justify-between items-center mb-4">
+              <h5 class="font-medium text-gray-900 dark:text-white"><%= t('.steps') %></h5>
+              <button type="button"
+                      class=""
+                      data-action="tasks-form#addStep">
+                <%= t('.add_step') %>
+              </button>
+              <%= button_tag type: 'submit', form: 'plan_form',
+                             class: 'inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center
+                                 text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                                 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800' do %>
+                <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 11.917 9.724 16.5 19 7.5"/>
+                </svg>
+                <%= t('shared.header.submit') %>
+              <% end %>
+            </div>
+
+
+            <div data-tasks-form-target="stepsList" class="space-y-3">
+              <%= task_form.fields_for :steps do |step_form| %>
+                <div class="flex items-start gap-4">
+                  <%= step_form.hidden_field :sequence_number %>
+                  <div class="flex-grow">
+                    <%= step_form.text_area :description,
+                                            rows: 2,
+                                            class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                    focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                                    dark:bg-gray-700 dark:border-gray-600 dark:text-white' %>
+                  </div>
+
+                  <%= step_form.hidden_field :_destroy %>
+                  <button type="button"
+                          class="text-red-600 hover:text-red-800"
+                          data-action="tasks-form#removeStep">
+                    <%= t('shared.messages.remove') %>
+                  </button>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Mediciones -->
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h5 class="font-medium text-gray-900 dark:text-white"><%= t('.measurements') %></h5>
+              <button type="button"
+                      class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
+                             font-medium rounded-lg text-sm px-4 py-2"
+                      data-action="tasks-form#addMeasurement">
+                <%= t('.add_measurement') %>
+              </button>
+            </div>
+
+            <div data-tasks-form-target="measurementsList">
+              <%= task_form.fields_for :measurements do |measurement_form| %>
+                <div class="grid md:grid-cols-5 gap-4 p-4 border rounded-lg mb-4">
+                  <div>
+                    <%= measurement_form.label :name %>
+                    <%= measurement_form.text_field :name, class: "form-input" %>
+                  </div>
+
+                  <div>
+                    <%= measurement_form.label :nominal_value %>
+                    <%= measurement_form.number_field :nominal_value, step: 'any', class: "form-input" %>
+                  </div>
+
+                  <div>
+                    <%= measurement_form.label :min_value %>
+                    <%= measurement_form.number_field :min_value, step: 'any', class: "form-input" %>
+                  </div>
+
+                  <div>
+                    <%= measurement_form.label :max_value %>
+                    <%= measurement_form.number_field :max_value, step: 'any', class: "form-input" %>
+                  </div>
+
+                  <div class="flex items-center gap-4">
+                    <div class="flex items-center">
+                      <%= measurement_form.check_box :is_critical %>
+                      <%= measurement_form.label :is_critical %>
+                    </div>
+
+                    <%= measurement_form.hidden_field :_destroy %>
+                    <button type="button"
+                            class="text-red-600 hover:text-red-800"
+                            data-action="tasks-form#removeMeasurement">
+                      <%= t('shared.messages.remove') %>
+                    </button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- Botón eliminar tarea -->
+          <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+            <%= task_form.hidden_field :_destroy %>
+            <button type="button"
+                    class="text-red-600 hover:text-red-800 font-medium"
+                    data-action="tasks-form#removeTask">
+              <%= t('.remove_task') %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Botón agregar tarea -->
+    <button type="button"
+            class="w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
+                   font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            data-action="tasks-form#addTask">
+      <%= t('.add_task') %>
+    </button>
+  </div>
+
+  <!-- Templates -->
+  <template data-tasks-form-target="taskTemplate">
+    <!-- Similar al fields_for de task pero con índices dinámicos -->
+  </template>
+
+  <template data-tasks-form-target="stepTemplate">
+    <!-- Template para nuevos pasos -->
+  </template>
+
+  <template data-tasks-form-target="measurementTemplate">
+    <!-- Template para nuevas mediciones -->
+  </template>
+<% end %>

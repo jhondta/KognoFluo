@@ -1,10 +1,10 @@
-<div class="grid gap-6">
-  <!-- Selección de Activo -->
-  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <h3 class="text-lg font-medium mb-4 dark:text-white">
+<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="mb-8">
+    <!-- Selección de Activo -->
+    <h3 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">
       Selección de Activo
     </h3>
-    <div class="grid md:grid-cols-3 gap-4"
+    <div class="grid md:grid-cols-2 gap-4"
          data-controller="select"
          data-select-param-value="selected_id">
 
@@ -43,186 +43,55 @@
     </div>
   </div>
 
-  <!-- Recursos Necesarios -->
-  <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <div class="mb-8">
     <h3 class="text-lg font-medium mb-4 dark:text-white">
       Recursos Necesarios
     </h3>
 
     <div class="grid md:grid-cols-2 gap-6">
       <!-- Herramientas -->
-      <div>
+      <div data-controller="resources">
         <div class="flex justify-between items-center mb-3">
           <h4 class="text-base font-medium dark:text-white">
             Herramientas
           </h4>
-          <button type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-1.5
-                       focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700"
-                  data-controller="resource"
-                  data-action="click->resource#addTool">
-            Agregar Herramienta
-          </button>
         </div>
 
-        <%= form.fields_for :resources, maintenance_plan.resources.build do |resource_form| %>
-          <% if resource_form.object&.resource_type == 'tool' %>
-            <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600">
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <%= resource_form.collection_select :maintenance_tool_id,
-                                                      Maintenance::Tool.all, :id, :name,
-                                                      { prompt: "Seleccionar..." },
-                                                      class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                                        dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
-                </div>
-                <div class="flex gap-2">
-                  <%= resource_form.number_field :quantity,
-                                                 class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white",
-                                                 min: 1,
-                                                 placeholder: "Cantidad" %>
-                  <button type="button"
-                          class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
-                               rounded-lg text-sm px-3 text-center"
-                          data-action="resource#remove">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          <% end %>
+        <div id="tool-container">
+          <%= render partial: "resource_fields", collection: maintenance_plan.resources.tools, as: :resource %>
+        </div>
+
+        <%= link_to new_resource_fields_maintenance_plans_path(type: 'tool'),
+                    class: "mt-4 text-blue-600 text-sm hover:text-blue-800 flex items-center gap-2",
+                    data: { turbo_stream: true, action: "resources#add" } do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+          </svg>
+          Agregar herramienta
         <% end %>
       </div>
 
-      <%= form.fields_for :resources do |resource_form| %>
-        <% if resource_form.object&.persisted? %>
-          <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <!-- Similar al diseño que mostraste en la imagen -->
-            <%= render partial: 'maintenance/plans/sections/form/resource_card',
-                       locals: { form: resource_form } %>
-          </div>
-        <% end %>
-      <% end %>
-
       <!-- Especialidades -->
-      <div>
+      <div data-controller="resources">
         <div class="flex justify-between items-center mb-3">
-          <h4 class="text-base font-medium dark:text-white">
-            Especialidades
-          </h4>
-          <button type="button"
-                  class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-3 py-1.5
-                       focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700"
-                  data-controller="resource"
-                  data-action="click->resource#addSpecialty">
-            Agregar Especialidad
-          </button>
+          <h4 class="text-base font-medium dark:text-white">Especialidades</h4>
         </div>
 
-        <%= form.fields_for :maintenance_plan_resources do |resource_form| %>
-          <% if resource_form.object&.resource_type == 'specialty' %>
-            <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600">
-              <div class="grid grid-cols-2 gap-3">
-                <div>
-                  <%= resource_form.select :specialty_type,
-                                           enum_options_for_select(Maintenance::PlanResource, :specialty_type),
-                                           { prompt: "Seleccionar..." },
-                                           class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                             dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
-                </div>
-                <div class="flex gap-2">
-                  <%= resource_form.number_field :hours_required,
-                                                 class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
-                                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white",
-                                                 step: 0.5,
-                                                 min: 0.5,
-                                                 placeholder: "Horas" %>
-                  <button type="button"
-                          class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
-                               rounded-lg text-sm px-3 text-center"
-                          data-action="resource#remove">
-                    <i class="fas fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          <% end %>
+        <div id="specialty-container" class="space-y-3">
+          <%= render partial: "resource_fields", collection: maintenance_plan.resources.specialties, as: :resource %>
+        </div>
+
+        <%= link_to new_resource_fields_maintenance_plans_path(type: 'specialty'),
+                    class: "mt-4 text-blue-600 text-sm hover:text-blue-800 flex items-center gap-2",
+                    data: { turbo_stream: true, action: "resources#add" } do %>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+          </svg>
+          Agregar especialidad
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-<% content_for :templates do %>
-  <!-- Template para nueva herramienta -->
-  <template data-resource-target="toolTemplate">
-    <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600 resource-item" data-new-record="true">
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <select name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][maintenance_tool_id]"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <option value="">Seleccionar...</option>
-            <%= options_from_collection_for_select(Maintenance::Tool.all, :id, :name) %>
-          </select>
-        </div>
-        <div class="flex gap-2">
-          <input type="number"
-                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][quantity]"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                 min="1"
-                 placeholder="Cantidad">
-          <input type="hidden"
-                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][resource_type]"
-                 value="tool">
-          <button type="button"
-                  class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
-                         rounded-lg text-sm px-3 text-center"
-                  data-action="resource#remove">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </template>
-
-  <!-- Template para nueva especialidad -->
-  <template data-resource-target="specialtyTemplate">
-    <div class="mb-3 border border-gray-200 rounded-lg p-3 dark:border-gray-600 resource-item" data-new-record="true">
-      <div class="grid grid-cols-2 gap-3">
-        <div>
-          <select name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][specialty_type]"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                         focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-            <option value="">Seleccionar...</option>
-            <%= options_for_select(enum_options_for_select(Maintenance::PlanResource, :specialty_type)) %>
-          </select>
-        </div>
-        <div class="flex gap-2">
-          <input type="number"
-                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][hours_required]"
-                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                 step="0.5"
-                 min="0.5"
-                 placeholder="Horas">
-          <input type="hidden"
-                 name="maintenance_plan[maintenance_plan_resources_attributes][NEW_RECORD][resource_type]"
-                 value="specialty">
-          <button type="button"
-                  class="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 font-medium 
-                         rounded-lg text-sm px-3 text-center"
-                  data-action="resource#remove">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-  </template>
-<% end %>

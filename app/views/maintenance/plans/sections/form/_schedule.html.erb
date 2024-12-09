@@ -1,0 +1,99 @@
+<div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+  <%= form_with model: maintenance_plan, data: { controller: "schedule-form" } do |f| %>
+    <!-- Configuración de Frecuencia -->
+    <div class="mb-8">
+      <h4 class="text-lg font-medium mb-4 text-gray-900 dark:text-white">
+        <%= t('.schedule_settings') %>
+      </h4>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="form-group">
+          <%= f.label :frequency_type,
+                      class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= f.select :frequency_type,
+                       enum_options_for_select(Maintenance::Plan, :frequency_type),
+                       {},
+                       class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500
+                             focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600
+                             dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500
+                             dark:focus:border-primary-500",
+                       data: { action: "change->schedule-form#updateFrequencyValue" } %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :frequency_value,
+                      class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+          <%= f.number_field :frequency_value,
+                             min: 1,
+                             class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                   focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5
+                                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                   dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Asignación de Técnicos -->
+    <div class="mb-8">
+      <div class="flex justify-between items-center mb-4">
+        <h4 class="text-lg font-medium text-gray-900 dark:text-white">
+          <%= t('.technician_assignments') %>
+        </h4>
+        <button type="button"
+                class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300
+                       font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700
+                       focus:outline-none dark:focus:ring-primary-800"
+                data-action="schedule-form#addTechnician">
+          <%= t('.add_technician') %>
+        </button>
+      </div>
+
+      <div data-schedule-form-target="technicians" class="space-y-4">
+        <%= f.fields_for :assignments do |assignment_form| %>
+          <div class="grid md:grid-cols-3 gap-4 p-4 border rounded-lg">
+            <div class="form-group">
+              <%= assignment_form.label :maintenance_technician_id,
+                                        class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= assignment_form.collection_select :maintenance_technician_id, Maintenance::Technician.all, :id, :full_name,
+                                                    { include_blank: true },
+                                                    class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                              focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+            </div>
+
+            <div class="form-group">
+              <%= assignment_form.label :specialty_type,
+                                        class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= assignment_form.select :specialty_type,
+                                         enum_options_for_select(Maintenance::PlanResource, :specialty_type),
+                                         {},
+                                         class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                              focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+            </div>
+
+            <div class="form-group">
+              <%= assignment_form.label :assigned_hours,
+                                        class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= assignment_form.number_field :assigned_hours,
+                                               step: 0.5,
+                                               min: 0.5,
+                                               class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                                    focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" %>
+            </div>
+
+            <%= assignment_form.hidden_field :_destroy %>
+            <button type="button"
+                    class="text-red-600 hover:text-red-800"
+                    data-action="schedule-form#removeTechnician">
+              <%= t('.remove') %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Template para nuevo técnico -->
+    <template data-schedule-form-target="technicianTemplate">
+      <!-- Similar al fields_for de arriba pero con índice dinámico -->
+    </template>
+  <% end %>
+</div>

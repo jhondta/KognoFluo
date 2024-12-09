@@ -46,6 +46,8 @@ es-MX:
       cancel: "Cancelar"
       edit: "Editar"
       submit: "Guardar"
+    messages:
+      remove: "Eliminar"
   search_placeholder: "Buscar %{resource}"
   new_resource: "Nuevo %{resource}"
   export: "Exportar"
@@ -189,6 +191,7 @@ es-MX:
             asset_info: "Información del activo"
             tools: "Herramientas"
             specialties: "Especialidades"
+            location: "Ubicación"
           schedule:
             scheduled_dates: "Fechas programadas"
             technicians: "Técnicos"
@@ -204,6 +207,18 @@ es-MX:
           resource_item:
             hours: "Horas"
             remove: "Eliminar"
+          schedule:
+            schedule_settings: "Configuración de programación"
+            technician_assignments: "Asignación de técnicos"
+            add_technician: "Agregar técnico"
+            remove: "Eliminar"
+          tasks:
+            add_task: "Agregar tarea"
+            remove_task: "Eliminar tarea"
+            add_measurement: "Agregar medición"
+            measurements: "Mediciones"
+            add_step: "Agregar paso"
+            steps: "Pasos"
       form:
         general_information: "General"
         general:

@@ -1,0 +1,49 @@
+<div class="space-y-3"
+     <%= random_id = SecureRandom.hex(4) %>
+     id="resource-<%= resource&.id || random_id %>"
+     data-resource-id="<%= resource&.id %>">
+  <%= fields_for :resource, resource do |f| %>
+    <%= f.hidden_field :resource_type, value: @resource_type || resource.resource_type %>
+    <div class="flex gap-4">
+      <% if @resource_type == 'tool' || resource.resource_type == 'tool' %>
+        <%= f.collection_select :maintenance_tool_id,
+                                Maintenance::Tool.all, :id, :name,
+                                { prompt: "Seleccionar..." },
+                                class: 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                        focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                        dark:bg-gray-700 dark:border-gray-600 dark:text-white' %>
+
+        <%= f.number_field :quantity,
+                           class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+                           min: 1, placeholder: "Cantidad" %>
+
+      <% else %>
+
+        <%= f.select :specialty_type,
+                     enum_options_for_select(Maintenance::PlanResource, :specialty_type),
+                     { prompt: "Seleccionar..." },
+                     class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                             dark:bg-gray-700 dark:border-gray-600 dark:text-white" %>
+
+
+        <%= f.number_field :hours_required,
+                           class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                   focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
+                                   dark:bg-gray-700 dark:border-gray-600 dark:text-white",
+                           step: 0.5, min: 0.5, placeholder: "Horas" %>
+
+      <% end %>
+        <button type="button" data-action="resources#remove"
+                class="text-red-700 px-3 text-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1
+                   0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+          </svg>
+        </button>
+    </div>
+  <% end %>
+</div>

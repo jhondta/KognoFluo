@@ -65,7 +65,11 @@ Rails.application.routes.draw do
   end
 
   namespace :maintenance do
-    resources :plans
+    resources :plans do
+      collection do
+        get :new_resource_fields
+      end
+    end
     resources :technicians
     resources :manufacturers
     resources :asset_types

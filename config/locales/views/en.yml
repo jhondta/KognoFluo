@@ -46,6 +46,8 @@ en:
       cancel: "Cancel"
       edit: "Edit"
       submit: "Save"
+    messages:
+      remove: "Remove"
   search_placeholder: "Search %{resource}"
   new_resource: "New %{resource}"
   export: "Export"
@@ -189,6 +191,7 @@ en:
             asset_info: "Asset info"
             tools: "Tools"
             specialties: "Specialties"
+            location: "Location"
           schedule:
             scheduled_dates: "Scheduled dates"
             technicians: "Technicians"
@@ -204,6 +207,18 @@ en:
           resource_item:
             hours: "Hours"
             remove: "Remove"
+          schedule:
+            schedule_settings: "Schedule settings"
+            technician_assignments: "Technician assignments"
+            add_technician: "Add technician"
+            remove: "Remove"
+          tasks:
+            add_task: "Add task"
+            remove_task: "Remove task"
+            add_measurement: "Add mesaurement"
+            measurements: "Measurements"
+            add_step: "Add step"
+            steps: "Steps"
       form:
         general_information: "General"
         general:

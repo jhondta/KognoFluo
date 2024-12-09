@@ -93,6 +93,15 @@ class Maintenance::PlansController < ApplicationController
     end
   end
 
+  def new_resource_fields
+    @index = params[:index]
+    @resource_type = params[:type] # 'tool' o 'specialty'
+
+    respond_to do |format|
+      format.turbo_stream
+    end
+  end
+
   # -- -------------------------------------------------------------------------
   # -- Protected Methods -------------------------------------------------------
 
