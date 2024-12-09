@@ -1,16 +1,4 @@
 <div class="space-y-6">
-  <!-- Encabezado -->
-  <div class="flex items-center justify-between">
-    <div>
-      <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-        <%= t('.tasks_title') %>
-      </h3>
-      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        <%= t('.tasks_description') %>
-      </p>
-    </div>
-  </div>
-
   <!-- Lista de Tareas -->
   <div class="space-y-4">
     <% maintenance_plan.tasks.includes(:steps, :measurements).order(:sequence_number).each do |task| %>
@@ -31,10 +19,11 @@
                 <span><%= format_duration(task.estimated_duration) %></span>
                 <% if task.requires_shutdown %>
                   <span class="flex items-center gap-1">
-                    <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 6a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 6zm0 9a1 1 0 100-2 1 1 0 000 2z" />
+                    <svg class="w-4 h-4 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         fill="currentColor">
+                      <path d="M12 3L2 21h20L12 3zm-1 14h2v2h-2v-2zm0-8h2v6h-2V9z"/>
                     </svg>
-                    <%= t('.requires_shutdown') %>
+                    <%= t('activerecord.attributes.maintenance/plan_task.requires_shutdown') %>
                   </span>
                 <% end %>
               </div>

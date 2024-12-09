@@ -183,7 +183,19 @@ en:
             templates: "Templates"
         show:
           general:
-            general_information: "Generl information"
+            general_information: "General information"
+          resources:
+            resources: "Resources"
+            asset_info: "Asset info"
+            tools: "Tools"
+            specialties: "Specialties"
+          schedule:
+            scheduled_dates: "Scheduled dates"
+            technicians: "Technicians"
+            assigned_hours: "Assigned hours"
+            schedule_settings: "Schedule settings"
+          tasks:
+            steps: "Steps"
         form:
           general:
             general_information: "General information"

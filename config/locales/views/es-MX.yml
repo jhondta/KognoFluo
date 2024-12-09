@@ -184,6 +184,18 @@ es-MX:
         show:
           general:
             general_information: "Información general"
+          resources:
+            resources: "Recursos"
+            asset_info: "Información del activo"
+            tools: "Herramientas"
+            specialties: "Especialidades"
+          schedule:
+            scheduled_dates: "Fechas programadas"
+            technicians: "Técnicos"
+            assigned_hours: "Horas asignadas"
+            schedule_settings: "Configuración de programación"
+          tasks:
+            steps: "Pasos"
         form:
           general:
             general_information: "Información general"

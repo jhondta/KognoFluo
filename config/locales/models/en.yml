@@ -152,12 +152,35 @@ en:
         maintenance_asset_component_id: "Component"
         start_date: "Start date"
         asset: "Asset"
+      maintenance/plan_resource:
+        maintenance_plan_id: "Plan"
+        resource_type: "Resource type"
+        maintenance_tool_id: "Tool"
+        specialty_type: "Specialty type"
+        quantity: "Quantity"
+        hours_required: "Hours required"
+      maintenance/plan_task:
+        maintenance_plan_id: "Plan"
+        sequence_number: "Sequence number"
+        name: "Name"
+        description: "Description"
+        estimated_duration: "Estimated duration"
+        requires_shutdown: "Requires shutdown"
+      maintenance/schedule:
+        maintenance_plan_id: "Plan"
+        scheduled_date: "Scheduled date"
+        status: "Status"
       maintenance/technician:
         user_id: "User"
         full_name: "Name"
         specialty: "Specialty"
         certificcation_level: "Certification level"
         status: "Status"
+      maintenance/tool:
+        code: "Code"
+        name: "Name"
+        description: "Description"
+        calibration_required: "Calibration required"
       organization/area:
         code: "Code"
         name: "Name"

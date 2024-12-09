@@ -152,12 +152,35 @@ es-MX:
         maintenance_asset_component_id: "Componente"
         start_date: "Fecha de inicio"
         asset: "Activo"
+      maintenance/plan_resource:
+        maintenance_plan_id: "Plan"
+        resource_type: "Tipo de recurso"
+        maintenance_tool_id: "Herramienta"
+        specialty_type: "Tipo de especialidad"
+        quantity: "Cantidad"
+        hours_required: "Horas requeridas"
+      maintenance/plan_task:
+        maintenance_plan_id: "Plan"
+        sequence_number: "Número"
+        name: "Nombre"
+        description: "Descripción"
+        estimated_duration: "Duración estimada"
+        requires_shutdown: "Requiere apagado"
+      maintenance/schedule:
+        maintenance_plan_id: "Plan"
+        scheduled_date: "Fecha programada"
+        status: "Estado"
       maintenance/technician:
         user_id: "Usuario"
         specialty: "Especialidad"
         full_name: "Nombre"
         certificcation_level: "Nivel de certificación"
         status: "Estado"
+      maintenance/tool:
+        code: "Código"
+        name: "Nombre"
+        description: "Descripción"
+        calibration_required: "Calibración requerida"
       organization/area:
         code: "Código"
         name: "Nombre"
